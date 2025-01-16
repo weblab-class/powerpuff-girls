@@ -16,7 +16,7 @@ const Feed = () => {
   // called when the "Feed" component "mounts", i.e.
   // when it shows up on screen
   useEffect(() => {
-    document.title = "News Feed";
+    document.title = "Fashion Feed";
     get("/api/stories").then((storyObjs) => {
       let reversedStoryObjs = storyObjs.reverse();
       setStories(reversedStoryObjs);
