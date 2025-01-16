@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card from "../modules/Card";
 import { NewStory } from "../modules/NewPostInput";
+import { SearchFeed } from "../modules/SearchBar";
 import { useOutletContext } from "react-router-dom";
 
 import { get } from "../../utilities";
@@ -9,6 +10,7 @@ import "./Feed.css";
 const Feed = () => {
   let props = useOutletContext();
   const [stories, setStories] = useState([]);
+  const [filterStories, setFilterStories] = useState([]);
   const [showing, setShowing] = useState(0);
 
   // called when the "Feed" component "mounts", i.e.
@@ -18,17 +20,31 @@ const Feed = () => {
     get("/api/stories").then((storyObjs) => {
       let reversedStoryObjs = storyObjs.reverse();
       setStories(reversedStoryObjs);
+      setFilterStories(reversedStoryObjs);
     });
+    setShowing(0);
   }, []);
 
   // this gets called when the user pushes "Submit", so their
   // post gets added to the screen right away
-  const addNewStory = (storyObj) => {
+  /*const addNewStory = (storyObj) => {
     setStories([storyObj].concat(stories));
+  };*/
+  const filterFeed = (query) => {
+    if (query === "") {
+      setFilterStories(stories);
+      setShowing(0);
+    } else {
+      let filteredCards = stories.filter((storyObj) =>
+        storyObj.content.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilterStories(filteredCards);
+      setShowing(0);
+    }
   };
 
   const goRight = () => {
-    if (showing * 4 + 4 <= stories.length - 1) {
+    if (showing * 4 + 4 <= filterStories.length - 1) {
       setShowing(showing + 1);
     }
   };
@@ -39,11 +55,11 @@ const Feed = () => {
   };
 
   let storiesList = null;
-  const hasStories = stories.length !== 0;
-  if (hasStories) {
-    let fourStories = stories.slice(
+  if (filterStories.length !== 0) {
+    console.log(filterStories);
+    let fourStories = filterStories.slice(
       showing * 4,
-      Math.min(showing * 4 + 4, stories.length)
+      Math.min(showing * 4 + 4, filterStories.length)
     );
     storiesList = fourStories.map((storyObj) => (
       <Card
@@ -55,21 +71,21 @@ const Feed = () => {
         content={storyObj.content}
       />
     ));
+  } else if (filterStories.length === 0 && stories.length !== 0) {
+    console.log(filterStories);
+    storiesList = <div>Nothing matches your search...</div>;
   } else {
     storiesList = <div>Nothing in your feed!</div>;
   }
   return (
     <>
-      {props.userId && <NewStory addNewStory={addNewStory} />}
-      <div className="horizontal-spread">{storiesList}</div>
+      {/*props.userId && <NewStory addNewStory={addNewStory} />*/}
+      {<SearchFeed filterFeed={filterFeed} />}
 
-      <div>
-        <span>
-          <button onClick={goLeft}>Left</button>
-        </span>
-        <span>
-          <button onClick={goRight}>Right</button>
-        </span>
+      <div className="horizontal-spread">
+        <button onClick={goLeft}>Left</button>
+        <div className="horizontal-spread">{storiesList}</div>
+        <button onClick={goRight}>Right</button>
       </div>
     </>
   );
