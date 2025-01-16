@@ -35,8 +35,11 @@ const Feed = () => {
       setFilterStories(stories);
       setShowing(0);
     } else {
-      let filteredCards = stories.filter((storyObj) =>
-        storyObj.content.toLowerCase().includes(query.toLowerCase())
+      let filteredCards = stories.filter(
+        (storyObj) =>
+          storyObj.content.toLowerCase().includes(query.toLowerCase())
+        //rn it only looks in caption, but can easily modify this to make it searchable by tag
+        //or by user or something
       );
       setFilterStories(filteredCards);
       setShowing(0);

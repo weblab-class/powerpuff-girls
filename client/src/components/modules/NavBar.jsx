@@ -13,7 +13,7 @@ const NavBar = (props) => {
       <div className="NavBar-title u-inlineBlock">StyleSnap</div>
       <div className="NavBar-linkContainer u-inlineBlock">
         <Link to="/" className="NavBar-link">
-          Home
+          Fashboard
         </Link>
         {props.userId && (
           <Link
@@ -23,9 +23,6 @@ const NavBar = (props) => {
             Profile
           </Link>
         )}
-        <Link to="/chat/" className="NavBar-link u-inlineBlock">
-          Delete
-        </Link>
         {props.userId ? (
           <button
             className="NavBar-link NavBar-login u-inlineBlock"
