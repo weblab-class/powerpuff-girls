@@ -1,7 +1,10 @@
 .Card-container {
   border: var(--darkgrey) 1px solid;
   border-radius: var(--xs);
-  margin-top: var(--m);
+  margin-top: var(--l);
+  margin-right: var(--s);
+  margin-left: var(--s);
+  margin-bottom: var(--l);
 }
 
 .Card-container:first-of-type {
