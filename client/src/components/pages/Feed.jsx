@@ -12,6 +12,7 @@ const Feed = () => {
   const [stories, setStories] = useState([]);
   const [filterStories, setFilterStories] = useState([]);
   const [showing, setShowing] = useState(0);
+  const [popUp, setPopUp] = useState(-1); //-1 means nothing, otherwise give index of card
 
   // called when the "Feed" component "mounts", i.e.
   // when it shows up on screen
@@ -27,9 +28,10 @@ const Feed = () => {
 
   // this gets called when the user pushes "Submit", so their
   // post gets added to the screen right away
-  /*const addNewStory = (storyObj) => {
+  const addNewStory = (storyObj) => {
     setStories([storyObj].concat(stories));
-  };*/
+  };
+
   const filterFeed = (query) => {
     if (query === "") {
       setFilterStories(stories);
@@ -65,14 +67,16 @@ const Feed = () => {
       Math.min(showing * 4 + 4, filterStories.length)
     );
     storiesList = fourStories.map((storyObj) => (
-      <Card
-        key={`Card_${storyObj._id}`}
-        _id={storyObj._id}
-        creator_name={storyObj.creator_name}
-        creator_id={storyObj.creator_id}
-        userId={props.userId}
-        content={storyObj.content}
-      />
+      <div>
+        <Card
+          key={`Card_${storyObj._id}`}
+          _id={storyObj._id}
+          creator_name={storyObj.creator_name}
+          creator_id={storyObj.creator_id}
+          userId={props.userId}
+          content={storyObj.content}
+        />
+      </div>
     ));
   } else if (filterStories.length === 0 && stories.length !== 0) {
     console.log(filterStories);
@@ -86,9 +90,9 @@ const Feed = () => {
       {<SearchFeed filterFeed={filterFeed} />}
 
       <div className="horizontal-spread">
-        <button onClick={goLeft}>Left</button>
+        <button onClick={goLeft} className="arrow-button"></button>
         <div className="horizontal-spread">{storiesList}</div>
-        <button onClick={goRight}>Right</button>
+        <button onClick={goRight} className="arrow-button"></button>
       </div>
     </>
   );

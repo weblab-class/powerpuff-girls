@@ -1,3 +1,34 @@
 .horizontal-spread {
   display: flex;
 }
+
+.arrow-button {
+  width: 30px; /* Small button size */
+  height: 30px;
+  background-color: transparent; /* Transparent background */
+  border: 1px solid #000; /* Black border */
+  border-radius: 50%; /* Circular button */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  outline: none;
+}
+
+.arrow-button::before {
+  content: "";
+  display: block;
+  width: 8px; /* Arrow size */
+  height: 8px;
+  border-left: 2px solid #000; /* Arrow thickness */
+  border-top: 2px solid #000;
+  transform: rotate(-45deg); /* Pointing left */
+  position: absolute;
+}
+
+.arrow-button:hover {
+  background-color: #f0f0f0; /* Light gray background on hover */
+  border-color: #333; /* Darker border */
+}

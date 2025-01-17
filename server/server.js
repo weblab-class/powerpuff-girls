@@ -35,11 +35,11 @@ const socketManager = require("./server-socket");
 
 // Server configuration below
 // TODO change connection URL after setting up your own database (HINT: you will need to modify the .env file!)
-const mongoConnectionURL =
-  process.env.mongoURL ||
-  "mongodb+srv://kenchoi:03CXHjMYM7xUYNh6@cluster0.xbb74.mongodb.net/?retryWrites=true&w=majority";
+const mongoConnectionURL = process.env.mongoURL;
 // TODO change database name to the name you chose
-const databaseName = process.env.dbName || "Cluster0";
+//const mongoConnectionURL =
+//"mongodb+srv://vxhu:vxhu_mongo@cluster0.m76sz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const databaseName = process.env.dbName;
 
 // connect to mongodb
 mongoose
@@ -60,7 +60,7 @@ app.use(bodyParser.json());
 // set up a session, which will persist login data across requests
 app.use(
   session({
-    secret: "session-secret",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
   })

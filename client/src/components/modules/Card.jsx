@@ -16,6 +16,7 @@ import "./Card.css";
  */
 const Card = (props) => {
   const [comments, setComments] = useState([]);
+  const [popUp, setPopUp] = useState(false);
 
   useEffect(() => {
     get("/api/comment", { parent: props._id }).then((comments) => {
@@ -37,13 +38,15 @@ const Card = (props) => {
         creator_id={props.creator_id}
         content={props.content}
       />
-      <CommentsBlock
-        story={props}
-        comments={comments}
-        creator_id={props.creator_id}
-        userId={props.userId}
-        addNewComment={addNewComment}
-      />
+      {popUp && (
+        <CommentsBlock
+          story={props}
+          comments={comments}
+          creator_id={props.creator_id}
+          userId={props.userId}
+          addNewComment={addNewComment}
+        />
+      )}
     </div>
   );
 };
