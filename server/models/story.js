@@ -5,6 +5,8 @@ const StorySchema = new mongoose.Schema({
   creator_id: String,
   creator_name: String,
   content: String,
+  publicId: String, //for cloudinary image
+  alt: String, //image description if not load or something
 });
 
 // compile model from schema

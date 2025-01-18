@@ -75,6 +75,8 @@ const Feed = () => {
           creator_id={storyObj.creator_id}
           userId={props.userId}
           content={storyObj.content}
+          publicId={storyObj.publicId}
+          alt={storyObj.alt}
         />
       </div>
     ));
@@ -86,7 +88,7 @@ const Feed = () => {
   }
   return (
     <>
-      {/*props.userId && <NewStory addNewStory={addNewStory} />*/}
+      {props.userId && <NewStory addNewStory={addNewStory} />}
       {<SearchFeed filterFeed={filterFeed} />}
 
       <div className="horizontal-spread">

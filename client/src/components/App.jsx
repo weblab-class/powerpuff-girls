@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import NavBar from "./modules/NavBar";
 
 import { socket } from "../client-socket";

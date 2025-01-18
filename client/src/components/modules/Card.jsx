@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import SingleStory from "./SingleStory";
 import CommentsBlock from "./CommentsBlock";
 import { get } from "../../utilities";
+import CloudinaryImage from "./Image";
 
 import "./Card.css";
 
@@ -32,11 +33,19 @@ const Card = (props) => {
 
   return (
     <div className="Card-container">
+      <CloudinaryImage
+        publicId={props.publicId} // Replace with your Cloudinary image public ID
+        alt={props.alt}
+        width={200}
+        height={600}
+      />
       <SingleStory
         _id={props._id}
         creator_name={props.creator_name}
         creator_id={props.creator_id}
         content={props.content}
+        publicId={props.publicId}
+        alt={props.alt}
       />
       {popUp && (
         <CommentsBlock
