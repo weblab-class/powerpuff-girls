@@ -81,6 +81,7 @@ const Feed = () => {
             content={storyObj.content}
             publicId={storyObj.publicId}
             alt={storyObj.alt}
+            showComments={false}
           />
         </Link>
       </div>

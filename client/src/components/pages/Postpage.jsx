@@ -34,6 +34,7 @@ const Postpage = () => {
         content={postcard.content}
         publicId={postcard.publicId}
         alt={postcard.alt}
+        showComments={true}
       />
     </>
   );

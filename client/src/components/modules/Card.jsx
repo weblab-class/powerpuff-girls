@@ -17,12 +17,13 @@ import "./Card.css";
  */
 const Card = (props) => {
   const [comments, setComments] = useState([]);
-  const [popUp, setPopUp] = useState(false);
+  const [showComments, setShowComments] = useState(false);
 
   useEffect(() => {
     get("/api/comment", { parent: props._id }).then((comments) => {
       setComments(comments);
     });
+    setShowComments(props.showComments);
   }, []);
 
   // this gets called when the user pushes "Submit", so their
@@ -47,7 +48,7 @@ const Card = (props) => {
         publicId={props.publicId}
         alt={props.alt}
       />
-      {popUp && (
+      {showComments && (
         <CommentsBlock
           story={props}
           comments={comments}
