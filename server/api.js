@@ -28,6 +28,16 @@ router.get("/stories", (req, res) => {
   Story.find({}).then((stories) => res.send(stories));
 });
 
+router.get("/postpage", (req, res) => {
+  Story.findById(req.query._id)
+    .then((storyObj) => {
+      res.send(storyObj);
+    })
+    .catch((err) => {
+      res.status(500).send("Post not found");
+    });
+});
+
 router.post("/story", auth.ensureLoggedIn, (req, res) => {
   const newStory = new Story({
     creator_id: req.user._id,

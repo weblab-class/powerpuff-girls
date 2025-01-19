@@ -5,6 +5,7 @@ import Feed from "./components/pages/Feed";
 import NotFound from "./components/pages/NotFound";
 import Profile from "./components/pages/Profile";
 import Chatbook from "./components/pages/Chatbook";
+import Postpage from "./components/pages/Postpage";
 
 import {
   createBrowserRouter,
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
     <Route errorElement={<NotFound />} element={<App />}>
       <Route path="/" element={<Feed />} />
       <Route path="/profile/:userId" element={<Profile />} />
+      <Route path="/post/:_id" element={<Postpage />} />
     </Route>
   )
 );

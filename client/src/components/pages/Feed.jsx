@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
+
 import Card from "../modules/Card";
 import { NewStory } from "../modules/NewPostInput";
 import { SearchFeed } from "../modules/SearchBar";
 import { useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { get } from "../../utilities";
 import "./Feed.css";
@@ -68,16 +71,18 @@ const Feed = () => {
     );
     storiesList = fourStories.map((storyObj) => (
       <div>
-        <Card
-          key={`Card_${storyObj._id}`}
-          _id={storyObj._id}
-          creator_name={storyObj.creator_name}
-          creator_id={storyObj.creator_id}
-          userId={props.userId}
-          content={storyObj.content}
-          publicId={storyObj.publicId}
-          alt={storyObj.alt}
-        />
+        <Link to={`/post/${storyObj._id}`}>
+          <Card
+            key={`Card_${storyObj._id}`}
+            _id={storyObj._id}
+            creator_name={storyObj.creator_name}
+            creator_id={storyObj.creator_id}
+            userId={props.userId}
+            content={storyObj.content}
+            publicId={storyObj.publicId}
+            alt={storyObj.alt}
+          />
+        </Link>
       </div>
     ));
   } else if (filterStories.length === 0 && stories.length !== 0) {
@@ -88,7 +93,7 @@ const Feed = () => {
   }
   return (
     <>
-      {props.userId && <NewStory addNewStory={addNewStory} />}
+      {/*props.userId && <NewStory addNewStory={addNewStory} />*/}
       {<SearchFeed filterFeed={filterFeed} />}
 
       <div className="horizontal-spread">
