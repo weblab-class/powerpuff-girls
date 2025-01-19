@@ -51,6 +51,11 @@ const Feed = () => {
     }
   };
 
+  const clearSearch = () => {
+    setFilterStories(stories);
+    setShowing(0);
+  };
+
   const goRight = () => {
     if (showing * 4 + 4 <= filterStories.length - 1) {
       setShowing(showing + 1);
@@ -96,6 +101,7 @@ const Feed = () => {
     <>
       {/*props.userId && <NewStory addNewStory={addNewStory} />*/}
       {<SearchFeed filterFeed={filterFeed} />}
+      <button onClick={clearSearch}>Clear search</button>
 
       <div className="horizontal-spread">
         <button onClick={goLeft} className="arrow-button"></button>

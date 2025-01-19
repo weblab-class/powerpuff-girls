@@ -22,8 +22,9 @@ const Postpage = () => {
 
   return (
     <>
-      <h1>Page for a single post</h1>
-      <h2>yey</h2>
+      <Link to="/">
+        <button>Back to feed</button>
+      </Link>
 
       <Card
         key={`Card_${postcard._id}`}
