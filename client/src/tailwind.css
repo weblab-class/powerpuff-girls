@@ -6,4 +6,11 @@
     .border-border {
       border: 2px solid black; /* Or your intended style */
     }
+    .bg-background {
+        background-color: #f0f0f0; /* Or your intended background color */
+      }
+    
+    .text-foreground {
+        color: #333333; /* Or your intended text color */
+    }
 }

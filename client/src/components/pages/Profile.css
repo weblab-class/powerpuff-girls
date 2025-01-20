@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .Profile-avatarContainer {
   padding: 0 35%;
 }
