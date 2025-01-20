@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .NavBar-container {
   padding: var(--s) var(--m);
   background-color: var(--primary);

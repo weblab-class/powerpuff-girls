@@ -4,8 +4,8 @@ import { get } from "../../utilities";
 import Card from "../modules/Card";
 
 import { useOutletContext } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+
 
 const Postpage = () => {
   let props = useOutletContext();
@@ -23,7 +23,9 @@ const Postpage = () => {
   return (
     <>
       <Link to="/">
-        <button>Back to feed</button>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Back to Feed
+        </button>
       </Link>
 
       <Card

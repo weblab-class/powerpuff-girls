@@ -6,6 +6,7 @@ import NotFound from "./components/pages/NotFound";
 import Profile from "./components/pages/Profile";
 import Chatbook from "./components/pages/Chatbook";
 import Postpage from "./components/pages/Postpage";
+import "./index.css";
 
 import {
   createBrowserRouter,

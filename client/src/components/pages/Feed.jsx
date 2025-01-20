@@ -101,7 +101,10 @@ const Feed = () => {
     <>
       {/*props.userId && <NewStory addNewStory={addNewStory} />*/}
       {<SearchFeed filterFeed={filterFeed} />}
-      <button onClick={clearSearch}>Clear search</button>
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      onClick={clearSearch}>
+        Clear search
+      </button>
 
       <div className="horizontal-spread">
         <button onClick={goLeft} className="arrow-button"></button>

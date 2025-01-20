@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .border-border {
+      border: 2px solid black; /* Or your intended style */
+    }
+}

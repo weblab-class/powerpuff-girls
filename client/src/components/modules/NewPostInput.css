@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .NewPostInput-input,
 .NewPostInput-button {
   font-family: "Open Sans";

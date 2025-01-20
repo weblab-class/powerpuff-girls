@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .SingleUser-container {
   background: var(--white);
   border-radius: var(--xs);
