@@ -9,6 +9,10 @@ import { get, post } from "../utilities";
 import { Outlet } from "react-router-dom";
 
 // to use styles, import the necessary CSS files
+
+// import "../utilities.css";
+//import "./App.css";
+
 import "../utilities.css";
 import "./App.css";
 import "../index.css";

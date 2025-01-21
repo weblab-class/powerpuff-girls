@@ -16,10 +16,11 @@
 
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,600");
 
+/* @tailwind base;
 /*@tailwind base;
 @tailwind components;
-@tailwind utilities;
-
+@tailwind utilities; */
+/* 
 :root {
   --primary: #396dff;
   --primary--dim: #6987db;
@@ -91,4 +92,4 @@ form {
 .u-link:hover {
   color: var(--primary--dim);
 }
-*/
+ */
