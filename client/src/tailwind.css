@@ -1,9 +1,10 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; 
 
 @layer utilities {
   .border-border {
+<<<<<<< HEAD
     border: 2px solid black; /* Or your intended style */
   }
   .bg-background {
@@ -22,3 +23,22 @@
 .customteal {
   background-color: #6ce5ad;
 }
+=======
+    border: 2px solid black;
+  }
+  .bg-background {
+      background-color: #f0f0f0; 
+    }
+  
+  .text-foreground {
+      color: #333333; 
+  }
+}
+  .bg-red-500 {
+    background-color: #EF4444; 
+  }
+  
+  .bg-blue-500 {
+    background-color: #40b6ce;
+  }
+>>>>>>> 6fd1fd0d (saved app and config)

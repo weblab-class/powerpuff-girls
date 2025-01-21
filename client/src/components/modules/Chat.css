@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 /*@tailwind base;
 @tailwind components;
 @tailwind utilities;*/
+=======
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+>>>>>>> 6fd1fd0d (saved app and config)
 
 .Chat-container {
   height: 100%;
