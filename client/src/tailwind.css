@@ -1,16 +1,23 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; 
 
 @layer utilities {
-    .border-border {
-      border: 2px solid black; /* Or your intended style */
+  .border-border {
+    border: 2px solid black;
+  }
+  .bg-background {
+      background-color: #f0f0f0; 
     }
-    .bg-background {
-        background-color: #f0f0f0; /* Or your intended background color */
-      }
-    
-    .text-foreground {
-        color: #333333; /* Or your intended text color */
-    }
+  
+  .text-foreground {
+      color: #333333; 
+  }
 }
+  .bg-red-500 {
+    background-color: #EF4444; 
+  }
+  
+  .bg-blue-500 {
+    background-color: #6ce5ad;
+  }
