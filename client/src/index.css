@@ -164,7 +164,6 @@ form {
   color: var(--primary--dim);
 }
 
-
 /* @layer base {
   * {
     @apply border-border;
@@ -185,9 +184,14 @@ form {
   }
   .bg-background {
     background-color: #f0f0f0; 
+    border: 1px solid black;
+  }
+  .bg-background {
+    background-color: #f0f0f0;
   }
 
   .text-foreground {
     color: #333333;
   }
-} */
+} 
+}*/

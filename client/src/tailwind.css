@@ -14,10 +14,12 @@
       color: #333333; 
   }
 }
-  .bg-red-500 {
-    background-color: #EF4444; 
-  }
-  
-  .bg-blue-500 {
-    background-color: #6ce5ad;
-  }
+
+
+.bg-red-500 {
+  background-color: #ef4444;
+}
+
+.bg-blue-500 {
+  background-color: #6ce5ad;
+}
