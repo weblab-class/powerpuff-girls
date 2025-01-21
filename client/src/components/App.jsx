@@ -11,6 +11,8 @@ import { Outlet } from "react-router-dom";
 // to use styles, import the necessary CSS files
 import "../utilities.css";
 import "./App.css";
+import "../index.css";
+import "../tailwind.css";
 
 /**
  * Define the "App" component as a function.
