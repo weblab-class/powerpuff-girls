@@ -43,8 +43,8 @@ router.post("/story", auth.ensureLoggedIn, (req, res) => {
     creator_id: req.user._id,
     creator_name: req.user.name,
     content: req.body.content,
-    publicId: "samples/outdoor-woman", //hardcoded cloudinary image for now
-    alt: "Cloudinary image here",
+    publicId: req.body.publicId,
+    alt: req.body.content,
   });
 
   newStory.save().then((story) => res.send(story));
