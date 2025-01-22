@@ -23,23 +23,25 @@ const Postpage = () => {
 
   return (
     <>
-      <Link to="/">
-        <button className="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Back to Feed
-        </button>
-      </Link>
+      <div className="container mx-auto px-4 pt-24 pb-12">
+        <Link to="/">
+          <button className="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Back to Feed
+          </button>
+        </Link>
 
-      <Card
-        key={`Card_${postcard._id}`}
-        _id={postcard._id}
-        creator_name={postcard.creator_name}
-        creator_id={postcard.creator_id}
-        userId={props.userId}
-        content={postcard.content}
-        publicId={postcard.publicId}
-        alt={postcard.alt}
-        showComments={true}
-      />
+        <Card
+          key={`Card_${postcard._id}`}
+          _id={postcard._id}
+          creator_name={postcard.creator_name}
+          creator_id={postcard.creator_id}
+          userId={props.userId}
+          content={postcard.content}
+          publicId={postcard.publicId}
+          alt={postcard.alt}
+          showComments={true}
+        />
+      </div>
     </>
   );
 };

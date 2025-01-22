@@ -2,13 +2,7 @@
 
 module.exports = {
   darkMode: ["class"],
-  content: [
-    "./index.html", // Include the root HTML file
-    "./src/**/*.{js,ts,jsx,tsx}", // Include all files in the src folder
-    ".client/src/**/*.{js,ts,jsx,tsx}",
-    "./src/index.css",
-    "./client/src/index.css",
-  ],
+  content: ["./client/src/**/*.{js,ts,jsx,tsx}"],
   prefix: "",
   theme: {
     container: {

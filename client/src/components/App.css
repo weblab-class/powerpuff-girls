@@ -3,7 +3,7 @@
 @tailwind utilities; */
 
 .App-container {
-  max-width: 960px;
+  max-width: 2000px;
   padding: var(--m) var(--m);
   margin: auto;
 }
