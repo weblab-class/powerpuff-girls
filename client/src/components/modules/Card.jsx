@@ -4,8 +4,6 @@ import CommentsBlock from "./CommentsBlock";
 import { get } from "../../utilities";
 import CloudinaryImage from "./Image";
 
-import "./Card.css";
-
 /**
  * Card is a component for displaying content like stories
  *
@@ -33,11 +31,11 @@ const Card = (props) => {
   };
 
   return (
-    <div className="Card-container">
+    <div className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg animate-fadeIn">
       <CloudinaryImage
         publicId={props.publicId} // Replace with your Cloudinary image public ID
         alt={props.alt}
-        width={200}
+        width={300}
         height={600}
       />
       <SingleStory

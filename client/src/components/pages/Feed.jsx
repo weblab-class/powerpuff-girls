@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 
 import { get } from "../../utilities";
 import "../../tailwind.css";
-import "./Feed.css";
 
 const Feed = () => {
   let props = useOutletContext();
@@ -115,12 +114,12 @@ const Feed = () => {
           Clear Search
         </button>
 
-        <div className="horizontal-spread">
-          <button onClick={goLeft} className="arrow-button"></button>
+        <div>
+          <button onClick={goLeft}>Left</button>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {storiesList}
           </div>
-          <button onClick={goRight} className="arrow-button"></button>
+          <button onClick={goRight}>Right</button>
         </div>
       </div>
     </>
