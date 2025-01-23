@@ -3,6 +3,9 @@ import SingleStory from "./SingleStory";
 import CommentsBlock from "./CommentsBlock";
 import { get } from "../../utilities";
 import CloudinaryImage from "./Image";
+import { Bookmark } from "lucide-react";
+import { Button } from "../ui/button";
+import { CardUI, CardContent, CardFooter } from "../ui/card";
 
 /**
  * Card is a component for displaying content like stories
