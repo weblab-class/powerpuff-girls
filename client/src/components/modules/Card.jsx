@@ -3,7 +3,7 @@ import SingleStory from "./SingleStory";
 import CommentsBlock from "./CommentsBlock";
 import { get } from "../../utilities";
 import CloudinaryImage from "./Image";
-import { Bookmark } from "lucide-react";
+import { Bookmark, ClipboardSignatureIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { CardUI, CardContent, CardFooter } from "../ui/card";
 
@@ -34,13 +34,22 @@ const Card = (props) => {
   };
 
   return (
-    <div className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg animate-fadeIn">
-      <CloudinaryImage
-        publicId={props.publicId} // Replace with your Cloudinary image public ID
-        alt={props.alt}
-        width={300}
-        height={600}
-      />
+    <CardUI className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg animate-fadeIn">
+      <CardContent className="p-0 relative">
+        <CloudinaryImage
+          publicId={props.publicId} // Replace with your Cloudinary image public ID
+          alt={props.alt}
+          width={300}
+          height={600}
+        />
+        <Button
+          variant="ghost"
+          size="icon"
+          className="absolute top-2 right-2 text-white hover:text-stylesnap-pink bg-black/20 hover:bg-white/90 transition-colors"
+        >
+          <Bookmark className="h-5 w-5" />
+        </Button>
+      </CardContent>
       <SingleStory
         _id={props._id}
         creator_name={props.creator_name}
@@ -58,7 +67,7 @@ const Card = (props) => {
           addNewComment={addNewComment}
         />
       )}
-    </div>
+    </CardUI>
   );
 };
 
