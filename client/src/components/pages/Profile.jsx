@@ -3,7 +3,7 @@ import { get, post } from "../../utilities";
 import { useParams, useOutletContext } from "react-router-dom";
 
 import { Button } from "../ui/button";
-import { Card, CardContent } from "../ui/card";
+import { CardUI, CardContent } from "../ui/card";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Upload, Users } from "lucide-react";
@@ -155,7 +155,7 @@ const Profile = () => {
 
           {outletProps.userId === props.userId && (
             <div>
-              <Card className="mb-8">
+              <CardUI className="mb-8">
                 <CardContent className="p-6">
                   <h2 className="text-xl font-semibold text-stylesnap-gray mb-4">
                     Upload a New Fit
@@ -242,7 +242,7 @@ const Profile = () => {
                     </form>
                   </Form>
                 </CardContent>
-              </Card>
+              </CardUI>
             </div>
           )}
         </div>
