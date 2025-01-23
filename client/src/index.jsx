@@ -6,6 +6,7 @@ import NotFound from "./components/pages/NotFound";
 import Profile from "./components/pages/Profile";
 import Chatbook from "./components/pages/Chatbook";
 import Postpage from "./components/pages/Postpage";
+import Saved from "./components/pages/Saved";
 //import "./index.css";
 
 import {
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route errorElement={<NotFound />} element={<App />}>
       <Route path="/" element={<Feed />} />
+      <Route path="/saved/:userId" element={<Saved />} />
       <Route path="/profile/:userId" element={<Profile />} />
       <Route path="/post/:_id" element={<Postpage />} />
     </Route>

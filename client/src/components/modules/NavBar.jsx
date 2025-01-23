@@ -24,6 +24,14 @@ const NavBar = (props) => {
             </Link>
             {props.userId && (
               <Link
+                to={`/saved/${props.userId}`}
+                className="px-3 py-2 rounded-md text-sm font-medium text-stylesnap-gray hover:text-stylesnap-pink hover:bg-stylesnap-softGray transition-colors"
+              >
+                Saved Fits
+              </Link>
+            )}
+            {props.userId && (
+              <Link
                 to={`/profile/${props.userId}`}
                 className="px-3 py-2 rounded-md text-sm font-medium text-stylesnap-gray hover:text-stylesnap-pink hover:bg-stylesnap-softGray transition-colors"
               >
