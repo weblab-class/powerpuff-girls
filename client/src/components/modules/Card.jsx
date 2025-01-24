@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SingleStory from "./SingleStory";
 import CommentsBlock from "./CommentsBlock";
-import { get } from "../../utilities";
+import { get, post} from "../../utilities";
 import CloudinaryImage from "./Image";
 import { Bookmark, ClipboardSignatureIcon } from "lucide-react";
 import { Button } from "../ui/button";
@@ -33,6 +33,28 @@ const Card = (props) => {
     setComments(comments.concat([commentObj]));
   };
 
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  const handleBookmark = (event) => {
+    event.stopPropagation();
+    if (isBookmarked) {
+      post("/api/deleteSave", { parent: props._id }).then(() => {
+        setIsBookmarked(false);
+      });
+    } else {
+      post("/api/save", { parent: props._id }).then((save) => {
+        setIsBookmarked(true);
+      });
+    }
+  };
+
+  useEffect(() => {
+    get("/api/isStorySaved", { parent: props._id }).then((saveObj) => {
+      if (saveObj.isSaved) {
+        setIsBookmarked(true);
+      }
+    });
+  }, [props.userId]);
+
   return (
     <CardUI className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg animate-fadeIn">
       <CardContent className="p-0 relative">
@@ -42,13 +64,21 @@ const Card = (props) => {
           width={300}
           height={600}
         />
-        <Button
-          variant="ghost"
-          size="icon"
-          className="absolute top-2 right-2 text-white hover:text-stylesnap-pink bg-black/20 hover:bg-white/90 transition-colors"
-        >
-          <Bookmark className="h-5 w-5" />
-        </Button>
+        {props.userId && (
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={handleBookmark}
+            className={`absolute top-2 right-2 text-white hover:text-stylesnap-pink bg-black/20 hover:bg-white/90 transition-colors ${
+              isBookmarked ? "text-stylesnap-pink" : ""
+            }`}
+          >
+            <Bookmark
+              className="h-5 w-5"
+              fill={isBookmarked ? "currentColor" : "none"}
+            />
+          </Button>
+        )}
       </CardContent>
       <SingleStory
         _id={props._id}

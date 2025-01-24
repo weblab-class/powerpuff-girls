@@ -12,6 +12,7 @@ import "../../tailwind.css";
 import "./Feed.css";
 
 const Feed = () => {
+  let navigate = useNavigate();
   let props = useOutletContext();
   const [stories, setStories] = useState([]);
   const [filterStories, setFilterStories] = useState([]);
@@ -76,21 +77,19 @@ const Feed = () => {
       Math.min(showing * 4 + 4, filterStories.length)
     );
     storiesList = fourStories.map((storyObj) => (
-      <div>
-        <Link to={`/post/${storyObj._id}`}>
-          <Card
-            key={`Card_${storyObj._id}`}
-            _id={storyObj._id}
-            creator_name={storyObj.creator_name}
-            creator_id={storyObj.creator_id}
-            userId={props.userId}
-            content={storyObj.content}
-            publicId={storyObj.publicId}
-            alt={storyObj.alt}
-            showComments={false}
-          />
-        </Link>
-      </div>
+      <button onClick={() => navigate(`/post/${storyObj._id}`)}>
+        <Card
+          key={`Card_${storyObj._id}`}
+          _id={storyObj._id}
+          creator_name={storyObj.creator_name}
+          creator_id={storyObj.creator_id}
+          userId={props.userId}
+          content={storyObj.content}
+          publicId={storyObj.publicId}
+          alt={storyObj.alt}
+          showComments={false}
+        />
+      </button>
     ));
   } else if (filterStories.length === 0 && stories.length !== 0) {
     console.log(filterStories);
