@@ -3,11 +3,7 @@
 @tailwind utilities; */
 
 .App-container {
-<<<<<<< HEAD
-  max-width: 1000px;
-=======
   max-width: 1200px;
->>>>>>> 60718af3 (changed Clear Search button)
   padding: var(--m) var(--m);
   margin: auto;
 }
