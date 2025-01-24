@@ -16,15 +16,11 @@
 
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,600");
 
-<<<<<<< HEAD
-/*@tailwind base;
-=======
 /* @tailwind base;
->>>>>>> 6fd1fd0d (saved app and config)
 @tailwind components;
 @tailwind utilities; */
 
-:root {
+/*:root {
   --primary: #396dff;
   --primary--dim: #6987db;
   --darkgrey: #d4d4d4;

@@ -51,7 +51,7 @@ const SearchFeed = (props) => {
   const search = (value) => {
     props.filterFeed(value);
   };
-  return <NewPostInput defaultText="your dream look..." onSubmit={search} />;
+  return <NewPostInput className="text-white" defaultText="Start searching for your dream look..." onSubmit={search} />;
 };
 
 export { SearchFeed };

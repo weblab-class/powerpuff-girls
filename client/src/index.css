@@ -164,12 +164,8 @@ form {
   color: var(--primary--dim);
 }
 
-<<<<<<< HEAD
-/* @layer base {
-=======
 
-@layer base {
->>>>>>> 6fd1fd0d (saved app and config)
+/* @layer base {
   * {
     @apply border-border;
   }
@@ -177,7 +173,7 @@ form {
   body {
     @apply bg-background text-foreground;
   }
-} 
+}  */
 
 /* custom-button{
   @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded
@@ -185,17 +181,10 @@ form {
 
 /* @layer utilities {
   .border-border {
-<<<<<<< HEAD
-    border: 1px solid black;
-  }
-  .bg-background {
-    background-color: #f0f0f0;
-=======
     border: 1px solid black; 
   }
   .bg-background {
     background-color: #f0f0f0; 
->>>>>>> 6fd1fd0d (saved app and config)
   }
 
   .text-foreground {

@@ -6,12 +6,8 @@ import Card from "../modules/Card";
 import { useOutletContext } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-<<<<<<< HEAD
-import "../../tailwind.css";
-=======
 import "../../tailwind.css"
 //import "../../index.css"
->>>>>>> 6fd1fd0d (saved app and config)
 
 const Postpage = () => {
   let props = useOutletContext();

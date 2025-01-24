@@ -9,17 +9,11 @@ import { get, post } from "../utilities";
 import { Outlet } from "react-router-dom";
 
 // to use styles, import the necessary CSS files
-<<<<<<< HEAD
 import "../utilities.css";
 import "./App.css";
 import "../index.css";
-import "../tailwind.css";
+import "../tailwind.css"
 
-=======
-// import "../utilities.css";
-// import "./App.css";
-import "../index.css";
->>>>>>> 6fd1fd0d (saved app and config)
 /**
  * Define the "App" component as a function.
  */
