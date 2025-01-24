@@ -14,6 +14,7 @@ const Story = require("./models/story");
 const Comment = require("./models/comment");
 const User = require("./models/user");
 const Message = require("./models/message");
+const Save = require("./models/save");
 
 // import authentication library
 const auth = require("./auth");
@@ -48,6 +49,36 @@ router.post("/story", auth.ensureLoggedIn, (req, res) => {
   });
 
   newStory.save().then((story) => res.send(story));
+});
+
+router.post("/save", auth.ensureLoggedIn, (req, res) => {
+  const newSave = new Save({
+    creator_id: req.user._id,
+    parent: req.body.parent,
+  });
+  newSave.save().then((save) => res.send(save));
+});
+
+router.post("/deleteSave", auth.ensureLoggedIn, (req, res) => {
+  Save.deleteOne({ parent: req.body.parent, creator_id: req.user._id }).then(() => {
+    console.log(req.body.parent);
+    res.send({})
+  });
+});
+
+router.get("/getAllSaved", auth.ensureLoggedIn, (req, res) => {
+  Save.find({ creator_id: req.user._id }).then((saves) => {
+    res.send(saves);
+  });
+});
+
+router.get("/isStorySaved", auth.ensureLoggedIn, (req, res) => {
+  Save.findOne({ parent: req.query.parent, creator_id: req.user._id }).then(
+    (save) => {
+      if (save) res.send({ isSaved: true });
+      else res.send({ isSaved: false });
+    }
+  );
 });
 
 router.get("/comment", (req, res) => {

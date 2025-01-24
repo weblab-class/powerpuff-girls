@@ -12,20 +12,27 @@ import "../../tailwind.css";
 import "./Feed.css";
 
 const Saved = () => {
+  let navigate = useNavigate();
   let props = useOutletContext();
   const [stories, setStories] = useState([]);
   const [filterStories, setFilterStories] = useState([]);
   const [showing, setShowing] = useState(0);
   const [popUp, setPopUp] = useState(-1); //-1 means nothing, otherwise give index of card
 
-  // called when the "Saved" component "mounts", i.e.
+  // called when the "Feed" component "mounts", i.e.
   // when it shows up on screen
   useEffect(() => {
-    document.title = "Saved Fits";
+    document.title = "Fashion Feed";
     get("/api/stories").then((storyObjs) => {
-      let reversedStoryObjs = storyObjs.reverse();
-      setStories(reversedStoryObjs);
-      setFilterStories(reversedStoryObjs);
+      get("/api/getAllSaved").then((savedObjs) => {
+        const savedStoryIds = savedObjs.map((saveObj) => saveObj.parent);
+        const filteredStoryObjs = storyObjs.filter((storyObj) => {
+          return savedStoryIds.includes(storyObj._id);
+        });
+        let reversedStoryObjs = filteredStoryObjs.reverse();
+        setStories(reversedStoryObjs);
+        setFilterStories(reversedStoryObjs);
+      });
     });
     setShowing(0);
   }, []);
@@ -76,21 +83,19 @@ const Saved = () => {
       Math.min(showing * 4 + 4, filterStories.length)
     );
     storiesList = fourStories.map((storyObj) => (
-      <div>
-        <Link to={`/post/${storyObj._id}`}>
-          <Card
-            key={`Card_${storyObj._id}`}
-            _id={storyObj._id}
-            creator_name={storyObj.creator_name}
-            creator_id={storyObj.creator_id}
-            userId={props.userId}
-            content={storyObj.content}
-            publicId={storyObj.publicId}
-            alt={storyObj.alt}
-            showComments={false}
-          />
-        </Link>
-      </div>
+      <button onClick={() => navigate(`/post/${storyObj._id}`)}>
+        <Card
+          key={`Card_${storyObj._id}`}
+          _id={storyObj._id}
+          creator_name={storyObj.creator_name}
+          creator_id={storyObj.creator_id}
+          userId={props.userId}
+          content={storyObj.content}
+          publicId={storyObj.publicId}
+          alt={storyObj.alt}
+          showComments={false}
+        />
+      </button>
     ));
   } else if (filterStories.length === 0 && stories.length !== 0) {
     console.log(filterStories);
@@ -101,20 +106,6 @@ const Saved = () => {
   return (
     <>
       <div className="container mx-auto px-4 pt-24 pb-12">
-        {/*props.userId && <NewStory addNewStory={addNewStory} />*/}
-        {
-          <SearchFeed
-            filterFeed={filterFeed}
-            className="w-full pl-12 pr-4 py-3 text-lg bg-white border-stylesnap-beige focus:border-stylesnap-pink transition-colors"
-          />
-        }
-        <button
-          className="bg-custom-clear-search-gray hover:bg-blue-500 text-white font-bold py-1 px-2 rounded mt-4 mb-4"
-          onClick={clearSearch}
-        >
-          Clear Search
-        </button>
-
         <div>
           <button onClick={goLeft} className="arrow-button arrow-left"></button>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
