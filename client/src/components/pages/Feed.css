@@ -4,6 +4,7 @@
 
 .horizontal-spread {
   display: flex;
+<<<<<<< HEAD
   align-items: center; 
   justify-content: space-between;
   gap: 10px; 
@@ -27,6 +28,35 @@
   padding: 0;
   outline: none;
 } */
+=======
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  /* display: grid;
+    grid-template-columns: repeat(auto-fit, 100px); 
+    gap: 1000px; */
+}
+
+.arrow-button {
+  width: 40px; /* Fixed button size */
+  height: 40px;
+  background-color: #f5f5f5; /* Neutral background */
+  border: 2px solid #d1d5db; /* Soft gray border */
+  border-radius: 50%; /* Circular button */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  position: relative;
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Smooth hover effect */
+}
+
+.arrow-button:hover {
+  background-color: #e5e7eb; /* Slightly darker neutral on hover */
+  border-color: #9ca3af; /* Darker border on hover */
+  transform: scale(1.1); /* Slight scaling for a cute bounce effect */
+}
+>>>>>>> 60718af3 (changed Clear Search button)
 
 /* .arrow-button::before {
   content: "";

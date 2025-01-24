@@ -10,8 +10,6 @@ import { Link } from "react-router-dom";
 import { get } from "../../utilities";
 import "../../tailwind.css";
 import "./Feed.css";
-//import "../../tailwind.css"
-
 
 const Feed = () => {
   let props = useOutletContext();
@@ -102,6 +100,7 @@ const Feed = () => {
   }
   return (
     <>
+<<<<<<< HEAD
       {/*props.userId && <NewStory addNewStory={addNewStory} />*/}
       {<SearchFeed filterFeed={filterFeed} />}
       <button className="bg-custom-gray hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -113,6 +112,33 @@ const Feed = () => {
         <button onClick={goLeft} className="arrow-button arrow-left"></button>
         <div className="horizontal-spread">{storiesList}</div>
         <button onClick={goRight} className="arrow-button arrow-right"></button>
+=======
+      <div className="container mx-auto px-4 pt-24 pb-12">
+        {/*props.userId && <NewStory addNewStory={addNewStory} />*/}
+        {
+          <SearchFeed
+            filterFeed={filterFeed}
+            className="w-full pl-12 pr-4 py-3 text-lg bg-white border-stylesnap-beige focus:border-stylesnap-pink transition-colors"
+          />
+        }
+        <button
+          className="bg-custom-clear-search-gray hover:bg-blue-500 text-white font-bold py-1 px-2 rounded mt-4 mb-4"
+          onClick={clearSearch}
+        >
+          Clear Search
+        </button>
+
+        <div>
+          <button onClick={goLeft} className="arrow-button arrow-left"></button>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {storiesList}
+          </div>
+          <button
+            onClick={goRight}
+            className="arrow-button arrow-right"
+          ></button>
+        </div>
+>>>>>>> 60718af3 (changed Clear Search button)
       </div>
     </>
   );

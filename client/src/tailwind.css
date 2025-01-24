@@ -22,7 +22,10 @@
 .customteal {
   background-color: #6ce5ad;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 60718af3 (changed Clear Search button)
   .bg-red-500 {
     background-color: #d61616; 
   }
@@ -42,5 +45,10 @@
   .bg-custom-soft-gray{
     background-color: #F1F0FB;
   }
-
+  .bg-custom-clear-search-gray{
+    background-color: #919498;
+  }
+  .bg-custom-clear-search-gray-700{
+    background-color: #5e6368;
+  }
   
