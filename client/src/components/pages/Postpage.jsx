@@ -6,7 +6,7 @@ import Card from "../modules/Card";
 import { useOutletContext } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import "../../tailwind.css"
+import "../../tailwind.css";
 //import "../../index.css"
 
 const Postpage = () => {
@@ -20,6 +20,7 @@ const Postpage = () => {
     get("/api/postpage", { _id: _id }).then((storyObj) =>
       setPostcard(storyObj)
     );
+    console.log("navigated to post page and retrieved story");
   }, []);
 
   return (
@@ -41,6 +42,7 @@ const Postpage = () => {
           publicId={postcard.publicId}
           alt={postcard.alt}
           showComments={true}
+          tags={postcard.tags}
         />
       </div>
     </>

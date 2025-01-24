@@ -90,18 +90,20 @@ const Card = (props) => {
         </Link>
         <p className="text-sm text-stylesnap-gray mb-2">{props.content}</p>
         <div className="flex flex-wrap gap-2">
-          {props.tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-xs px-2 py-1 bg-stylesnap-softGray text-stylesnap-gray rounded-full"
-            >
-              {tag}
-            </span>
-          ))}
+          {console.log("mapping to tags now")}
+          {console.log(props.tags)}
+          {Array.isArray(props.tags) &&
+            props.tags.map((tag) => (
+              <span
+                key={tag}
+                className="text-xs px-2 py-1 bg-stylesnap-softGray text-stylesnap-gray rounded-full"
+              >
+                {tag}
+              </span>
+            ))}
         </div>
         {showComments && (
           <CommentsBlock
-            story={props}
             comments={comments}
             creator_id={props.creator_id}
             userId={props.userId}
