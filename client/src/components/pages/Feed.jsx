@@ -20,7 +20,7 @@ const Feed = () => {
 
   // Music player states
   const [isPlaying, setIsPlaying] = useState(false); // Whether music is playing or not
-  const [audio] = useState(new Audio('/ambient_background.mp3')); // Path to your MP3 file
+  const [audio] = useState(new Audio("/ambient_background.mp3")); // Path to your MP3 file
 
   useEffect(() => {
     document.title = "Fashion Feed";
@@ -47,8 +47,11 @@ const Feed = () => {
       setFilterStories(stories);
       setShowing(0);
     } else {
-      let filteredCards = stories.filter((storyObj) =>
-        storyObj.content.toLowerCase().includes(query.toLowerCase())
+      let filteredCards = stories.filter(
+        (storyObj) =>
+          storyObj.content.toLowerCase().includes(query.toLowerCase()) ||
+          storyObj.creator_name.toLowerCase().includes(query.toLowerCase()) ||
+          storyObj.tags.some((str) => str.toLowerCase() === query.toLowerCase())
       );
       setFilterStories(filteredCards);
       setShowing(0);
@@ -128,7 +131,10 @@ const Feed = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {storiesList}
           </div>
-          <button onClick={goRight} className="arrow-button arrow-right"></button>
+          <button
+            onClick={goRight}
+            className="arrow-button arrow-right"
+          ></button>
         </div>
 
         {/* Music Toggle Button */}
