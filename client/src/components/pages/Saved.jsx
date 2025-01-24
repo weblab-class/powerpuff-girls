@@ -86,6 +86,7 @@ const Saved = () => {
           content={storyObj.content}
           publicId={storyObj.publicId}
           alt={storyObj.alt}
+          tags={storyObj.tags}
           showComments={false}
         />
       </button>

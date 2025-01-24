@@ -85,7 +85,7 @@ const Profile = () => {
       if (response.ok) {
         const data = await response.json(); // The uploaded image info
         console.log("Upload successful:", data);
-        const body = { content: caption, publicId: data.public_id };
+        const body = { content: caption, publicId: data.public_id, tags };
         post("/api/story", body);
         return data; // The image's URL and other information
       } else {

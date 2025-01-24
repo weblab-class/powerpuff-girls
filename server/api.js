@@ -40,12 +40,16 @@ router.get("/postpage", (req, res) => {
 });
 
 router.post("/story", auth.ensureLoggedIn, (req, res) => {
+  const tags = req.body.tags.split(",");
+  const trimmedTags = tags.map((tag) => tag.trim());
+
   const newStory = new Story({
     creator_id: req.user._id,
     creator_name: req.user.name,
     content: req.body.content,
     publicId: req.body.publicId,
     alt: req.body.content,
+    tags: trimmedTags,
   });
 
   newStory.save().then((story) => res.send(story));
@@ -60,10 +64,12 @@ router.post("/save", auth.ensureLoggedIn, (req, res) => {
 });
 
 router.post("/deleteSave", auth.ensureLoggedIn, (req, res) => {
-  Save.deleteOne({ parent: req.body.parent, creator_id: req.user._id }).then(() => {
-    console.log(req.body.parent);
-    res.send({})
-  });
+  Save.deleteOne({ parent: req.body.parent, creator_id: req.user._id }).then(
+    () => {
+      console.log(req.body.parent);
+      res.send({});
+    }
+  );
 });
 
 router.get("/getAllSaved", auth.ensureLoggedIn, (req, res) => {

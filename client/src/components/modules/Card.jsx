@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import SingleStory from "./SingleStory";
 import CommentsBlock from "./CommentsBlock";
-import { get, post} from "../../utilities";
+import { get, post } from "../../utilities";
 import CloudinaryImage from "./Image";
 import { Bookmark, ClipboardSignatureIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { CardUI, CardContent, CardFooter } from "../ui/card";
+import { Link } from "react-router-dom";
 
 /**
  * Card is a component for displaying content like stories
@@ -80,23 +81,34 @@ const Card = (props) => {
           </Button>
         )}
       </CardContent>
-      <SingleStory
-        _id={props._id}
-        creator_name={props.creator_name}
-        creator_id={props.creator_id}
-        content={props.content}
-        publicId={props.publicId}
-        alt={props.alt}
-      />
-      {showComments && (
-        <CommentsBlock
-          story={props}
-          comments={comments}
-          creator_id={props.creator_id}
-          userId={props.userId}
-          addNewComment={addNewComment}
-        />
-      )}
+      <CardFooter className="flex flex-col items-start p-4 bg-white/90">
+        <Link
+          to={`/profile/${props.creator_id}`}
+          className="u-bold text-sm font-medium text-stylesnap-pink hover:text-stylesnap-gray transition-colors"
+        >
+          {props.creator_name}
+        </Link>
+        <p className="text-sm text-stylesnap-gray mb-2">{props.content}</p>
+        <div className="flex flex-wrap gap-2">
+          {props.tags.map((tag) => (
+            <span
+              key={tag}
+              className="text-xs px-2 py-1 bg-stylesnap-softGray text-stylesnap-gray rounded-full"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+        {showComments && (
+          <CommentsBlock
+            story={props}
+            comments={comments}
+            creator_id={props.creator_id}
+            userId={props.userId}
+            addNewComment={addNewComment}
+          />
+        )}
+      </CardFooter>
     </CardUI>
   );
 };
