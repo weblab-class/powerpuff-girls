@@ -187,7 +187,7 @@ const Profile = () => {
                     {outletProps.userId === props.userId && (
                       <div>
                         Check if logged in, print pending friend requests:
-                        {user.requestedIn}
+                        {/*user.requestedIn*/}
                       </div>
                     )}
                   </div>
