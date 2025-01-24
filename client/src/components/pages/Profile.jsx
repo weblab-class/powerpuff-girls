@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { get, post } from "../../utilities";
 import { useParams, useOutletContext } from "react-router-dom";
 import { SendFriendReq } from "../modules/SendFriendReq";
+import { FriendsList } from "../modules/FriendsList";
 
 import { Button } from "../ui/button";
 import { CardUI, CardContent } from "../ui/card";
@@ -38,7 +39,6 @@ const Profile = () => {
     get(`/api/user`, { userid: props.userId }).then((userObj) =>
       setUser(userObj)
     );
-    console.log("just set user");
     /*if (!user.friends) {
       setFriends([]);
     } else {
@@ -54,8 +54,6 @@ const Profile = () => {
     } else {
       setRequestedIn(user.requestedIn);
     }*/
-
-    console.log("mounted");
   }, []);
 
   const form = useForm({
@@ -176,7 +174,9 @@ const Profile = () => {
                 <span className="text-stylesnap-gray">
                   <Users className="inline-block mr-2 h-5 w-5" />
                   <div>
-                    <div>Public friends: {user.friends}</div>
+                    <div>
+                      Public friends: <FriendsList user={user} />
+                    </div>
                     {outletProps.userId === props.userId && (
                       <div>
                         Check if logged in, print friends you requested:

@@ -161,7 +161,9 @@ router.post("/requestout", auth.ensureLoggedIn, (req, res) => {
       User.updateOne(
         {
           email: you.email,
-          "requestedOut.googleid": { $ne: founduser.googleid },
+          "requestedOut.googleid": { $ne: founduser.googleid }, //no duplicates
+          "friends.googleid": { $ne: founduser.googleid }, //not already friended
+          "requestedIn.googleid": { $ne: founduser.googleid }, //you should accept their request instead
         },
         {
           $push: {
@@ -179,6 +181,8 @@ router.post("/requestout", auth.ensureLoggedIn, (req, res) => {
         {
           email: founduser.email,
           "requestedIn.googleid": { $ne: you.googleid },
+          "friends.googleid": { $ne: you.googleid },
+          "requestedOut.googleid": { $ne: you.googleid },
         },
         {
           $push: {
@@ -190,6 +194,36 @@ router.post("/requestout", auth.ensureLoggedIn, (req, res) => {
         }
       ).catch((error) => {
         console.error("Error updating their requested in list:", error); // Handle errors
+      });
+
+      User.updateOne(
+        {
+          email: you.email,
+          "requestedIn.googleid": founduser.googleid, // Ensure they are in the requestedIn list
+        },
+        {
+          $pull: { requestedIn: { googleid: founduser.googleid } }, // Remove them from requestedIn
+          $push: {
+            friends: { name: founduser.name, googleid: founduser.googleid },
+          }, // Add them to your friends
+        }
+      ).catch((error) => {
+        console.error("Error updating the friends list:", error); // Handle errors
+      });
+
+      User.updateOne(
+        {
+          email: founduser.email,
+          "requestedOut.googleid": you.googleid, // they requested you
+        },
+        {
+          $pull: { requestedOut: { googleid: you.googleid } }, // Remove you from requestedOut
+          $push: {
+            friends: { name: you.name, googleid: you.googleid },
+          }, // Add you to their friends
+        }
+      ).catch((error) => {
+        console.error("Error updating the friends list:", error); // Handle errors
       });
 
       res.send(founduser);
