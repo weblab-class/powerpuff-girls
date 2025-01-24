@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { get, post } from "../../utilities";
 import { useParams, useOutletContext } from "react-router-dom";
+import { SendFriendReq } from "../modules/SendFriendReq";
 
 import { Button } from "../ui/button";
 import { CardUI, CardContent } from "../ui/card";
@@ -28,6 +29,34 @@ const Profile = () => {
   const { toast } = useToast();
   const fileInputRef = useRef(null);
   const [previewUrl, setPreviewUrl] = useState(null);
+  const [friends, setFriends] = useState();
+  const [requestedOut, setRequestedOut] = useState();
+  const [requestedIn, setRequestedIn] = useState();
+
+  useEffect(() => {
+    document.title = "Profile Page";
+    get(`/api/user`, { userid: props.userId }).then((userObj) =>
+      setUser(userObj)
+    );
+    console.log("just set user");
+    /*if (!user.friends) {
+      setFriends([]);
+    } else {
+      setFriends(user.friends);
+    }
+    if (!user.requestedOut) {
+      setRequestedOut([]);
+    } else {
+      setRequestedOut(user.requestedOut);
+    }
+    if (!user.requestedIn) {
+      setRequestedIn([]);
+    } else {
+      setRequestedIn(user.requestedIn);
+    }*/
+
+    console.log("mounted");
+  }, []);
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -124,12 +153,11 @@ const Profile = () => {
     setPreviewUrl(null);
   };
 
-  useEffect(() => {
-    document.title = "Profile Page";
-    get(`/api/user`, { userid: props.userId }).then((userObj) =>
-      setUser(userObj)
-    );
-  }, []);
+  const requestfunct = (email) => {
+    console.log("client post endpoint in profile.jsx");
+    const body = { email: email, you: user }; //only when you're logged in though
+    post("/api/requestout", body);
+  };
 
   if (!user) {
     return <div> Loading!</div>;
@@ -142,11 +170,27 @@ const Profile = () => {
             <div>
               <h1 className="text-3xl font-bold text-stylesnap-gray mb-2">
                 {user.name}
+                <div>{user.email && user.email}</div>
               </h1>
               <div className="flex items-center space-x-4">
                 <span className="text-stylesnap-gray">
                   <Users className="inline-block mr-2 h-5 w-5" />
-                  42 friends
+                  <div>
+                    <div>Public friends: {user.friends}</div>
+                    {outletProps.userId === props.userId && (
+                      <div>
+                        Check if logged in, print friends you requested:
+                        {/*user.requestedOut*/}
+                        <SendFriendReq requestfunct={requestfunct} />
+                      </div>
+                    )}
+                    {outletProps.userId === props.userId && (
+                      <div>
+                        Check if logged in, print pending friend requests:
+                        {user.requestedIn}
+                      </div>
+                    )}
+                  </div>
                 </span>
                 <span className="text-stylesnap-gray">128 fits</span>
               </div>

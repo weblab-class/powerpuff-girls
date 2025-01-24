@@ -139,7 +139,6 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   console.log(
     `Received a chat message from ${req.user.name}: ${req.body.content}`
   );
-
   // insert this message into the database
   const message = new Message({
     recipient: req.body.recipient,
@@ -151,6 +150,53 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   });
   message.save();
   // TODO (step 0.1): emit to all clients that a message was received (1 line)
+});
+
+router.post("/requestout", auth.ensureLoggedIn, (req, res) => {
+  const you = req.body.you;
+  User.findOne({ email: req.body.email })
+    .then((founduser) => {
+      console.log("found them: ", founduser);
+
+      User.updateOne(
+        {
+          email: you.email,
+          "requestedOut.googleid": { $ne: founduser.googleid },
+        },
+        {
+          $push: {
+            requestedOut: {
+              name: founduser.name,
+              googleid: founduser.googleid,
+            },
+          },
+        }
+      ).catch((error) => {
+        console.error("Error updating your requested out list:", error); // Handle errors
+      });
+
+      User.updateOne(
+        {
+          email: founduser.email,
+          "requestedIn.googleid": { $ne: you.googleid },
+        },
+        {
+          $push: {
+            requestedIn: {
+              name: you.name,
+              googleid: you.googleid,
+            },
+          },
+        }
+      ).catch((error) => {
+        console.error("Error updating their requested in list:", error); // Handle errors
+      });
+
+      res.send(founduser);
+    })
+    .catch((error) => {
+      console.log("Error finding user: ", error);
+    });
 });
 
 // anything else falls to this "not found" case
