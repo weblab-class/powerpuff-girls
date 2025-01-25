@@ -2,7 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import { get, post } from "../../utilities";
 import { useParams, useOutletContext } from "react-router-dom";
 import { SendFriendReq } from "../modules/SendFriendReq";
-import { FriendsList } from "../modules/FriendsList";
+import {
+  FriendsList,
+  RequestedOutList,
+  RequestedInList,
+} from "../modules/FriendsList";
 
 import { Button } from "../ui/button";
 import { CardUI, CardContent } from "../ui/card";
@@ -175,19 +179,19 @@ const Profile = () => {
                   <Users className="inline-block mr-2 h-5 w-5" />
                   <div>
                     <div>
-                      Public friends: <FriendsList user={user} />
+                      Friends: <FriendsList user={user} />
                     </div>
                     {outletProps.userId === props.userId && (
                       <div>
-                        Check if logged in, print friends you requested:
-                        {/*user.requestedOut*/}
+                        Outgoing friend requests:
+                        <RequestedOutList user={user} />
                         <SendFriendReq requestfunct={requestfunct} />
                       </div>
                     )}
                     {outletProps.userId === props.userId && (
                       <div>
-                        Check if logged in, print pending friend requests:
-                        {/*user.requestedIn*/}
+                        Pending friend requests:
+                        <RequestedInList user={user} />
                       </div>
                     )}
                   </div>
