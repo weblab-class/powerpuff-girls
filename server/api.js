@@ -233,6 +233,42 @@ router.post("/requestout", auth.ensureLoggedIn, (req, res) => {
     });
 });
 
+router.post("/acceptreq", auth.ensureLoggedIn, (req, res) => {
+  //user1 is accepting request from user2
+  const you = req.body.user1; //type user object
+  const founduser = req.body.user2; //keep in mind that user2 is actually not a user object here, it's a pair with name and googleid
+  User.updateOne(
+    {
+      googleid: founduser.googleid,
+      "requestedOut.googleid": you.googleid, // they requested you
+    },
+    {
+      $pull: { requestedOut: { googleid: you.googleid } }, // Remove you from requestedOut
+      $push: {
+        friends: { name: you.name, googleid: you.googleid },
+      }, // Add you to their friends
+    }
+  ).catch((error) => {
+    console.error("Error updating the friends list:", error); // Handle errors
+  });
+
+  User.updateOne(
+    {
+      googleid: you.googleid,
+      "requestedIn.googleid": founduser.googleid, // they requested you
+    },
+    {
+      $pull: { requestedIn: { googleid: founduser.googleid } }, // Remove them from requestedIn
+      $push: {
+        friends: { name: founduser.name, googleid: founduser.googleid },
+      }, // Add you to their friends
+    }
+  ).catch((error) => {
+    console.log("error friending user");
+  });
+  res.send(founduser);
+});
+
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);

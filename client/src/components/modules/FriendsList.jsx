@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { get } from "../../utilities";
+import { get, post } from "../../utilities";
 
 //prop is userId, which person's list you want to display
 //for all 3 of these lists
@@ -39,6 +39,12 @@ const RequestedOutList = (props) => {
 
 const RequestedInList = (props) => {
   let rawPendingList = props.user?.requestedIn || [];
+
+  const acceptRequest = (user1, user2) => {
+    const body = { user1: user1, user2: user2 };
+    post("/api/acceptreq", body);
+  };
+
   if (rawPendingList.length === 0) {
     return <div>No pending friend requests</div>;
   } else {
@@ -46,7 +52,9 @@ const RequestedInList = (props) => {
       <div key={pairObj.name}>
         <span>{pairObj.name}</span>
         <span>
-          <button>Accept</button>
+          <button onClick={() => acceptRequest(props.user, pairObj)}>
+            Accept
+          </button>
         </span>
         <span>
           <button>Reject</button>
