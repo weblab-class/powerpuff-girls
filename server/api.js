@@ -139,7 +139,6 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   console.log(
     `Received a chat message from ${req.user.name}: ${req.body.content}`
   );
-
   // insert this message into the database
   const message = new Message({
     recipient: req.body.recipient,
@@ -151,6 +150,123 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   });
   message.save();
   // TODO (step 0.1): emit to all clients that a message was received (1 line)
+});
+
+router.post("/requestout", auth.ensureLoggedIn, (req, res) => {
+  const you = req.body.you;
+  User.findOne({ email: req.body.email })
+    .then((founduser) => {
+      console.log("found them: ", founduser);
+
+      User.updateOne(
+        {
+          email: you.email,
+          "requestedOut.googleid": { $ne: founduser.googleid }, //no duplicates
+          "friends.googleid": { $ne: founduser.googleid }, //not already friended
+          "requestedIn.googleid": { $ne: founduser.googleid }, //you should accept their request instead
+        },
+        {
+          $push: {
+            requestedOut: {
+              name: founduser.name,
+              googleid: founduser.googleid,
+            },
+          },
+        }
+      ).catch((error) => {
+        console.error("Error updating your requested out list:", error); // Handle errors
+      });
+
+      User.updateOne(
+        {
+          email: founduser.email,
+          "requestedIn.googleid": { $ne: you.googleid },
+          "friends.googleid": { $ne: you.googleid },
+          "requestedOut.googleid": { $ne: you.googleid },
+        },
+        {
+          $push: {
+            requestedIn: {
+              name: you.name,
+              googleid: you.googleid,
+            },
+          },
+        }
+      ).catch((error) => {
+        console.error("Error updating their requested in list:", error); // Handle errors
+      });
+
+      User.updateOne(
+        {
+          email: you.email,
+          "requestedIn.googleid": founduser.googleid, // Ensure they are in the requestedIn list
+        },
+        {
+          $pull: { requestedIn: { googleid: founduser.googleid } }, // Remove them from requestedIn
+          $push: {
+            friends: { name: founduser.name, googleid: founduser.googleid },
+          }, // Add them to your friends
+        }
+      ).catch((error) => {
+        console.error("Error updating the friends list:", error); // Handle errors
+      });
+
+      User.updateOne(
+        {
+          email: founduser.email,
+          "requestedOut.googleid": you.googleid, // they requested you
+        },
+        {
+          $pull: { requestedOut: { googleid: you.googleid } }, // Remove you from requestedOut
+          $push: {
+            friends: { name: you.name, googleid: you.googleid },
+          }, // Add you to their friends
+        }
+      ).catch((error) => {
+        console.error("Error updating the friends list:", error); // Handle errors
+      });
+
+      res.send(founduser);
+    })
+    .catch((error) => {
+      console.log("Error finding user: ", error);
+    });
+});
+
+router.post("/acceptreq", auth.ensureLoggedIn, (req, res) => {
+  //user1 is accepting request from user2
+  const you = req.body.user1; //type user object
+  const founduser = req.body.user2; //keep in mind that user2 is actually not a user object here, it's a pair with name and googleid
+  User.updateOne(
+    {
+      googleid: founduser.googleid,
+      "requestedOut.googleid": you.googleid, // they requested you
+    },
+    {
+      $pull: { requestedOut: { googleid: you.googleid } }, // Remove you from requestedOut
+      $push: {
+        friends: { name: you.name, googleid: you.googleid },
+      }, // Add you to their friends
+    }
+  ).catch((error) => {
+    console.error("Error updating the friends list:", error); // Handle errors
+  });
+
+  User.updateOne(
+    {
+      googleid: you.googleid,
+      "requestedIn.googleid": founduser.googleid, // they requested you
+    },
+    {
+      $pull: { requestedIn: { googleid: founduser.googleid } }, // Remove them from requestedIn
+      $push: {
+        friends: { name: founduser.name, googleid: founduser.googleid },
+      }, // Add you to their friends
+    }
+  ).catch((error) => {
+    console.log("error friending user");
+  });
+  res.send(founduser);
 });
 
 // anything else falls to this "not found" case

@@ -30,7 +30,10 @@ const CommentsBlock = (props) => {
           />
         ))}
         {props.userId && (
-          <NewComment storyId={props.story._id} addNewComment={props.addNewComment} />
+          <NewComment
+            storyId={props.creator_id}
+            addNewComment={props.addNewComment}
+          />
         )}
       </div>
     </div>
