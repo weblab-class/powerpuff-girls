@@ -3,10 +3,11 @@ import SingleStory from "./SingleStory";
 import CommentsBlock from "./CommentsBlock";
 import { get, post } from "../../utilities";
 import CloudinaryImage from "./Image";
-import { Bookmark, ClipboardSignatureIcon } from "lucide-react";
+import { Bookmark, ClipboardSignatureIcon, Trash2} from "lucide-react";
 import { Button } from "../ui/button";
 import { CardUI, CardContent, CardFooter } from "../ui/card";
 import { Link } from "react-router-dom";
+import { useToast } from "../ui/use-toast";
 
 /**
  * Card is a component for displaying content like stories
