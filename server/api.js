@@ -41,7 +41,9 @@ router.get("/postpage", (req, res) => {
 
 router.post("/story", auth.ensureLoggedIn, (req, res) => {
   const tags = req.body.tags.split(",");
-  const trimmedTags = tags.map((tag) => tag.trim());
+  const trimmedTags = tags
+    .map((tag) => tag.trim())
+    .filter((item) => item.trim() !== "");
 
   const newStory = new Story({
     creator_id: req.user._id,
@@ -53,6 +55,13 @@ router.post("/story", auth.ensureLoggedIn, (req, res) => {
   });
 
   newStory.save().then((story) => res.send(story));
+});
+
+router.post("/deleteCard", auth.ensureLoggedIn, (req, res) => {
+  Story.deleteOne({ _id: req.body._id }).then(() => {
+    console.log(req.body._id);
+    res.send({});
+  });
 });
 
 router.post("/save", auth.ensureLoggedIn, (req, res) => {
