@@ -22,6 +22,12 @@ const FriendsList = (props) => {
 
 const RequestedOutList = (props) => {
   let rawRequestedList = props.user?.requestedOut || [];
+
+  const cancelRequest = (user1, user2) => {
+    const body = { user1: user1, user2: user2 };
+    post("/api/cancelreq", body); //user1 previously requested user2 but wants to cancel that
+  };
+
   if (rawRequestedList.length === 0) {
     return <div>No outgoing friend requests</div>;
   } else {
@@ -29,7 +35,9 @@ const RequestedOutList = (props) => {
       <div key={pairObj.name}>
         <span>{pairObj.name}</span>
         <span>
-          <button>Cancel request</button>
+          <button onClick={() => cancelRequest(props.user, pairObj)}>
+            Cancel request
+          </button>
         </span>
       </div>
     ));
@@ -45,6 +53,11 @@ const RequestedInList = (props) => {
     post("/api/acceptreq", body);
   };
 
+  const rejectRequest = (user1, user2) => {
+    const body = { user1: user1, user2: user2 };
+    post("/api/rejectreq", body);
+  };
+
   if (rawPendingList.length === 0) {
     return <div>No pending friend requests</div>;
   } else {
@@ -57,7 +70,9 @@ const RequestedInList = (props) => {
           </button>
         </span>
         <span>
-          <button>Reject</button>
+          <button onClick={() => rejectRequest(props.user, pairObj)}>
+            Reject
+          </button>
         </span>
       </div>
     ));

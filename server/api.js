@@ -278,6 +278,66 @@ router.post("/acceptreq", auth.ensureLoggedIn, (req, res) => {
   res.send(founduser);
 });
 
+router.post("/rejectreq", auth.ensureLoggedIn, (req, res) => {
+  //user1 is rejecting request from user2
+  const you = req.body.user1; //type user object
+  const founduser = req.body.user2; //keep in mind that user2 is actually not a user object here, it's a pair with name and googleid
+  User.updateOne(
+    {
+      googleid: founduser.googleid,
+      "requestedOut.googleid": you.googleid, // they requested you
+    },
+    {
+      $pull: { requestedOut: { googleid: you.googleid } }, // Remove you from requestedOut
+    }
+  ).catch((error) => {
+    console.error("Error rejecting friend req:", error); // Handle errors
+  });
+
+  User.updateOne(
+    {
+      googleid: you.googleid,
+      "requestedIn.googleid": founduser.googleid, // they requested you
+    },
+    {
+      $pull: { requestedIn: { googleid: founduser.googleid } }, // Remove them from requestedIn
+    }
+  ).catch((error) => {
+    console.log("error rejecting friend req");
+  });
+  res.send(founduser);
+});
+
+router.post("/cancelreq", auth.ensureLoggedIn, (req, res) => {
+  //user1 is canceling request to user2
+  const you = req.body.user1; //type user object
+  const founduser = req.body.user2; //keep in mind that user2 is actually not a user object here, it's a pair with name and googleid
+  User.updateOne(
+    {
+      googleid: founduser.googleid,
+      "requestedIn.googleid": you.googleid, // you requested them
+    },
+    {
+      $pull: { requestedIn: { googleid: you.googleid } }, // Remove you from requestedIn
+    }
+  ).catch((error) => {
+    console.error("Error rejecting friend req:", error); // Handle errors
+  });
+
+  User.updateOne(
+    {
+      googleid: you.googleid,
+      "requestedOut.googleid": founduser.googleid,
+    },
+    {
+      $pull: { requestedOut: { googleid: founduser.googleid } }, // Remove them from requestedOut
+    }
+  ).catch((error) => {
+    console.log("error rejecting friend req");
+  });
+  res.send(founduser);
+});
+
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);
