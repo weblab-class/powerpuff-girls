@@ -29,7 +29,7 @@ const Card2 = (props) => {
   }, []);
 
   const addNewComment = (commentObj) => {
-    console.log("added new comment client side");
+    console.log("added new comment client side card2 component");
     setComments(comments.concat([commentObj]));
   };
 
@@ -113,6 +113,7 @@ const Card2 = (props) => {
                 creator_id={props.creator_id}
                 userId={props.userId}
                 addNewComment={addNewComment}
+                storyId={props._id}
               />
             )}
           </CardFooter>

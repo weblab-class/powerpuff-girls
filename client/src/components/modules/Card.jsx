@@ -161,6 +161,7 @@ const Card = (props) => {
               creator_id={props.creator_id}
               userId={props.userId}
               addNewComment={addNewComment}
+              storyId={props._id}
             />
           )}
         </CardFooter>
