@@ -18,6 +18,9 @@ import { Form, FormField, FormItem, FormControl } from "../ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
+
 import * as z from "zod";
 import "../../tailwind.css";
 
@@ -34,9 +37,7 @@ const Profile = () => {
   const { toast } = useToast();
   const fileInputRef = useRef(null);
   const [previewUrl, setPreviewUrl] = useState(null);
-  const [friends, setFriends] = useState();
-  const [requestedOut, setRequestedOut] = useState();
-  const [requestedIn, setRequestedIn] = useState();
+  const [tabIndex, setTabIndex] = useState(0);
 
   useEffect(() => {
     document.title = "Profile Page";
@@ -157,127 +158,146 @@ const Profile = () => {
             <div>
               <h1 className="text-3xl font-bold text-stylesnap-gray mb-2">
                 {user.name}
-                <div>{user.email && user.email}</div>
               </h1>
               <div className="flex items-center space-x-4">
                 <span className="text-stylesnap-gray">
                   <Users className="inline-block mr-2 h-5 w-5" />
-                  <div>
-                    <div>
+                  {user.friends.length} friends
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <Tabs
+            selectedIndex={tabIndex}
+            onSelect={(index) => setTabIndex(index)}
+          >
+            <TabList>
+              {outletProps.userId === props.userId && <Tab>Upload New Fit</Tab>}
+              <Tab>Friends</Tab>
+            </TabList>
+
+            {outletProps.userId === props.userId && (
+              <TabPanel>
+                <div>
+                  <CardUI className="mb-8">
+                    <CardContent className="p-6">
+                      <h2 className="text-xl font-semibold text-stylesnap-gray mb-4">
+                        Upload a New Fit
+                      </h2>
+                      <Form {...form}>
+                        <form
+                          onSubmit={form.handleSubmit(onSubmit)}
+                          className="space-y-4"
+                        >
+                          <input
+                            type="file"
+                            ref={fileInputRef}
+                            className="hidden"
+                            accept="image/*"
+                            onChange={handleFileChange}
+                          />
+                          <div
+                            className={`border-2 border-dashed border-stylesnap-beige rounded-lg p-8 text-center transition-colors ${
+                              previewUrl ? "bg-stylesnap-softGray/10" : ""
+                            }`}
+                            onDragOver={handleDragOver}
+                            onDrop={handleDrop}
+                            onClick={() => fileInputRef.current?.click()}
+                          >
+                            {previewUrl ? (
+                              <div className="relative">
+                                <img
+                                  src={previewUrl}
+                                  alt="Preview"
+                                  className="max-h-64 mx-auto rounded-lg"
+                                />
+                                <p className="text-sm text-stylesnap-gray mt-2">
+                                  Click to change image
+                                </p>
+                              </div>
+                            ) : (
+                              <>
+                                <Upload className="mx-auto h-12 w-12 text-stylesnap-gray mb-2" />
+                                <p className="text-sm text-stylesnap-gray">
+                                  Drag and drop your photo here, or click to
+                                  browse
+                                </p>
+                              </>
+                            )}
+                          </div>
+
+                          <FormField
+                            control={form.control}
+                            name="caption"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormControl>
+                                  <Input
+                                    placeholder="Add a caption..."
+                                    className="border-stylesnap-beige focus:border-stylesnap-pink"
+                                    {...field}
+                                  />
+                                </FormControl>
+                              </FormItem>
+                            )}
+                          />
+
+                          <FormField
+                            control={form.control}
+                            name="tags"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormControl>
+                                  <Textarea
+                                    placeholder="Add tags (separated by commas)..."
+                                    className="border-stylesnap-beige focus:border-stylesnap-pink"
+                                    {...field}
+                                  />
+                                </FormControl>
+                              </FormItem>
+                            )}
+                          />
+
+                          <Button
+                            type="submit"
+                            className="w-full bg-stylesnap-pink hover:bg-stylesnap-gray text-white"
+                          >
+                            Post Fit
+                          </Button>
+                        </form>
+                      </Form>
+                    </CardContent>
+                  </CardUI>
+                </div>
+              </TabPanel>
+            )}
+
+            <TabPanel>
+              <div className="flex items-center space-x-4">
+                <span className="text-stylesnap-gray">
+                  <div className="flex overflow-x-auto p-4 bg-gray-50 space-x-4">
+                    <div className="flex-grow m-2 bg-stylesnap-gray-100 p-4 rounded-lg shadow-md overflow-y-auto max-h-96">
                       Friends: <FriendsList user={user} />
                     </div>
                     {outletProps.userId === props.userId && (
-                      <div>
+                      <div className="flex-grow m-2 bg-stylesnap-gray-100 p-4 rounded-lg shadow-md overflow-y-auto max-h-96">
                         Outgoing friend requests:
                         <RequestedOutList user={user} />
                         <SendFriendReq requestfunct={requestfunct} />
                       </div>
                     )}
                     {outletProps.userId === props.userId && (
-                      <div>
+                      <div className="flex-grow m-2 bg-stylesnap-gray-100 p-4 rounded-lg shadow-md overflow-y-auto max-h-96">
                         Pending friend requests:
                         <RequestedInList user={user} />
                       </div>
                     )}
                   </div>
                 </span>
-                <span className="text-stylesnap-gray">128 fits</span>
               </div>
-            </div>
-          </div>
-
-          {outletProps.userId === props.userId && (
-            <div>
-              <CardUI className="mb-8">
-                <CardContent className="p-6">
-                  <h2 className="text-xl font-semibold text-stylesnap-gray mb-4">
-                    Upload a New Fit
-                  </h2>
-                  <Form {...form}>
-                    <form
-                      onSubmit={form.handleSubmit(onSubmit)}
-                      className="space-y-4"
-                    >
-                      <input
-                        type="file"
-                        ref={fileInputRef}
-                        className="hidden"
-                        accept="image/*"
-                        onChange={handleFileChange}
-                      />
-                      <div
-                        className={`border-2 border-dashed border-stylesnap-beige rounded-lg p-8 text-center transition-colors ${
-                          previewUrl ? "bg-stylesnap-softGray/10" : ""
-                        }`}
-                        onDragOver={handleDragOver}
-                        onDrop={handleDrop}
-                        onClick={() => fileInputRef.current?.click()}
-                      >
-                        {previewUrl ? (
-                          <div className="relative">
-                            <img
-                              src={previewUrl}
-                              alt="Preview"
-                              className="max-h-64 mx-auto rounded-lg"
-                            />
-                            <p className="text-sm text-stylesnap-gray mt-2">
-                              Click to change image
-                            </p>
-                          </div>
-                        ) : (
-                          <>
-                            <Upload className="mx-auto h-12 w-12 text-stylesnap-gray mb-2" />
-                            <p className="text-sm text-stylesnap-gray">
-                              Drag and drop your photo here, or click to browse
-                            </p>
-                          </>
-                        )}
-                      </div>
-
-                      <FormField
-                        control={form.control}
-                        name="caption"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormControl>
-                              <Input
-                                placeholder="Add a caption..."
-                                className="border-stylesnap-beige focus:border-stylesnap-pink"
-                                {...field}
-                              />
-                            </FormControl>
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="tags"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormControl>
-                              <Textarea
-                                placeholder="Add tags (separated by commas)..."
-                                className="border-stylesnap-beige focus:border-stylesnap-pink"
-                                {...field}
-                              />
-                            </FormControl>
-                          </FormItem>
-                        )}
-                      />
-
-                      <Button
-                        type="submit"
-                        className="w-full bg-stylesnap-pink hover:bg-stylesnap-gray text-white"
-                      >
-                        Post Fit
-                      </Button>
-                    </form>
-                  </Form>
-                </CardContent>
-              </CardUI>
-            </div>
-          )}
+            </TabPanel>
+          </Tabs>
         </div>
       </main>
     </div>

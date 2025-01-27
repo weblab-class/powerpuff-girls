@@ -14,7 +14,7 @@ const FriendsList = (props) => {
   } else {
     console.log("NONZERO FRIENDS");
     let friendsList = rawFriendsList.map((pairObj) => (
-      <div key={pairObj.name}>{pairObj.name}</div>
+      <div key={pairObj.googleid}>{pairObj.name}</div>
     ));
     return <div>{friendsList}</div>;
   }
@@ -32,7 +32,7 @@ const RequestedOutList = (props) => {
     return <div>No outgoing friend requests</div>;
   } else {
     let requestedList = rawRequestedList.map((pairObj) => (
-      <div key={pairObj.name}>
+      <div key={pairObj.googleid}>
         <span>{pairObj.name}</span>
         <span>
           <button onClick={() => cancelRequest(props.user, pairObj)}>
@@ -62,7 +62,7 @@ const RequestedInList = (props) => {
     return <div>No pending friend requests</div>;
   } else {
     let pendingList = rawPendingList.map((pairObj) => (
-      <div key={pairObj.name}>
+      <div key={pairObj.googleid}>
         <span>{pairObj.name}</span>
         <span>
           <button onClick={() => acceptRequest(props.user, pairObj)}>
