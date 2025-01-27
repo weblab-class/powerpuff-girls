@@ -16,6 +16,8 @@ const NavBar = (props) => {
             <div className="text-2xl font-bold text-stylesnap-gray hover:text-stylesnap-pink transition-colors">
               StyleSnap
             </div>
+            {/* <img src="pic_trulli.jpg" alt="Italian Trulli"> </img> */}
+
             <Link
               to="/"
               className="px-3 py-2 rounded-md text-sm font-medium text-stylesnap-gray hover:text-stylesnap-pink hover:bg-stylesnap-softGray transition-colors"
