@@ -43,22 +43,7 @@ const Profile = () => {
     get(`/api/user`, { userid: props.userId }).then((userObj) =>
       setUser(userObj)
     );
-    /*if (!user.friends) {
-      setFriends([]);
-    } else {
-      setFriends(user.friends);
-    }
-    if (!user.requestedOut) {
-      setRequestedOut([]);
-    } else {
-      setRequestedOut(user.requestedOut);
-    }
-    if (!user.requestedIn) {
-      setRequestedIn([]);
-    } else {
-      setRequestedIn(user.requestedIn);
-    }*/
-  }, []);
+  }, [user, props.userId, outletProps.userId]);
 
   const form = useForm({
     resolver: zodResolver(formSchema),
