@@ -29,7 +29,7 @@ const RequestedOutList = (props) => {
   };
 
   if (rawRequestedList.length === 0) {
-    return <div>No outgoing friend requests</div>;
+    return <div>No outgoing requests</div>;
   } else {
     let requestedList = rawRequestedList.map((pairObj) => (
       <div key={pairObj.googleid}>
@@ -59,7 +59,7 @@ const RequestedInList = (props) => {
   };
 
   if (rawPendingList.length === 0) {
-    return <div>No pending friend requests</div>;
+    return <div>No incoming requests</div>;
   } else {
     let pendingList = rawPendingList.map((pairObj) => (
       <div key={pairObj.googleid}>

@@ -91,7 +91,10 @@ const Feed = () => {
       Math.min(showing * 4 + 4, filterStories.length)
     );
     storiesList = fourStories.map((storyObj) => (
-      <button onClick={() => navigate(`/post/${storyObj._id}`)}>
+      <button
+        key={storyObj._id}
+        onClick={() => navigate(`/post/${storyObj._id}`)}
+      >
         <Card
           key={`Card_${storyObj._id}`}
           _id={storyObj._id}

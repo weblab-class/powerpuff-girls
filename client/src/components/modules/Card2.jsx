@@ -19,7 +19,7 @@ import { Link } from "react-router-dom";
  */
 const Card2 = (props) => {
   const [comments, setComments] = useState([]);
-  const [showComments, setShowComments] = useState(false);
+  const [showComments, setShowComments] = useState(true);
 
   useEffect(() => {
     get("/api/comment", { parent: props._id }).then((comments) => {
@@ -29,6 +29,7 @@ const Card2 = (props) => {
   }, []);
 
   const addNewComment = (commentObj) => {
+    console.log("added new comment client side");
     setComments(comments.concat([commentObj]));
   };
 
@@ -97,9 +98,9 @@ const Card2 = (props) => {
             <p className="text-sm text-stylesnap-gray mb-4">{props.content}</p>
             <div className="flex flex-wrap gap-2 mb-4">
               {Array.isArray(props.tags) &&
-                props.tags.map((tag) => (
+                props.tags.map((tag, index) => (
                   <span
-                    key={tag}
+                    key={`${tag}-${index}`}
                     className="text-xs px-2 py-1 bg-stylesnap-softGray text-stylesnap-gray rounded-full"
                   >
                     {tag}

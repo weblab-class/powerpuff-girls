@@ -146,9 +146,9 @@ const Card = (props) => {
           <p className="text-sm text-stylesnap-gray mb-2">{props.content}</p>
           <div className="flex flex-wrap gap-2">
             {Array.isArray(props.tags) &&
-              props.tags.map((tag) => (
+              props.tags.map((tag, index) => (
                 <span
-                  key={tag}
+                  key={`${tag}-${index}`}
                   className="text-xs px-2 py-1 bg-stylesnap-softGray text-stylesnap-gray rounded-full"
                 >
                   {tag}
