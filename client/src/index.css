@@ -93,7 +93,7 @@
 }
 
 :root {
-  --primary: #a212c2;
+  --primary: #b79eff;
   --primary--dim: #6987db;
   --darkgrey: #d4d4d4;
   --medgrey: #e0e0e0;
@@ -163,7 +163,6 @@ form {
 .u-link:hover {
   color: var(--primary--dim);
 }
-
 
 /* @layer base {
   * {

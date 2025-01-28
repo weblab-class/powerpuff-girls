@@ -117,8 +117,8 @@ module.exports = {
         foreground: "hsl(var(--foreground))",
         stylesnap: {
           beige: "#E2D1C3",
-          gray: "#8E9196",
-          pink: "#FFDEE2",
+          gray: "#5c5f63",
+          pink: "#936ff7",
           softGray: "#F1F0FB",
         },
         primary: {

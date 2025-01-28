@@ -37,10 +37,15 @@ const Saved = () => {
   }, []);
 
   useEffect(() => {
-    if (!props.userId) {
-      //logged out probably
-      navigate("/");
-    }
+    get("/api/whoami").then((user) => {
+      if (
+        user == null ||
+        (typeof user === "object" && Object.keys(user).length === 0)
+      ) {
+        //logged out probably
+        navigate("/");
+      }
+    });
   }, [props.userId]);
 
   useEffect(() => {

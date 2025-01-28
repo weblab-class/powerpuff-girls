@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { get, post } from "../../utilities";
+import "../../tailwind.css";
 
 //prop is userId, which person's list you want to display
 //for all 3 of these lists
