@@ -16,10 +16,11 @@ const Feed = () => {
   const [stories, setStories] = useState([]);
   const [filterStories, setFilterStories] = useState([]);
   const [showing, setShowing] = useState(0);
+  const [popUp, setPopUp] = useState(-1); //-1 means nothing, otherwise give index of card
 
   // Music player states
   const [isPlaying, setIsPlaying] = useState(false); // Whether music is playing or not
-  const [audio] = useState(new Audio("/peppy_fash.mp3")); // Path to your MP3 file
+  const [audio] = useState(new Audio("/ambient_background.mp3")); // Path to your MP3 file
 
   useEffect(() => {
     document.title = "Fashion Feed";
@@ -111,6 +112,15 @@ const Feed = () => {
             });
             console.log("deleting story");
           }}
+          handleDelete={() => {
+            setStories((oldStories) => {
+              return oldStories.filter((story) => story._id !== storyObj._id);
+            });
+            setFilterStories((oldStories) => {
+              return oldStories.filter((story) => story._id !== storyObj._id);
+            });
+            console.log("deleting story");
+          }}
         />
       </div>
     ));
@@ -122,7 +132,7 @@ const Feed = () => {
 
   return (
     <>
-      <div className="mx-0 px-0 pt-24 pb-12">
+      <div className="container mx-auto px-4 pt-24 pb-12">
         <SearchFeed
           filterFeed={filterFeed}
           className="w-full pl-12 pr-4 py-3 text-lg bg-white border-stylesnap-beige focus:border-stylesnap-pink transition-colors"
@@ -134,7 +144,7 @@ const Feed = () => {
           Clear Search
         </button>
 
-        <div>
+        <div className="flex">
           <button onClick={goLeft} className="arrow-button arrow-left"></button>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {storiesList}
