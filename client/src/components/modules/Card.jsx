@@ -77,10 +77,7 @@ const Card = (props) => {
 
   return (
     <button key={props._id} onClick={() => navigate(`/post/${props._id}`)}>
-      <CardUI
-        className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg animate-[fade-in_0.5s,scale-in_0.5s] w-[300px] rounded-none border-0 mb-2 
-border-b-4 border-b-stylesnap-pink"
-      >
+      <CardUI className="group relative overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg animate-[fade-in_0.5s,scale-in_0.5s] w-[300px] rounded-none border-0 mb-2 border-b-4 border-b-stylesnap-pink">
         <CardContent className="p-0 relative">
           <div className="flex items-center justify-center mt-4">
             <CloudinaryImage
