@@ -61,8 +61,8 @@ const Card = (props) => {
       console.log("deleting now xd");
       props.handleDelete();
       notifications.show({
-        title: "Post thing",
-        message: "I love deleting",
+        title: "Notification",
+        message: "Successfully deleted post!",
       });
     });
   };
