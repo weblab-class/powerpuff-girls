@@ -131,14 +131,8 @@ const Profile = () => {
     console.log(values);
     uploadImage(previewUrl, values.caption, values.tags);
 
-    // For now, we'll just show a success toast
-    toast({
-      title: "Success!",
-      description: "Your fit has been uploaded.",
-    });
-
     notifications.show({
-      title: "Post created:",
+      title: "Post created",
       message: "Successfully uploaded fit!",
     });
 
