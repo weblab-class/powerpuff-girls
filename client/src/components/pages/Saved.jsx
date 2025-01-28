@@ -102,6 +102,15 @@ const Saved = () => {
           alt={storyObj.alt}
           tags={storyObj.tags}
           showComments={false}
+          handleDelete={() => {
+            setStories((oldStories) => {
+              return oldStories.filter((story) => story._id !== storyObj._id);
+            });
+            setFilterStories((oldStories) => {
+              return oldStories.filter((story) => story._id !== storyObj._id);
+            });
+            console.log("deleting story");
+          }}
         />
       </button>
     ));
@@ -124,15 +133,15 @@ const Saved = () => {
             {storiesList}
           </div>
           <div
-          className="fixed bottom-2 right-2 p-2 bg-blue-500 rounded-full shadow-lg cursor-pointer flex items-center justify-center"
-          onClick={toggleMusic}
-        >
-          <i
-            className={`fa-solid ${
-              isPlaying ? "fa-volume-high" : "fa-volume-xmark"
-            } text-white text-1xl`}
-          />
-        </div>
+            className="fixed bottom-2 right-2 p-2 bg-blue-500 rounded-full shadow-lg cursor-pointer flex items-center justify-center"
+            onClick={toggleMusic}
+          >
+            <i
+              className={`fa-solid ${
+                isPlaying ? "fa-volume-high" : "fa-volume-xmark"
+              } text-white text-1xl`}
+            />
+          </div>
         </div>
       </div>
     </>
