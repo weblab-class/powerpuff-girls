@@ -15,7 +15,9 @@ const FriendsList = (props) => {
   } else {
     console.log("NONZERO FRIENDS");
     let friendsList = rawFriendsList.map((pairObj) => (
-      <div key={pairObj.googleid}>{pairObj.name}</div>
+      <div key={pairObj.googleid} className="m-1 p-1">
+        {pairObj.name}
+      </div>
     ));
     return <div>{friendsList}</div>;
   }
@@ -30,13 +32,16 @@ const RequestedOutList = (props) => {
   };
 
   if (rawRequestedList.length === 0) {
-    return <div>No outgoing requests</div>;
+    return <div className="m-1 p-1">No outgoing requests</div>;
   } else {
     let requestedList = rawRequestedList.map((pairObj) => (
-      <div key={pairObj.googleid}>
+      <div key={pairObj.googleid} className="m-1 p-1">
         <span>{pairObj.name}</span>
         <span>
-          <button onClick={() => cancelRequest(props.user, pairObj)}>
+          <button
+            onClick={() => cancelRequest(props.user, pairObj)}
+            className="bg-stylesnap-pink rounded-sm text-sm m-4 p-2 hover:bg-stylesnap-gray text-white"
+          >
             Cancel request
           </button>
         </span>
@@ -60,18 +65,22 @@ const RequestedInList = (props) => {
   };
 
   if (rawPendingList.length === 0) {
-    return <div>No incoming requests</div>;
+    return <div className="m-1 p-1">No incoming requests</div>;
   } else {
     let pendingList = rawPendingList.map((pairObj) => (
-      <div key={pairObj.googleid}>
-        <span>{pairObj.name}</span>
-        <span>
-          <button onClick={() => acceptRequest(props.user, pairObj)}>
+      <div key={pairObj.googleid} className="m-1 p-1">
+        <span className="flex space-x-4 items-center">
+          <span className="flex-none">{pairObj.name}</span>
+          <button
+            onClick={() => acceptRequest(props.user, pairObj)}
+            className="bg-stylesnap-pink rounded-sm text-sm m-1 p-2 hover:bg-stylesnap-gray text-white"
+          >
             Accept
           </button>
-        </span>
-        <span>
-          <button onClick={() => rejectRequest(props.user, pairObj)}>
+          <button
+            onClick={() => rejectRequest(props.user, pairObj)}
+            className="bg-stylesnap-pink rounded-sm text-sm m-1 p-2 hover:bg-stylesnap-gray text-white"
+          >
             Reject
           </button>
         </span>
