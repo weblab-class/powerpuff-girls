@@ -102,6 +102,15 @@ const Feed = () => {
           alt={storyObj.alt}
           tags={storyObj.tags}
           showComments={false}
+          handleDelete={() => {
+            setStories((oldStories) => {
+              return oldStories.filter((story) => story._id !== storyObj._id);
+            });
+            setFilterStories((oldStories) => {
+              return oldStories.filter((story) => story._id !== storyObj._id);
+            });
+            console.log("deleting story");
+          }}
         />
       </div>
     ));
@@ -113,8 +122,7 @@ const Feed = () => {
 
   return (
     <>
-      <div 
-      className="mx-0 px-0 pt-24 pb-12">
+      <div className="mx-0 px-0 pt-24 pb-12">
         <SearchFeed
           filterFeed={filterFeed}
           className="w-full pl-12 pr-4 py-3 text-lg bg-white border-stylesnap-beige focus:border-stylesnap-pink transition-colors"
