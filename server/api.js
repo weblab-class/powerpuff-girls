@@ -8,6 +8,7 @@
 */
 
 const express = require("express");
+const { spawn } = require("child_process");
 
 // import models so we can interact with the database
 const Story = require("./models/story");
@@ -336,6 +337,44 @@ router.post("/cancelreq", auth.ensureLoggedIn, (req, res) => {
     console.log("error rejecting friend req");
   });
   res.send(founduser);
+});
+
+router.post("/imageprocess", (req, res) => {
+  const path = require("path");
+  const scriptPath = path.join(__dirname, "clothessegment.py");
+
+  //const { args } = req.body;
+  const args = req.body.image_urls;
+  console.log("IMAGE URLS PASSED IN", args);
+  const process = spawn("python", [scriptPath, ...(args || [])]);
+
+  let output = "";
+
+  process.stdout.on("data", (data) => {
+    output += data.toString();
+  });
+
+  process.stderr.on("data", (err) => {
+    console.error("Python error:", err.toString());
+  });
+
+  process.on("error", (error) => {
+    console.error("Failed to start Python process:", error.message);
+    res.status(500).send("Failed to execute Python script.");
+  });
+
+  process.on("close", (code) => {
+    if (code === 0) {
+      // Send the base64-encoded image back to the client
+      console.log("output is this: ", output);
+      res.status(200).json({
+        message: "Python script finished successfully",
+        paletteBase64: output,
+      });
+    } else {
+      res.status(500).send(`Python script exited with code ${code}`);
+    }
+  });
 });
 
 // anything else falls to this "not found" case

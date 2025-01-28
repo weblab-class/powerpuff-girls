@@ -7,7 +7,7 @@ import { useOutletContext } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import { get } from "../../utilities";
+import { get, post } from "../../utilities";
 import "../../tailwind.css";
 import "./Feed.css";
 
@@ -16,12 +16,13 @@ const Saved = () => {
   let props = useOutletContext();
   const [stories, setStories] = useState([]);
   const [filterStories, setFilterStories] = useState([]);
-  const [popUp, setPopUp] = useState(-1); //-1 means nothing, otherwise give index of card
+  const [base64Image, setBase64Image] = useState();
+  //const [popUp, setPopUp] = useState(-1); //-1 means nothing, otherwise give index of card
 
   // called when the "Feed" component "mounts", i.e.
   // when it shows up on screen
   useEffect(() => {
-    document.title = "Fashion Feed";
+    document.title = "My Saved Fits";
     get("/api/stories").then((storyObjs) => {
       get("/api/getAllSaved").then((savedObjs) => {
         const savedStoryIds = savedObjs.map((saveObj) => saveObj.parent);
@@ -35,43 +36,40 @@ const Saved = () => {
     });
   }, []);
 
+  useEffect(() => {
+    get("/api/whoami").then((user) => {
+      if (
+        user == null ||
+        (typeof user === "object" && Object.keys(user).length === 0)
+      ) {
+        //logged out probably
+        navigate("/");
+      }
+    });
+  }, [props.userId]);
+
+  useEffect(() => {
+    if (stories.length > 0) {
+      const image_urls =
+        stories.map(
+          (storyObj) =>
+            `https://res.cloudinary.com/stylesnap/image/upload/w_300,h_600,c_fill/${storyObj.publicId}`
+        ) || [];
+      console.log("client side image urls is ", image_urls);
+
+      post("/api/imageprocess", { image_urls }).then((paletteString) => {
+        console.log("post request worked yay");
+        console.log(paletteString.paletteBase64);
+        setBase64Image(paletteString.paletteBase64);
+      });
+    }
+  }, [stories]); // This effect runs every time `stories` is updated
+
   // this gets called when the user pushes "Submit", so their
   // post gets added to the screen right away
   const addNewStory = (storyObj) => {
     setStories([storyObj].concat(stories));
   };
-
-  /*const filterFeed = (query) => {
-    if (query === "") {
-      setFilterStories(stories);
-      setShowing(0);
-    } else {
-      let filteredCards = stories.filter(
-        (storyObj) =>
-          storyObj.content.toLowerCase().includes(query.toLowerCase())
-        //rn it only looks in caption, but can easily modify this to make it searchable by tag
-        //or by user or something
-      );
-      setFilterStories(filteredCards);
-      setShowing(0);
-    }
-  };
-
-  const clearSearch = () => {
-    setFilterStories(stories);
-    setShowing(0);
-  };
-
-  const goRight = () => {
-    if (showing * 4 + 4 <= filterStories.length - 1) {
-      setShowing(showing + 1);
-    }
-  };
-  const goLeft = () => {
-    if (showing * 4 - 4 >= 0) {
-      setShowing(showing - 1);
-    }
-  };*/
 
   let storiesList = null;
   if (filterStories.length !== 0) {
@@ -98,6 +96,14 @@ const Saved = () => {
     <>
       <div className="container mx-auto px-4 pt-24 pb-12">
         <div>
+          {base64Image && (
+            <div>
+              <img
+                src={`data:image/png;base64,${base64Image}`}
+                alt="Dominant color analysis"
+              />
+            </div>
+          )}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {storiesList}
           </div>

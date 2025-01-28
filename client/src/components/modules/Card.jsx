@@ -61,8 +61,8 @@ const Card = (props) => {
       console.log("deleting now xd");
       props.handleDelete();
       notifications.show({
-        title: "Post thing",
-        message: "I love deleting",
+        title: "Notification",
+        message: "Successfully deleted post!",
       });
     });
   };
@@ -132,7 +132,7 @@ const Card = (props) => {
                     {tag}
                   </span>
                 ))}
-              <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+              {/*<div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>*/}
               {showComments && (
                 <CommentsBlock
                   comments={comments}

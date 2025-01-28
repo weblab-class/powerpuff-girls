@@ -17,9 +17,9 @@ const Postpage = () => {
 
   useEffect(() => {
     document.title = "Post Page";
-    get("/api/postpage", { _id: _id }).then((storyObj) =>
-      setPostcard(storyObj)
-    );
+    get("/api/postpage", { _id: _id })
+      .then((storyObj) => setPostcard(storyObj))
+      .catch(console.log("this postcard no longer exists"));
     console.log("navigated to post page and retrieved story");
   }, []);
 
@@ -32,18 +32,37 @@ const Postpage = () => {
           </button>
         </Link>
 
-        <Card2
-          key={`Card2_${postcard._id}`}
-          _id={postcard._id}
-          creator_name={postcard.creator_name}
-          creator_id={postcard.creator_id}
-          userId={props.userId}
-          content={postcard.content}
-          publicId={postcard.publicId}
-          alt={postcard.alt}
-          showComments={true}
-          tags={postcard.tags}
-        />
+        {/*postcard && (
+          <Card2
+            key={`Card2_${postcard._id}`}
+            _id={postcard._id}
+            creator_name={postcard.creator_name}
+            creator_id={postcard.creator_id}
+            userId={props.userId}
+            content={postcard.content}
+            publicId={postcard.publicId}
+            alt={postcard.alt}
+            showComments={true}
+            tags={postcard.tags}
+          />
+        )*/}
+
+        {postcard && Object.keys(postcard).length > 0 ? (
+          <Card2
+            key={`Card2_${postcard._id}`}
+            _id={postcard._id}
+            creator_name={postcard.creator_name}
+            creator_id={postcard.creator_id}
+            userId={props.userId}
+            content={postcard.content}
+            publicId={postcard.publicId}
+            alt={postcard.alt}
+            showComments={true}
+            tags={postcard.tags}
+          />
+        ) : (
+          <div>Sorry, this post no longer exists!</div>
+        )}
       </div>
     </>
   );

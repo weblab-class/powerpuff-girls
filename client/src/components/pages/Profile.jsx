@@ -138,8 +138,8 @@ const Profile = () => {
     });
 
     notifications.show({
-      title: "hi",
-      message: "Hello",
+      title: "Post created:",
+      message: "Successfully uploaded fit!",
     });
 
     // Reset the form
@@ -162,7 +162,7 @@ const Profile = () => {
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-3xl font-bold text-stylesnap-gray mb-2">
+              <h1 className="text-3xl font-bold text-stylesnap-pink mb-2">
                 {user.name}
               </h1>
               <div className="flex items-center space-x-4">
@@ -280,27 +280,28 @@ const Profile = () => {
             )}
 
             <TabPanel>
-              <div className="flex items-center space-x-4">
-                <span className="text-stylesnap-gray">
-                  <div className="flex overflow-x-auto p-4 bg-gray-50 space-x-4">
-                    <div className="flex-grow m-2 bg-stylesnap-gray-100 p-4 rounded-lg shadow-md overflow-y-auto max-h-96">
-                      Friends: <FriendsList user={user} />
+              <div className="flex space-x-4 text-stylesnap-gray">
+                <div className="flex-grow flex-1 m-2 p-4 h-full rounded-lg shadow-md bg-white">
+                  <div className="font-bold text-stylesnap-pink">Friends:</div>{" "}
+                  <FriendsList user={user} />
+                </div>
+                {outletProps.userId === props.userId && (
+                  <div className="flex-grow flex-1 m-2 p-4 h-full rounded-lg shadow-md bg-white">
+                    <div className="font-bold text-stylesnap-pink">
+                      Outgoing requests:
                     </div>
-                    {outletProps.userId === props.userId && (
-                      <div className="flex-grow m-2 bg-stylesnap-gray-100 p-4 rounded-lg shadow-md overflow-y-auto max-h-96">
-                        Outgoing friend requests:
-                        <RequestedOutList user={user} />
-                        <SendFriendReq requestfunct={requestfunct} />
-                      </div>
-                    )}
-                    {outletProps.userId === props.userId && (
-                      <div className="flex-grow m-2 bg-stylesnap-gray-100 p-4 rounded-lg shadow-md overflow-y-auto max-h-96">
-                        Pending friend requests:
-                        <RequestedInList user={user} />
-                      </div>
-                    )}
+                    <RequestedOutList user={user} />
+                    <SendFriendReq requestfunct={requestfunct} />
                   </div>
-                </span>
+                )}
+                {outletProps.userId === props.userId && (
+                  <div className="flex-grow flex-1 m-2 p-4 h-full rounded-lg shadow-md bg-white">
+                    <div className="font-bold text-stylesnap-pink">
+                      Pending requests:
+                    </div>
+                    <RequestedInList user={user} className="m-2" />
+                  </div>
+                )}
               </div>
             </TabPanel>
           </Tabs>
