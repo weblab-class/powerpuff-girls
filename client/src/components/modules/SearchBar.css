@@ -1,3 +1,18 @@
 /* @tailwind base;
 @tailwind components;
 @tailwind utilities; */
+
+.NewPostInput-input {
+    width: 400px; /* Shrinks the input field width */
+    height: 40px; /* Optional: set the height if needed */
+    padding: 8px; /* Adjust padding for better usability */
+    font-size: 14px; /* Adjust text size */
+    border: 1px solid #ccc; /* Optional: Add a border */
+    border-radius: 4px; /* Optional: Make it look nice */
+  }
+
+  .right-align {
+    display: flex;
+    justify-content: flex-end; /* Pushes content to the right */
+    align-items: center;      /* Vertically centers the content */
+  }

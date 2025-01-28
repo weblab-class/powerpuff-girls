@@ -27,7 +27,7 @@ const NewPostInput = (props) => {
   };
 
   return (
-    <div className="u-flex">
+    <div className="text-right">
       <input
         type="text"
         placeholder={props.defaultText}
@@ -51,7 +51,13 @@ const SearchFeed = (props) => {
   const search = (value) => {
     props.filterFeed(value);
   };
-  return <NewPostInput className="text-white" defaultText="Start searching for your dream look..." onSubmit={search} />;
+  return (
+    <NewPostInput
+      className="NewPostInput-input flex justify-end"
+      defaultText="Search for your dream look..."
+      onSubmit={search}
+    />
+  );
 };
 
 export { SearchFeed };

@@ -58,7 +58,16 @@ const App = () => {
         handleLogout={handleLogout}
         userId={userId}
       />
-      <div className="App-container">
+      <div style={{
+        backgroundImage: `url('/purple.gif')`, // Or '/background.jpg' if in public
+        backgroundSize: 'cover', // Ensures the image covers the whole area
+        backgroundPosition: 'center', // Centers the image
+        backgroundRepeat: 'no-repeat', // Prevents tiling
+        minHeight: '100vh', // Full viewport height
+        minWidth: '100vw', // Full viewport width
+        margin: 0,
+        padding: 80,
+      }} className="App-container">
         <Outlet context={{ userId: userId }} />
       </div>
     </MantineProvider>
