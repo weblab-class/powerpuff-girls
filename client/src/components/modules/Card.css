@@ -38,3 +38,10 @@
 .Card-commentBody {
   margin: 0 0 var(--s);
 }
+
+.Card-toastViewPort {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  display: flex;
+}

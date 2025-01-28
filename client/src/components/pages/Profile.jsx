@@ -17,6 +17,7 @@ import { useToast } from "../ui/use-toast";
 import { Form, FormField, FormItem, FormControl } from "../ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { notifications } from "@mantine/notifications";
 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -117,7 +118,7 @@ const Profile = () => {
 
   const onSubmit = async (values) => {
     if (!previewUrl) {
-      toast({
+      notifications.show({
         title: "Error",
         description: "Please select an image to upload",
         variant: "destructive",
@@ -134,6 +135,11 @@ const Profile = () => {
     toast({
       title: "Success!",
       description: "Your fit has been uploaded.",
+    });
+
+    notifications.show({
+      title: "hi",
+      message: "Hello",
     });
 
     // Reset the form

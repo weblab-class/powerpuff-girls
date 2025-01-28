@@ -91,10 +91,7 @@ const Feed = () => {
       Math.min(showing * 4 + 4, filterStories.length)
     );
     storiesList = fourStories.map((storyObj) => (
-      <button
-        key={storyObj._id}
-        onClick={() => navigate(`/post/${storyObj._id}`)}
-      >
+      <div>
         <Card
           key={`Card_${storyObj._id}`}
           _id={storyObj._id}
@@ -106,8 +103,17 @@ const Feed = () => {
           alt={storyObj.alt}
           tags={storyObj.tags}
           showComments={false}
+          handleDelete={() => {
+            setStories((oldStories) => {
+              return oldStories.filter((story) => story._id !== storyObj._id);
+            });
+            setFilterStories((oldStories) => {
+              return oldStories.filter((story) => story._id !== storyObj._id);
+            });
+            console.log("deleting story");
+          }}
         />
-      </button>
+      </div>
     ));
   } else if (filterStories.length === 0 && stories.length !== 0) {
     storiesList = <div>Nothing matches your search...</div>;

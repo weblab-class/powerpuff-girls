@@ -12,7 +12,9 @@ import { Outlet } from "react-router-dom";
 import "../utilities.css";
 import "./App.css";
 import "../index.css";
-import "../tailwind.css"
+import "../tailwind.css";
+import { MantineProvider } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
 
 /**
  * Define the "App" component as a function.
@@ -49,7 +51,8 @@ const App = () => {
   return (
     // <> is like a <div>, but won't show
     // up in the DOM tree
-    <>
+    <MantineProvider>
+      <Notifications />
       <NavBar
         handleLogin={handleLogin}
         handleLogout={handleLogout}
@@ -58,7 +61,7 @@ const App = () => {
       <div className="App-container">
         <Outlet context={{ userId: userId }} />
       </div>
-    </>
+    </MantineProvider>
   );
 };
 
