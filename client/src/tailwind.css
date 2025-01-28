@@ -26,6 +26,7 @@
 .customteal {
   background-color: #6ce5ad;
 }
+<<<<<<< HEAD
 .bg-red-500 {
   background-color: #d61616;
 }
@@ -51,3 +52,33 @@
 .bg-custom-clear-search-gray-700 {
   background-color: #5e6368;
 }
+=======
+  .bg-red-500 {
+    background-color: #d61616; 
+  }
+  
+  .bg-blue-500 {
+    background-color: #6ce5ad;
+  }
+  .bg-custom-beige{
+    background-color: #E2D1C3;
+  }
+  .bg-custom-gray{
+    background-color: #8E9196;
+  }
+  .bg-custom-pink{
+    background-color: #FFDEE2;
+  }
+  .bg-custom-soft-gray{
+    background-color: #F1F0FB;
+  }
+  .bg-custom-clear-search-gray{
+    background-color: #919498;
+  }
+  .bg-custom-clear-search-gray-700{
+    background-color: #5e6368;
+  }
+  .bg-purple-new{
+  background-color: #936ff7;
+  }
+>>>>>>> f2ac3dd7 (search bar ui)

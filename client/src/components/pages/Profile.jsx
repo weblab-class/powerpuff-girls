@@ -39,6 +39,9 @@ const Profile = () => {
   const fileInputRef = useRef(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [tabIndex, setTabIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false); // Whether music is playing or not
+  const [audio] = useState(new Audio("/peppy_fash.mp3")); // Path to your MP3 file
+
 
   useEffect(() => {
     document.title = "Profile Page";
@@ -270,6 +273,16 @@ const Profile = () => {
                     </CardContent>
                   </CardUI>
                 </div>
+                {/* <div
+              className="fixed bottom-2 right-2 p-2 bg-purple-new rounded-full shadow-lg cursor-pointer flex items-center justify-center"
+              onClick={toggleMusic}
+              >
+              <i
+              className={`fa-solid ${
+                isPlaying ? "fa-volume-high" : "fa-volume-xmark"
+              } text-white text-1xl`}
+              />
+            </div> */}
               </TabPanel>
             )}
 

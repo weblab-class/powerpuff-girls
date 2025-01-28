@@ -18,10 +18,6 @@ const Feed = () => {
   const [showing, setShowing] = useState(0);
   const [popUp, setPopUp] = useState(-1); //-1 means nothing, otherwise give index of card
 
-  // Music player states
-  const [isPlaying, setIsPlaying] = useState(false); // Whether music is playing or not
-  const [audio] = useState(new Audio("/ambient_background.mp3")); // Path to your MP3 file
-
   useEffect(() => {
     document.title = "Fashion Feed";
     get("/api/stories").then((storyObjs) => {
@@ -32,11 +28,7 @@ const Feed = () => {
     setShowing(0);
 
     // Clean up the audio instance when the component unmounts
-    return () => {
-      audio.pause();
-      audio.currentTime = 0;
-    };
-  }, [audio]);
+  }, []);
 
   const addNewStory = (storyObj) => {
     setStories([storyObj].concat(stories));
@@ -103,15 +95,15 @@ const Feed = () => {
           alt={storyObj.alt}
           tags={storyObj.tags}
           showComments={false}
-          handleDelete={() => {
-            setStories((oldStories) => {
-              return oldStories.filter((story) => story._id !== storyObj._id);
-            });
-            setFilterStories((oldStories) => {
-              return oldStories.filter((story) => story._id !== storyObj._id);
-            });
-            console.log("deleting story");
-          }}
+          // handleDelete={() => {
+          //   setStories((oldStories) => {
+          //     return oldStories.filter((story) => story._id !== storyObj._id);
+          //   });
+          //   setFilterStories((oldStories) => {
+          //     return oldStories.filter((story) => story._id !== storyObj._id);
+          //   });
+          //   console.log("deleting story");
+          // }}
           handleDelete={() => {
             setStories((oldStories) => {
               return oldStories.filter((story) => story._id !== storyObj._id);
@@ -138,7 +130,7 @@ const Feed = () => {
           className="w-full pl-12 pr-4 py-3 text-lg bg-white border-stylesnap-beige focus:border-stylesnap-pink transition-colors"
         />
         <button
-          className="bg-custom-clear-search-gray hover:bg-blue-500 text-white font-bold py-1 px-2 rounded mt-4 mb-4"
+          className="bg-purple-new hover:bg-blue-500 text-white font-bold py-1 px-2 rounded mt-4 mb-4"
           onClick={clearSearch}
         >
           Clear Search
@@ -156,16 +148,6 @@ const Feed = () => {
         </div>
 
         {/* Music Toggle Button */}
-        <div
-          className="fixed bottom-2 right-2 p-2 bg-blue-500 rounded-full shadow-lg cursor-pointer flex items-center justify-center"
-          onClick={toggleMusic}
-        >
-          <i
-            className={`fa-solid ${
-              isPlaying ? "fa-volume-high" : "fa-volume-xmark"
-            } text-white text-1xl`}
-          />
-        </div>
       </div>
     </>
   );

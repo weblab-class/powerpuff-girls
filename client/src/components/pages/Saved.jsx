@@ -20,9 +20,6 @@ const Saved = () => {
   const [base64Image, setBase64Image] = useState();
   //const [popUp, setPopUp] = useState(-1); //-1 means nothing, otherwise give index of card
 
-  const [isPlaying, setIsPlaying] = useState(false); // Whether music is playing or not
-  const [audio] = useState(new Audio("/peppy_fash.mp3")); // Path to your MP3 file
-
   // called when the "Feed" component "mounts", i.e.
   // when it shows up on screen
   useEffect(() => {
@@ -37,21 +34,9 @@ const Saved = () => {
         setStories(reversedStoryObjs);
         setFilterStories(reversedStoryObjs);
       });
-      return () => {
-        audio.pause();
-        audio.currentTime = 0;
-      };
     });
-  }, [audio]);
+  }, []);
 
-  const toggleMusic = () => {
-    if (isPlaying) {
-      audio.pause();
-    } else {
-      audio.play();
-    }
-    setIsPlaying(!isPlaying);
-  };
 
   useEffect(() => {
     get("/api/whoami").then((user) => {
@@ -125,13 +110,8 @@ const Saved = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {storiesList}
           </div>
-          {filterStories.length > 0 && (
-            <div>
-              <ImageWithLoading base64Image={base64Image} />
-            </div>
-          )}
-          <div
-            className="fixed bottom-2 right-2 p-2 bg-blue-500 rounded-full shadow-lg cursor-pointer flex items-center justify-center"
+          {/* <div
+            className="fixed bottom-2 right-2 p-2 bg-purple-new rounded-full shadow-lg cursor-pointer flex items-center justify-center"
             onClick={toggleMusic}
           >
             <i
@@ -139,7 +119,7 @@ const Saved = () => {
                 isPlaying ? "fa-volume-high" : "fa-volume-xmark"
               } text-white text-1xl`}
             />
-          </div>
+          </div> */}
         </div>
       </div>
     </>

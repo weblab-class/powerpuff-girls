@@ -21,6 +21,9 @@ import { Notifications } from "@mantine/notifications";
  */
 const App = () => {
   const [userId, setUserId] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false); // Whether music is playing or not
+  const [audio] = useState(new Audio("/peppy_fash.mp3")); // Path to your MP3 file
+
 
   useEffect(() => {
     get("/api/whoami").then((user) => {
@@ -29,7 +32,20 @@ const App = () => {
         setUserId(user._id);
       }
     });
-  }, []);
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
+  }, [audio]);
+
+  const toggleMusic = () => {
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
 
   const handleLogin = (res) => {
     const userToken = res.credential;
@@ -70,6 +86,16 @@ const App = () => {
       }} className="App-container">
         <Outlet context={{ userId: userId }} />
       </div>
+      <div
+            className="fixed bottom-2 right-2 p-2 bg-purple-new rounded-full shadow-lg cursor-pointer flex items-center justify-center"
+            onClick={toggleMusic}
+          >
+            <i
+              className={`fa-solid ${
+                isPlaying ? "fa-volume-high" : "fa-volume-xmark"
+              } text-white text-1xl`}
+            />
+          </div>
     </MantineProvider>
   );
 };
