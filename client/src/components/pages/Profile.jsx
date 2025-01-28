@@ -39,13 +39,23 @@ const Profile = () => {
   const fileInputRef = useRef(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [tabIndex, setTabIndex] = useState(0);
+  const [friends, setFriends] = useState();
+  const [requestedOut, setRequestedOut] = useState();
+  const [requestedIn, setRequestedIn] = useState();
+  const [isPlaying, setIsPlaying] = useState(false); // Whether music is playing or not
+  const [audio] = useState(new Audio("/peppy_fash.mp3")); // Path to your MP3 file
+
 
   useEffect(() => {
     document.title = "Profile Page";
     get(`/api/user`, { userid: props.userId }).then((userObj) =>
       setUser(userObj)
     );
-  }, [user, props.userId, outletProps.userId]);
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
+  }, [user, props.userId, outletProps.userId, audio]);
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -54,6 +64,15 @@ const Profile = () => {
       tags: "",
     },
   });
+
+  const toggleMusic = () => {
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
 
   const handleFileChange = (event) => {
     const file = event.target.files?.[0];
@@ -305,6 +324,28 @@ const Profile = () => {
               </div>
             </TabPanel>
           </Tabs>
+                      <Button
+                        type="submit"
+                        className="w-full bg-stylesnap-pink hover:bg-stylesnap-gray text-white"
+                      >
+                        Post Fit
+                      </Button>
+                    </form>
+                  </Form>
+                </CardContent>
+              </CardUI>
+            </div>
+          )}
+          <div
+          className="fixed bottom-2 right-2 p-2 bg-blue-500 rounded-full shadow-lg cursor-pointer flex items-center justify-center"
+          onClick={toggleMusic}
+        >
+          <i
+            className={`fa-solid ${
+              isPlaying ? "fa-volume-high" : "fa-volume-xmark"
+            } text-white text-1xl`}
+          />
+        </div>
         </div>
       </main>
     </div>

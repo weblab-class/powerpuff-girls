@@ -15,13 +15,31 @@ const Postpage = () => {
   const { _id } = useParams();
   const [postcard, setPostcard] = useState({});
 
+  const [isPlaying, setIsPlaying] = useState(false); // Whether music is playing or not
+  const [audio] = useState(new Audio("/peppy_fash.mp3")); // Path to your MP3 file
+
+
   useEffect(() => {
     document.title = "Post Page";
     get("/api/postpage", { _id: _id })
       .then((storyObj) => setPostcard(storyObj))
       .catch(console.log("this postcard no longer exists"));
     console.log("navigated to post page and retrieved story");
-  }, []);
+    // Clean up the audio instance when the component unmounts
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
+  }, [audio]);  
+
+  const toggleMusic = () => {
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
 
   return (
     <>
