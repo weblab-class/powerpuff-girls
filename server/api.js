@@ -348,24 +348,6 @@ router.post("/imageprocess", (req, res) => {
   console.log("IMAGE URLS PASSED IN", args);
   const process = spawn("python", [scriptPath, ...(args || [])]);
 
-  /*process.on("close", (code) => {
-    if (code === 0) {
-      // Respond with a success message or any valid JSON response
-      res.status(200).json({ message: "Python script finished successfully" });
-    } else {
-      res.status(500).json({ error: `Python script exited with code ${code}` });
-    }
-  });
-
-  process.on("error", (error) => {
-    console.error("Failed to start Python process:", error.message);
-    res.status(500).json({ error: "Failed to execute Python script." });
-  });
-
-  // Optional: Handle any stderr output if needed for debugging
-  process.stderr.on("data", (err) => {
-    console.error("Python error:", err.toString());
-  });*/
   let output = "";
 
   process.stdout.on("data", (data) => {

@@ -22,7 +22,7 @@ const Saved = () => {
   // called when the "Feed" component "mounts", i.e.
   // when it shows up on screen
   useEffect(() => {
-    document.title = "Fashion Feed";
+    document.title = "My Saved Fits";
     get("/api/stories").then((storyObjs) => {
       get("/api/getAllSaved").then((savedObjs) => {
         const savedStoryIds = savedObjs.map((saveObj) => saveObj.parent);
@@ -35,6 +35,13 @@ const Saved = () => {
       });
     });
   }, []);
+
+  useEffect(() => {
+    if (!props.userId) {
+      //logged out probably
+      navigate("/");
+    }
+  }, [props.userId]);
 
   useEffect(() => {
     if (stories.length > 0) {
