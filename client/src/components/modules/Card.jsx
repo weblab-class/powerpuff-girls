@@ -77,15 +77,17 @@ const Card = (props) => {
 
   return (
     <button key={props._id} onClick={() => navigate(`/post/${props._id}`)}>
-      <CardUI className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg animate-fadeIn w-[300px] h-[500px]">
+      <CardUI className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg animate-fadeIn w-[300px] h-[500px] rounded-none border-0">
         <CardContent className="p-0 relative">
-          <CloudinaryImage
-            publicId={props.publicId} // Replace with your Cloudinary image public ID
-            alt={props.alt}
-            width={300}
-            height={400}
-          />
-          <div className="absolute top-2 right-2 flex flex-col gap-2">
+          <div className="flex items-center justify-center mt-4">
+            <CloudinaryImage
+              publicId={props.publicId} // Replace with your Cloudinary image public ID
+              alt={props.alt}
+              width={268}
+              height={400}
+            />
+          </div>
+          <div className="absolute top-2 right-6 flex flex-col gap-2">
             {props.userId && (
               <Button
                 variant="ghost"

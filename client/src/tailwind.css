@@ -1,6 +1,6 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities; 
+@tailwind utilities;
 
 @layer utilities {
   .border-border {
@@ -15,6 +15,10 @@
   }
 }
 
+.customcream {
+  color: #fcefe6;
+}
+
 .customred {
   background-color: #ef4444;
 }
@@ -22,29 +26,28 @@
 .customteal {
   background-color: #6ce5ad;
 }
-  .bg-red-500 {
-    background-color: #d61616; 
-  }
-  
-  .bg-blue-500 {
-    background-color: #6ce5ad;
-  }
-  .bg-custom-beige{
-    background-color: #E2D1C3;
-  }
-  .bg-custom-gray{
-    background-color: #8E9196;
-  }
-  .bg-custom-pink{
-    background-color: #FFDEE2;
-  }
-  .bg-custom-soft-gray{
-    background-color: #F1F0FB;
-  }
-  .bg-custom-clear-search-gray{
-    background-color: #919498;
-  }
-  .bg-custom-clear-search-gray-700{
-    background-color: #5e6368;
-  }
-  
+.bg-red-500 {
+  background-color: #d61616;
+}
+
+.bg-blue-500 {
+  background-color: #6ce5ad;
+}
+.bg-custom-beige {
+  background-color: #e2d1c3;
+}
+.bg-custom-gray {
+  background-color: #8e9196;
+}
+.bg-custom-pink {
+  background-color: #ffdee2;
+}
+.bg-custom-soft-gray {
+  background-color: #f1f0fb;
+}
+.bg-custom-clear-search-gray {
+  background-color: #919498;
+}
+.bg-custom-clear-search-gray-700 {
+  background-color: #5e6368;
+}
