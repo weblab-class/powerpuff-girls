@@ -88,6 +88,13 @@ router.get("/getAllSaved", auth.ensureLoggedIn, (req, res) => {
   });
 });
 
+router.get("/getMyFits", auth.ensureLoggedIn, (req, res) => {
+  console.log("hi");
+  Story.find({ creator_id: req.user._id }).then((stories) => {
+    res.send(stories);
+  });
+});
+
 router.get("/isStorySaved", auth.ensureLoggedIn, (req, res) => {
   Save.findOne({ parent: req.query.parent, creator_id: req.user._id }).then(
     (save) => {
