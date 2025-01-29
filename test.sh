@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-source .venv/bin/activate
+source /opt/render/project/src/.venv/bin/activate
 
 echo "virtual environment: $VIRTUAL_ENV"
 
