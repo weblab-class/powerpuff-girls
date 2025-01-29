@@ -87,7 +87,7 @@ const App = () => {
         <Outlet context={{ userId: userId }} />
       </div>
       <div
-            className="fixed bottom-2 right-2 p-2 bg-purple-new rounded-full shadow-lg cursor-pointer flex items-center justify-center"
+            className="fixed bottom-2 right-2 p-2 bg-[#936ff7] hover:bg-[#b79eff] rounded-full shadow-lg cursor-pointer flex items-center justify-center transition-all duration-300 ease-in-out hover:transform hover:scale-[1.02]"
             onClick={toggleMusic}
           >
             <i

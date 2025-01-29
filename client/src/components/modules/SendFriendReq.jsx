@@ -26,17 +26,17 @@ const NewPostInput = (props) => {
   };
 
   return (
-    <div className="u-flex">
+    <div className="flex">
       <input
         type="text"
         placeholder={props.defaultText}
         value={value}
         onChange={handleChange}
-        className="NewPostInput-input"
+        className="rounded-l-md border border-r-0 border-gray-300 px-4 py-2 focus:outline-none focus:border-gray-300 flex-grow"
       />
       <button
         type="submit"
-        className="NewPostInput-button u-pointer"
+        className="bg-[#936ff7] text-white px-4 py-2 rounded-r-md hover:bg-[#b79eff] hover:transform hover:scale-[1.02] transition-all duration-300 ease-in-out focus:outline-none"
         value="Submit"
         onClick={handleSubmit}
       >

@@ -159,11 +159,11 @@ const Profile = () => {
     return <div> Loading!</div>;
   }
   return (
-    <div className="min-h-screen bg-white">
-      <main className="container mx-auto px-4 pt-20 pb-12">
+    <div className="min-h-[95vh] max-w-[90%] mx-auto bg-white">
+      <main className="container mx-auto px-0.5 pt-10 pb-4">
         <div className="max-w-6xl mx-auto">
           {/* Profile Header */}
-          <div className="flex items-center justify-between mb-8 bg-[#8B6EE3] p-8 shadow-lg transform hover:scale-[1.02] transition-all duration-300">
+          <div className="flex items-center justify-between mb-6 bg-[#8B6EE3] p-6 shadow-lg transform hover:scale-[1.02] transition-all duration-300">
             <div>
               <h1 className="text-3xl font-bold text-white mb-2">
                 {user.name}

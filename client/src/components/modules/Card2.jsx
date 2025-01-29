@@ -91,7 +91,7 @@ const Card2 = (props) => {
         {/* Right Section: Comments */}
         <div className="flex-1 lg:w-1/3 bg-white/90">
           <Link to="/">
-            <button className="absolute top-2 right-2 bg-stylesnap-pink hover:bg-purple-700 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center">
+            <button className="absolute top-2 right-2 bg-[#936ff7] hover:bg-[#b79eff] text-white font-bold rounded-full w-8 h-8 flex items-center justify-center transition-all duration-300 ease-in-out hover:transform hover:scale-[1.02]">
               ✕
             </button>
           </Link>

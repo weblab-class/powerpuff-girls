@@ -114,9 +114,18 @@ const Feed = () => {
       </div>
     ));
   } else if (filterStories.length === 0 && stories.length !== 0) {
-    storiesList = <div>Nothing matches your search...</div>;
+    storiesList = (
+      <div className="col-span-full flex flex-col items-center justify-center py-12">
+        <div className="text-2xl text-gray-700 font-medium mb-2">Nothing matches your search...</div>
+        <div className="text-gray-600">Try adjusting your search terms or filters</div>
+      </div>
+    );
   } else {
-    storiesList = <div>Nothing in your feed!</div>;
+    storiesList = (
+      <div className="col-span-full flex flex-col items-center justify-center py-12">
+        <div className="text-2xl text-gray-700 font-medium">Nothing in your feed!</div>
+      </div>
+    );
   }
 
   return (

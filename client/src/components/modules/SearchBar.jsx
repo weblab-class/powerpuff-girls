@@ -46,7 +46,7 @@ const NewPostInput = (props) => {
         </div>
         <button
           type="submit"
-          className="bg-purple-new hover:bg-purple-700 text-white font-bold px-6 transition-colors h-[36px]"
+          className="bg-[#936ff7] hover:bg-[#b79eff] text-white font-bold px-6 transition-colors h-[36px]"
           value="Submit"
           onClick={handleSubmit}
         >
