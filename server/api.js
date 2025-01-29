@@ -340,17 +340,32 @@ router.post("/cancelreq", auth.ensureLoggedIn, (req, res) => {
 });
 
 router.post("/imageprocess", (req, res) => {
+  console.log("inside api endpoint");
   const path = require("path");
   const scriptPath = path.join(__dirname, "clothessegment.py");
 
-  //const { args } = req.body;
   const args = req.body.image_urls;
   console.log("IMAGE URLS PASSED IN", args);
-  const venvPath = "../.venv/bin/activate";
-  const child = spawn("python", [scriptPath, ...(args || [])], {
+  /*const venvPath = "../.venv/bin/activate";
+  const child = spawn("../.venv/bin/python", [scriptPath, ...(args || [])], {
     env: {
       ...process.env,
       PATH: `${venvPath}:${process.env.PATH}`,
+    },
+  });*/
+  const venvBinPath = path.join(__dirname, "../.venv/bin");
+  const pythonPath = path.join(venvBinPath, "python");
+  console.log("pythonPath is ", pythonPath);
+  console.log(
+    "PATH name becomes this ",
+    `${venvBinPath}${path.delimiter}${process.env.PATH}`
+  );
+  console.log();
+
+  const child = spawn(pythonPath, [scriptPath, ...(args || [])], {
+    env: {
+      ...process.env,
+      PATH: `${venvBinPath}${path.delimiter}${process.env.PATH}`,
     },
   });
 
