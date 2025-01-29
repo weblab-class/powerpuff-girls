@@ -116,30 +116,42 @@ const Saved = () => {
       </button>
     ));
   } else {
-    storiesList = <div>Nothing Saved!</div>;
+    storiesList = (
+      <div className="col-span-full flex flex-col items-center justify-center py-20">
+        <div className="text-6xl mb-4">📸</div>
+        <h2 className="text-3xl font-bold text-[#8B6EE3] mb-2">
+          Nothing Saved Yet!
+        </h2>
+        <p className="text-gray-500 text-lg">
+          Start exploring and save some amazing fits!
+        </p>
+        <Link
+          to="/"
+          className="mt-6 px-8 py-3 bg-[#8B6EE3] text-white rounded-sm hover:bg-[#7B5ED3] transition-colors duration-200"
+        >
+          Explore Fits
+        </Link>
+      </div>
+    );
   }
   return (
     <>
       <div className="container mx-auto px-4 pt-24 pb-12">
-        <div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {storiesList}
-          </div>
-          {filterStories.length > 0 && (
-            <div>
-              <ImageWithLoading base64Image={base64Image} />
-            </div>
-          )}
-          <div
-            className="fixed bottom-2 right-2 p-2 bg-blue-500 rounded-full shadow-lg cursor-pointer flex items-center justify-center"
-            onClick={toggleMusic}
-          >
-            <i
-              className={`fa-solid ${
-                isPlaying ? "fa-volume-high" : "fa-volume-xmark"
-              } text-white text-1xl`}
-            />
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {storiesList}
+        </div>
+        {filterStories.length > 0 && (
+          <ImageWithLoading base64Image={base64Image} />
+        )}
+        <div
+          className="fixed bottom-2 right-2 p-2 bg-[#8B6EE3] rounded-full shadow-lg cursor-pointer flex items-center justify-center hover:bg-[#7B5ED3] transition-colors duration-200"
+          onClick={toggleMusic}
+        >
+          <i
+            className={`fa-solid ${
+              isPlaying ? "fa-volume-high" : "fa-volume-xmark"
+            } text-white text-1xl`}
+          />
         </div>
       </div>
     </>
