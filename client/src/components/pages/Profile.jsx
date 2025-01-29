@@ -163,7 +163,7 @@ const Profile = () => {
       <main className="container mx-auto px-4 pt-20 pb-12">
         <div className="max-w-6xl mx-auto">
           {/* Profile Header */}
-          <div className="flex items-center justify-between mb-8 bg-[#b198f8] p-8 shadow-lg transform hover:scale-[1.02] transition-all duration-300">
+          <div className="flex items-center justify-between mb-8 bg-[#8B6EE3] p-8 shadow-lg transform hover:scale-[1.02] transition-all duration-300">
             <div>
               <h1 className="text-3xl font-bold text-white mb-2">
                 {user.name}
@@ -183,13 +183,13 @@ const Profile = () => {
             onSelect={(index) => setTabIndex(index)}
             className="shadow-sm"
           >
-            <TabList className="flex border-b-2 border-[#b198f8]/20 mb-6">
+            <TabList className="flex border-b-2 border-[#8B6EE3]/20 mb-6">
               {outletProps.userId === props.userId && (
                 <Tab
                   className={`px-8 py-3 text-base font-medium transition-colors duration-200 ${
                     tabIndex === 0
-                      ? "bg-[#b198f8] text-white"
-                      : "text-gray-500 hover:text-[#b198f8] hover:bg-[#b198f8]/5"
+                      ? "bg-[#8B6EE3] text-white"
+                      : "text-gray-500 hover:text-[#8B6EE3] hover:bg-[#8B6EE3]/5"
                   }`}
                 >
                   Upload New Fit
@@ -198,8 +198,8 @@ const Profile = () => {
               <Tab
                 className={`px-8 py-3 text-base font-medium transition-colors duration-200 ${
                   tabIndex === (outletProps.userId === props.userId ? 1 : 0)
-                    ? "bg-[#b198f8] text-white"
-                    : "text-gray-500 hover:text-[#b198f8] hover:bg-[#b198f8]/5"
+                    ? "bg-[#8B6EE3] text-white"
+                    : "text-gray-500 hover:text-[#8B6EE3] hover:bg-[#8B6EE3]/5"
                 }`}
               >
                 Friends
@@ -227,10 +227,10 @@ const Profile = () => {
                             onChange={handleFileChange}
                           />
                           <div
-                            className={`border-2 border-dashed border-[#b198f8] p-8 text-center transition-all duration-300 hover:border-[#9f82e6] cursor-pointer ${
+                            className={`border-2 border-dashed border-[#8B6EE3] p-8 text-center transition-all duration-300 hover:border-[#7B5ED3] cursor-pointer ${
                               previewUrl
-                                ? "bg-[#b198f8]/5"
-                                : "hover:bg-[#b198f8]/5"
+                                ? "bg-[#8B6EE3]/5"
+                                : "hover:bg-[#8B6EE3]/5"
                             }`}
                             onDragOver={handleDragOver}
                             onDrop={handleDrop}
@@ -243,14 +243,14 @@ const Profile = () => {
                                   alt="Preview"
                                   className="max-h-64 mx-auto shadow-md group-hover:opacity-90 transition-opacity"
                                 />
-                                <p className="text-sm text-[#9f82e6] mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <p className="text-sm text-[#7B5ED3] mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                   Click to change image
                                 </p>
                               </div>
                             ) : (
                               <>
-                                <Upload className="mx-auto h-12 w-12 text-[#b198f8] mb-2" />
-                                <p className="text-sm text-[#9f82e6]">
+                                <Upload className="mx-auto h-12 w-12 text-[#8B6EE3] mb-2" />
+                                <p className="text-sm text-[#7B5ED3]">
                                   Drag and drop your photo here, or click to
                                   browse
                                 </p>
@@ -266,7 +266,7 @@ const Profile = () => {
                                 <FormControl>
                                   <Input
                                     placeholder="Add a caption..."
-                                    className="border-[#b198f8] focus:border-[#9f82e6] px-4 py-2 bg-white/80"
+                                    className="border-[#8B6EE3] focus:border-[#7B5ED3] px-4 py-2 bg-white/80"
                                     {...field}
                                   />
                                 </FormControl>
@@ -282,7 +282,7 @@ const Profile = () => {
                                 <FormControl>
                                   <Textarea
                                     placeholder="Add tags (separated by commas)..."
-                                    className="border-[#b198f8] focus:border-[#9f82e6] px-4 py-2 bg-white/80"
+                                    className="border-[#8B6EE3] focus:border-[#7B5ED3] px-4 py-2 bg-white/80"
                                     {...field}
                                   />
                                 </FormControl>
@@ -292,7 +292,7 @@ const Profile = () => {
 
                           <Button
                             type="submit"
-                            className="w-full bg-gradient-to-r from-[#b198f8] to-[#9f82e6] hover:from-[#9f82e6] hover:to-[#b198f8] text-white py-2 transition-all duration-300 transform hover:scale-[1.02]"
+                            className="w-full bg-gradient-to-r from-[#8B6EE3] to-[#7B5ED3] hover:from-[#7B5ED3] hover:to-[#8B6EE3] text-white py-2 transition-all duration-300 transform hover:scale-[1.02]"
                           >
                             Post Fit
                           </Button>
@@ -305,9 +305,9 @@ const Profile = () => {
 
               <TabPanel>
                 <div className="grid grid-cols-3 gap-4">
-                  <div className="w-full p-4 bg-white/80 border border-[#b198f8]/20 shadow-sm hover:shadow-md transition-shadow">
-                    <div className="font-bold text-[#7158b9] mb-4">Friends</div>
-                    <div className="bg-[#b198f8]/5 p-4">
+                  <div className="w-full p-4 bg-white/80 border border-[#8B6EE3]/20 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="font-bold text-[#7B5ED3] mb-4">Friends</div>
+                    <div className="bg-[#8B6EE3]/5 p-4">
                       <FriendsList
                         user={user}
                         handleUserUpdate={handleUserUpdate}
@@ -315,16 +315,16 @@ const Profile = () => {
                     </div>
                   </div>
                   {outletProps.userId === props.userId && (
-                    <div className="w-full p-4 bg-white/80 border border-[#b198f8]/20 shadow-sm hover:shadow-md transition-shadow">
-                      <div className="font-bold text-[#7158b9] mb-4">
+                    <div className="w-full p-4 bg-white/80 border border-[#8B6EE3]/20 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="font-bold text-[#7B5ED3] mb-4">
                         Outgoing requests
                       </div>
-                      <div className="bg-[#b198f8]/5 p-4">
+                      <div className="bg-[#8B6EE3]/5 p-4">
                         <RequestedOutList
                           user={user}
                           handleUserUpdate={handleUserUpdate}
                         />
-                        <div className="mt-4 pt-4 border-t border-[#b198f8]/20">
+                        <div className="mt-4 pt-4 border-t border-[#8B6EE3]/20">
                           <SendFriendReq
                             requestfunct={requestfunct}
                             handleUserUpdate={handleUserUpdate}
@@ -334,11 +334,11 @@ const Profile = () => {
                     </div>
                   )}
                   {outletProps.userId === props.userId && (
-                    <div className="w-full p-4 bg-white/80 border border-[#b198f8]/20 shadow-sm hover:shadow-md transition-shadow">
-                      <div className="font-bold text-[#7158b9] mb-4">
+                    <div className="w-full p-4 bg-white/80 border border-[#8B6EE3]/20 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="font-bold text-[#7B5ED3] mb-4">
                         Pending requests
                       </div>
-                      <div className="bg-[#b198f8]/5 p-4">
+                      <div className="bg-[#8B6EE3]/5 p-4">
                         <RequestedInList
                           user={user}
                           handleUserUpdate={handleUserUpdate}
