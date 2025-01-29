@@ -115,10 +115,10 @@ const MyFits = () => {
       <div className="col-span-full flex flex-col items-center justify-center py-20">
         <div className="text-6xl mb-4">📸</div>
         <h2 className="text-3xl font-bold text-[#8B6EE3] mb-2">
-          Nothing Saved Yet!
+          Nothing Posted Yet!
         </h2>
         <p className="text-gray-500 text-lg">
-          Start exploring and save some amazing fits!
+          Start exploring and upload some of your amazing fits!
         </p>
         <Link
           to="/"
