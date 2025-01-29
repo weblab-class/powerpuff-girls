@@ -124,17 +124,22 @@ const Feed = () => {
       <div className="container mx-auto px-4 pt-24 pb-12">
         <div className="relative">
           <div className="absolute left-5 -top-10">
-            <div className="text-5xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-purple-new">
+            <div className="text-5xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-purple-new relative">
               {props.userId ? (
-                `Hi, ${user?.name?.split(" ")[0]}`
+                <>
+                  <span className="slide-in delay-1 inline-block greeting-text">Hi,</span>{" "}
+                  <span className="slide-in delay-2 inline-block greeting-text">{user?.name?.split(" ")[0]}</span>
+                  <div className="large-sparkle slide-in delay-3" style={{ position: 'absolute', right: '-100px', top: '15%', transform: 'translateY(-50%)' }} />
+                </>
               ) : (
                 <>
-                  <span className="style-text">Style</span>
-                  <span className="mx-2">.</span>
-                  <span className="snap-text">Snap</span>
-                  <span className="mx-2">.</span>
-                  <span className="repeat-text">Repeat</span>
-                  <span>.</span>
+                  <span className="style-text slide-in delay-1 inline-block">Style</span>
+                  <span className="mx-2 slide-in delay-2 inline-block">.</span>
+                  <span className="snap-text slide-in delay-2 inline-block">Snap</span>
+                  <span className="mx-2 slide-in delay-3 inline-block">.</span>
+                  <span className="repeat-text slide-in delay-3 inline-block">Repeat</span>
+                  <span className="slide-in delay-4 inline-block">.</span>
+                  <div className="large-sparkle slide-in delay-5" style={{ position: 'absolute', right: '-100px', top: '15%', transform: 'translateY(-50%)' }} />
                 </>
               )}
             </div>

@@ -17,18 +17,23 @@
 }
 
 .style-text {
-  font-family: 'Brittany', cursive;
-  font-weight: normal;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
 }
 
 .snap-text {
   font-family: 'Marykate', cursive;
-  font-weight: normal;
+  font-weight: 700;
 }
 
 .repeat-text {
   font-family: 'Quicksand', sans-serif;
-  font-weight: 300;
+  font-weight: 600;
+}
+
+.greeting-text {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
 }
 
 .horizontal-spread {
@@ -56,4 +61,51 @@
 .arrow-button:hover {
   background-color: #b79eff;
   transform: scale(1.05);
+}
+
+.large-sparkle {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%239F8BF9' d='M12,2 L14.4,8.6 L21,11 L14.4,13.4 L12,20 L9.6,13.4 L3,11 L9.6,8.6 Z M12,5 L10.5,9 L7,10.5 L10.5,12 L12,16 L13.5,12 L17,10.5 L13.5,9 Z' /%3E%3Cpath fill='white' d='M12,5 L10.5,9 L7,10.5 L10.5,12 L12,16 L13.5,12 L17,10.5 L13.5,9 Z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in {
+  opacity: 0;
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.1s;
+}
+
+.delay-2 {
+  animation-delay: 0.2s;
+}
+
+.delay-3 {
+  animation-delay: 0.3s;
+}
+
+.delay-4 {
+  animation-delay: 0.4s;
+}
+
+.delay-5 {
+  animation-delay: 0.5s;
 }
