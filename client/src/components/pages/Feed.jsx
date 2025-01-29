@@ -117,11 +117,11 @@ const Feed = () => {
   return (
     <>
       <div className="container mx-auto px-4 pt-24 pb-12">
-        <div className="mb-8">
+        <div className="mb-8 ">
           <SearchFeed
             filterFeed={filterFeed}
             clearSearch={clearSearch}
-            className="w-full px-6 py-3 text-lg bg-white border-2 border-stylesnap-beige rounded-full focus:outline-none focus:border-stylesnap-pink focus:ring-2 focus:ring-stylesnap-pink/20 transition-all duration-200 shadow-sm hover:shadow-md placeholder-gray-400"
+            className="w-full px-6 py-3 text-lg bg-white border-2 border-stylesnap-beige rounded-full focus:outline-none focus:border-stylesnap-pink focus:ring-2 focus:ring-stylesnap-pink/20 transition-all duration-200 shadow-sm hover:shadow-md"
           />
         </div>
 
