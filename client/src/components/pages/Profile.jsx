@@ -151,8 +151,8 @@ const Profile = () => {
     return <div> Loading!</div>;
   }
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-stylesnap-softGray">
-      <main className="container mx-auto px-4 pt-24 pb-12">
+    <div className="min-h-screen bg-gradient-to-b from-white to-stylesnap-softGray mt-8">
+      <main className="container mx-auto px-4 pt-20 pb-12">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center justify-between mb-8">
             <div>
