@@ -74,12 +74,12 @@ const Card2 = (props) => {
                   variant="ghost"
                   size="icon"
                   onClick={handleBookmark}
-                  className={`absolute top-6 right-10 w-8 h-8 rounded-full text-black hover:text-stylesnap-pink bg-white/60 hover:bg-white/90 transition-colors ${
+                  className={`absolute top-6 right-6 w-8 h-8 rounded-full text-black hover:text-stylesnap-pink bg-white/60 hover:bg-white/90 transition-colors ${
                     isBookmarked ? "text-stylesnap-pink" : ""
                   }`}
                 >
                   <Bookmark
-                    className="h-4 w-4 mr-[1.5px]"
+                    className="h-4 w-4 mr-[0.5px]"
                     fill={isBookmarked ? "currentColor" : "none"}
                   />
                 </Button>

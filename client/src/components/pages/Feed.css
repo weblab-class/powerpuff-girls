@@ -1,6 +1,35 @@
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+
+@font-face {
+  font-family: 'Brittany';
+  src: url('../../fonts/Brittany.woff2') format('woff2'),
+       url('../../fonts/Brittany.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Marykate';
+  src: url('../../fonts/Marykate.woff2') format('woff2'),
+       url('../../fonts/Marykate.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.style-text {
+  font-family: 'Brittany', cursive;
+  font-weight: normal;
+}
+
+.snap-text {
+  font-family: 'Marykate', cursive;
+  font-weight: normal;
+}
+
+.repeat-text {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 300;
+}
 
 .horizontal-spread {
   display: flex;

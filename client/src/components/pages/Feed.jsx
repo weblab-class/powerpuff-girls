@@ -117,12 +117,32 @@ const Feed = () => {
   return (
     <>
       <div className="container mx-auto px-4 pt-24 pb-12">
-        <div className="mb-8 ">
-          <SearchFeed
-            filterFeed={filterFeed}
-            clearSearch={clearSearch}
-            className="w-full px-6 py-3 text-lg bg-white border-2 border-stylesnap-beige rounded-full focus:outline-none focus:border-stylesnap-pink focus:ring-2 focus:ring-stylesnap-pink/20 transition-all duration-200 shadow-sm hover:shadow-md"
-          />
+        <div className="relative">
+          <div className="absolute left-5 -top-10">
+            <div className="text-5xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-purple-new">
+              {props.userId ? (
+                `Hi, ${props.name?.split(" ")[0]}`
+              ) : (
+                <>
+                  <span className="style-text">Style</span>
+                  <span className="mx-2">.</span>
+                  <span className="snap-text">Snap</span>
+                  <span className="mx-2">.</span>
+                  <span className="repeat-text">Repeat</span>
+                  <span>.</span>
+                </>
+              )}
+            </div>
+          </div>
+          <div className="flex justify-end mb-8">
+            <div className="w-[1600px]">
+              <SearchFeed
+                filterFeed={filterFeed}
+                clearSearch={clearSearch}
+                className="w-full px-6 py-3 text-lg bg-white border-2 border-stylesnap-beige rounded-full focus:outline-none focus:border-stylesnap-pink focus:ring-2 focus:ring-stylesnap-pink/20 transition-all duration-200 shadow-sm hover:shadow-md placeholder-gray-400"
+              />
+            </div>
+          </div>
         </div>
 
         <div className="flex justify-center items-center relative">
