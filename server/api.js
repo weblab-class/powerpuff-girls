@@ -346,24 +346,30 @@ router.post("/imageprocess", (req, res) => {
   //const { args } = req.body;
   const args = req.body.image_urls;
   console.log("IMAGE URLS PASSED IN", args);
-  const process = spawn("python", [scriptPath, ...(args || [])]);
+  const venvPath = "../.venv/bin/activate";
+  const child = spawn("python", [scriptPath, ...(args || [])], {
+    env: {
+      ...process.env,
+      PATH: `${venvPath}:${process.env.PATH}`,
+    },
+  });
 
   let output = "";
 
-  process.stdout.on("data", (data) => {
+  child.stdout.on("data", (data) => {
     output += data.toString();
   });
 
-  process.stderr.on("data", (err) => {
+  child.stderr.on("data", (err) => {
     console.error("Python error:", err.toString());
   });
 
-  process.on("error", (error) => {
+  child.on("error", (error) => {
     console.error("Failed to start Python process:", error.message);
     res.status(500).send("Failed to execute Python script.");
   });
 
-  process.on("close", (code) => {
+  child.on("close", (code) => {
     if (code === 0) {
       // Send the base64-encoded image back to the client
       console.log("output is this: ", output);
