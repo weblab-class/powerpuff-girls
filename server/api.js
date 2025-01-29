@@ -371,7 +371,7 @@ router.post("/imageprocess", (req, res) => {
   const venvPath = path.join(__dirname, "../.venv/bin/activate"); // Adjust this path if necessary
   const child = spawn("bash", [
     "-c",
-    `source ${venvPath} && python ${scriptPath} ${args.join(" ")}`,
+    `source .venv/bin/activate && python ${scriptPath} ${args.join(" ")}`,
   ]);
 
   let output = "";
