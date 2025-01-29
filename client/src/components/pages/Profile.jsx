@@ -159,16 +159,17 @@ const Profile = () => {
     return <div> Loading!</div>;
   }
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-stylesnap-softGray mt-8">
+    <div className="min-h-screen bg-white">
       <main className="container mx-auto px-4 pt-20 pb-12">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-center justify-between mb-8">
+          {/* Profile Header */}
+          <div className="flex items-center justify-between mb-8 bg-[#b198f8] p-8 shadow-lg transform hover:scale-[1.02] transition-all duration-300">
             <div>
-              <h1 className="text-3xl font-bold text-stylesnap-pink mb-2">
+              <h1 className="text-3xl font-bold text-white mb-2">
                 {user.name}
               </h1>
               <div className="flex items-center space-x-4">
-                <span className="text-stylesnap-gray">
+                <span className="flex items-center px-4 py-2 bg-white/10 text-white hover:bg-white/20 transition-colors">
                   <Users className="inline-block mr-2 h-5 w-5" />
                   {user.friends.length} friends
                 </span>
@@ -176,21 +177,41 @@ const Profile = () => {
             </div>
           </div>
 
+          {/* Tabs Section */}
           <Tabs
             selectedIndex={tabIndex}
             onSelect={(index) => setTabIndex(index)}
+            className="shadow-sm"
           >
-            <TabList>
-              {outletProps.userId === props.userId && <Tab>Upload New Fit</Tab>}
-              <Tab>Friends</Tab>
+            <TabList className="flex border-b-2 border-[#b198f8]/20 mb-6">
+              {outletProps.userId === props.userId && (
+                <Tab
+                  className={`px-8 py-3 text-base font-medium transition-colors duration-200 ${
+                    tabIndex === 0
+                      ? "bg-[#b198f8] text-white"
+                      : "text-gray-500 hover:text-[#b198f8] hover:bg-[#b198f8]/5"
+                  }`}
+                >
+                  Upload New Fit
+                </Tab>
+              )}
+              <Tab
+                className={`px-8 py-3 text-base font-medium transition-colors duration-200 ${
+                  tabIndex === (outletProps.userId === props.userId ? 1 : 0)
+                    ? "bg-[#b198f8] text-white"
+                    : "text-gray-500 hover:text-[#b198f8] hover:bg-[#b198f8]/5"
+                }`}
+              >
+                Friends
+              </Tab>
             </TabList>
 
-            {outletProps.userId === props.userId && (
-              <TabPanel>
-                <div>
-                  <CardUI className="mb-8">
-                    <CardContent className="p-6">
-                      <h2 className="text-xl font-semibold text-stylesnap-gray mb-4">
+            <div className="py-6">
+              {outletProps.userId === props.userId && (
+                <TabPanel>
+                  <div>
+                    <div className="space-y-4">
+                      <h2 className="text-xl font-semibold text-[#7158b9] mb-4">
                         Upload a New Fit
                       </h2>
                       <Form {...form}>
@@ -206,28 +227,30 @@ const Profile = () => {
                             onChange={handleFileChange}
                           />
                           <div
-                            className={`border-2 border-dashed border-stylesnap-beige rounded-lg p-8 text-center transition-colors ${
-                              previewUrl ? "bg-stylesnap-softGray/10" : ""
+                            className={`border-2 border-dashed border-[#b198f8] p-8 text-center transition-all duration-300 hover:border-[#9f82e6] cursor-pointer ${
+                              previewUrl
+                                ? "bg-[#b198f8]/5"
+                                : "hover:bg-[#b198f8]/5"
                             }`}
                             onDragOver={handleDragOver}
                             onDrop={handleDrop}
                             onClick={() => fileInputRef.current?.click()}
                           >
                             {previewUrl ? (
-                              <div className="relative">
+                              <div className="relative group">
                                 <img
                                   src={previewUrl}
                                   alt="Preview"
-                                  className="max-h-64 mx-auto rounded-lg"
+                                  className="max-h-64 mx-auto shadow-md group-hover:opacity-90 transition-opacity"
                                 />
-                                <p className="text-sm text-stylesnap-gray mt-2">
+                                <p className="text-sm text-[#9f82e6] mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                   Click to change image
                                 </p>
                               </div>
                             ) : (
                               <>
-                                <Upload className="mx-auto h-12 w-12 text-stylesnap-gray mb-2" />
-                                <p className="text-sm text-stylesnap-gray">
+                                <Upload className="mx-auto h-12 w-12 text-[#b198f8] mb-2" />
+                                <p className="text-sm text-[#9f82e6]">
                                   Drag and drop your photo here, or click to
                                   browse
                                 </p>
@@ -243,7 +266,7 @@ const Profile = () => {
                                 <FormControl>
                                   <Input
                                     placeholder="Add a caption..."
-                                    className="border-stylesnap-beige focus:border-stylesnap-pink"
+                                    className="border-[#b198f8] focus:border-[#9f82e6] px-4 py-2 bg-white/80"
                                     {...field}
                                   />
                                 </FormControl>
@@ -259,7 +282,7 @@ const Profile = () => {
                                 <FormControl>
                                   <Textarea
                                     placeholder="Add tags (separated by commas)..."
-                                    className="border-stylesnap-beige focus:border-stylesnap-pink"
+                                    className="border-[#b198f8] focus:border-[#9f82e6] px-4 py-2 bg-white/80"
                                     {...field}
                                   />
                                 </FormControl>
@@ -269,66 +292,63 @@ const Profile = () => {
 
                           <Button
                             type="submit"
-                            className="w-full bg-stylesnap-pink hover:bg-stylesnap-gray text-white"
+                            className="w-full bg-gradient-to-r from-[#b198f8] to-[#9f82e6] hover:from-[#9f82e6] hover:to-[#b198f8] text-white py-2 transition-all duration-300 transform hover:scale-[1.02]"
                           >
                             Post Fit
                           </Button>
                         </form>
                       </Form>
-                    </CardContent>
-                  </CardUI>
-                </div>
-                {/* <div
-              className="fixed bottom-2 right-2 p-2 bg-purple-new rounded-full shadow-lg cursor-pointer flex items-center justify-center"
-              onClick={toggleMusic}
-              >
-              <i
-              className={`fa-solid ${
-                isPlaying ? "fa-volume-high" : "fa-volume-xmark"
-              } text-white text-1xl`}
-              />
-            </div> */}
-              </TabPanel>
-            )}
+                    </div>
+                  </div>
+                </TabPanel>
+              )}
 
-            <TabPanel>
-              <div className="grid grid-cols-3 gap-4 text-stylesnap-gray">
-                <div className="w-full p-4 h-full rounded-lg shadow-md bg-white">
-                  <div className="font-bold text-stylesnap-pink">Friends:</div>{" "}
-                  <FriendsList
-                    user={user}
-                    handleUserUpdate={handleUserUpdate}
-                  />
+              <TabPanel>
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="w-full p-4 bg-white/80 border border-[#b198f8]/20 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="font-bold text-[#7158b9] mb-4">Friends</div>
+                    <div className="bg-[#b198f8]/5 p-4">
+                      <FriendsList
+                        user={user}
+                        handleUserUpdate={handleUserUpdate}
+                      />
+                    </div>
+                  </div>
+                  {outletProps.userId === props.userId && (
+                    <div className="w-full p-4 bg-white/80 border border-[#b198f8]/20 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="font-bold text-[#7158b9] mb-4">
+                        Outgoing requests
+                      </div>
+                      <div className="bg-[#b198f8]/5 p-4">
+                        <RequestedOutList
+                          user={user}
+                          handleUserUpdate={handleUserUpdate}
+                        />
+                        <div className="mt-4 pt-4 border-t border-[#b198f8]/20">
+                          <SendFriendReq
+                            requestfunct={requestfunct}
+                            handleUserUpdate={handleUserUpdate}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  {outletProps.userId === props.userId && (
+                    <div className="w-full p-4 bg-white/80 border border-[#b198f8]/20 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="font-bold text-[#7158b9] mb-4">
+                        Pending requests
+                      </div>
+                      <div className="bg-[#b198f8]/5 p-4">
+                        <RequestedInList
+                          user={user}
+                          handleUserUpdate={handleUserUpdate}
+                        />
+                      </div>
+                    </div>
+                  )}
                 </div>
-                {outletProps.userId === props.userId && (
-                  <div className="w-full p-4 h-full rounded-lg shadow-md bg-white">
-                    <div className="font-bold text-stylesnap-pink">
-                      Outgoing requests:
-                    </div>
-                    <RequestedOutList
-                      user={user}
-                      handleUserUpdate={handleUserUpdate}
-                    />
-                    <SendFriendReq
-                      requestfunct={requestfunct}
-                      handleUserUpdate={handleUserUpdate}
-                    />
-                  </div>
-                )}
-                {outletProps.userId === props.userId && (
-                  <div className="w-full p-4 h-full rounded-lg shadow-md bg-white">
-                    <div className="font-bold text-stylesnap-pink">
-                      Pending requests:
-                    </div>
-                    <RequestedInList
-                      user={user}
-                      className="m-2"
-                      handleUserUpdate={handleUserUpdate}
-                    />
-                  </div>
-                )}
-              </div>
-            </TabPanel>
+              </TabPanel>
+            </div>
           </Tabs>
         </div>
       </main>
