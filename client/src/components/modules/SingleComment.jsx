@@ -12,11 +12,14 @@ import { Link } from "react-router-dom";
  */
 const SingleComment = (props) => {
   return (
-    <div className="Card-commentBody">
-      <Link to={`/profile/${props.creator_id}`} className="u-link u-bold">
+    <div className="flex flex-col space-y-1 p-2 rounded-md hover:bg-gray-50 transition-colors">
+      <Link 
+        to={`/profile/${props.creator_id}`} 
+        className="text-sm font-medium text-stylesnap-pink hover:text-stylesnap-gray transition-colors"
+      >
         {props.creator_name}
       </Link>
-      <span>{" | " + props.content}</span>
+      <p className="text-sm text-stylesnap-gray">{props.content}</p>
     </div>
   );
 };

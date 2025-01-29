@@ -7,7 +7,6 @@ import { useOutletContext } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import "../../tailwind.css";
-//import "../../index.css"
 
 const Postpage = () => {
   let props = useOutletContext();
@@ -29,7 +28,7 @@ const Postpage = () => {
     <>
       <div className="container mx-auto px-4 pt-24 pb-12">
         <Link to="/">
-          <button className="bg-red-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mb-4">
+          <button className="bg-white hover:bg-[#8B6EE3]/10 text-[#8B6EE3] font-bold py-1 px-2 rounded mb-4 border border-[#8B6EE3]/20">
             Back to Feed
           </button>
         </Link>

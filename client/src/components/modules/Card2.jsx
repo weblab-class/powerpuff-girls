@@ -56,47 +56,51 @@ const Card2 = (props) => {
   }, [props.userId]);
 
   return (
-    <CardUI className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg animate-fadeIn">
-      <div className="flex flex-col lg:flex-row gap-8">
+    <CardUI className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg animate-fadeIn rounded-none">
+      <div className="flex flex-col lg:flex-row">
         {/* Left Section: Image */}
         <div className="flex-1">
           <CardContent className="p-0 relative">
-            <CloudinaryImage
-              publicId={props.publicId}
-              alt={props.alt}
-              width={600} // Increased image size
-              height={800}
-              className="w-full h-auto rounded-lg"
-            />
-            {props.userId && (
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={handleBookmark}
-                className={`absolute top-2 right-2 text-white hover:text-stylesnap-pink bg-black/20 hover:bg-white/90 transition-colors ${
-                  isBookmarked ? "text-stylesnap-pink" : ""
-                }`}
-              >
-                <Bookmark
-                  className="h-5 w-5"
-                  fill={isBookmarked ? "currentColor" : "none"}
-                />
-              </Button>
-            )}
+            <div className="flex items-center justify-center p-4">
+              <CloudinaryImage
+                publicId={props.publicId}
+                alt={props.alt}
+                width={600}
+                height={800}
+                className="w-full h-auto"
+              />
+              {props.userId && (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={handleBookmark}
+                  className={`absolute top-6 right-6 w-8 h-8 rounded-full text-black hover:text-stylesnap-pink bg-white/60 hover:bg-white/90 transition-colors ${
+                    isBookmarked ? "text-stylesnap-pink" : ""
+                  }`}
+                >
+                  <Bookmark
+                    className="h-4 w-4"
+                    fill={isBookmarked ? "currentColor" : "none"}
+                  />
+                </Button>
+              )}
+            </div>
           </CardContent>
         </div>
 
         {/* Right Section: Comments */}
-        <div className="flex-1 lg:w-1/3 bg-white rounded-lg shadow-md p-4">
-          <CardFooter className="flex flex-col items-start">
+        <div className="flex-1 lg:w-1/3 bg-white/90">
+          <CardFooter className="flex flex-col items-start p-6">
             <Link
               to={`/profile/${props.creator_id}`}
-              className="u-bold text-sm font-medium text-stylesnap-pink hover:text-stylesnap-gray transition-colors"
+              className="text-xl font-semibold text-stylesnap-pink hover:text-stylesnap-gray transition-colors mb-2"
             >
               {props.creator_name}
             </Link>
-            <p className="text-sm text-stylesnap-gray mb-4">{props.content}</p>
-            <div className="flex flex-wrap gap-2 mb-4">
+            <p className="text-lg text-stylesnap-gray mb-6 leading-relaxed">
+              {props.content}
+            </p>
+            <div className="flex flex-wrap gap-2 mb-6">
               {Array.isArray(props.tags) &&
                 props.tags.map((tag, index) => (
                   <span
@@ -107,15 +111,17 @@ const Card2 = (props) => {
                   </span>
                 ))}
             </div>
-            {showComments && (
-              <CommentsBlock
-                comments={comments}
-                creator_id={props.creator_id}
-                userId={props.userId}
-                addNewComment={addNewComment}
-                storyId={props._id}
-              />
-            )}
+            <div className="text-sm">
+              {showComments && (
+                <CommentsBlock
+                  comments={comments}
+                  creator_id={props.creator_id}
+                  userId={props.userId}
+                  addNewComment={addNewComment}
+                  storyId={props._id}
+                />
+              )}
+            </div>
           </CardFooter>
         </div>
       </div>

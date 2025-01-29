@@ -3,13 +3,6 @@ import SingleComment from "./SingleComment";
 import { NewComment } from "./NewPostInput";
 
 /**
- * @typedef ContentObject
- * @property {string} _id of story/comment
- * @property {string} creator_name
- * @property {string} content of the story/comment
- */
-
-/**
  * Component that holds all the comments for a story
  *
  * Proptypes
@@ -18,8 +11,8 @@ import { NewComment } from "./NewPostInput";
  */
 const CommentsBlock = (props) => {
   return (
-    <div className="Card-commentSection">
-      <div className="story-comments">
+    <div className="w-full space-y-4">
+      <div className="space-y-3">
         {props.comments.map((comment) => (
           <SingleComment
             key={`SingleComment_${comment._id}`}
@@ -29,13 +22,15 @@ const CommentsBlock = (props) => {
             content={comment.content}
           />
         ))}
-        {props.userId && (
+      </div>
+      {props.userId && (
+        <div className="mt-4 pt-4 border-t border-gray-100">
           <NewComment
             storyId={props.storyId}
             addNewComment={props.addNewComment}
           />
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
