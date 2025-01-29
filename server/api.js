@@ -353,26 +353,24 @@ router.post("/imageprocess", (req, res) => {
       PATH: `${venvPath}:${process.env.PATH}`,
     },
   });*/
-  /*const venvBinPath = path.join(__dirname, "../.venv/bin");
+  const venvBinPath = path.join(__dirname, "../.venv/bin");
   const pythonPath = path.join(venvBinPath, "python");
   console.log("pythonPath is ", pythonPath);
   console.log(
     "PATH name becomes this ",
     `${venvBinPath}${path.delimiter}${process.env.PATH}`
   );
-  console.log();
-
   const child = spawn(pythonPath, [scriptPath, ...(args || [])], {
     env: {
       ...process.env,
       PATH: `${venvBinPath}${path.delimiter}${process.env.PATH}`,
     },
-  });*/
-  const venvPath = path.join(__dirname, "../.venv/bin/activate"); // Adjust this path if necessary
+  });
+  /*const venvPath = path.join(__dirname, "../.venv/bin/activate"); // Adjust this path if necessary
   const child = spawn("bash", [
     "-c",
-    `source .venv/bin/activate && python ${scriptPath} ${args.join(" ")}`,
-  ]);
+    `source ${venvPath} && python ${scriptPath} ${args.join(" ")}`,
+  ]);*/
 
   let output = "";
 
