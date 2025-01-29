@@ -117,17 +117,13 @@ const Feed = () => {
   return (
     <>
       <div className="container mx-auto px-4 pt-24 pb-12">
-        <SearchFeed
-          filterFeed={filterFeed}
-          clearSearch={clearSearch}
-          className="w-full pl-12 pr-4 py-3 text-lg bg-white border-stylesnap-beige focus:border-stylesnap-pink transition-colors"
-        />
-        {/* <button 
-          className="bg-purple-new hover:bg-purple-700 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center"
-          onClick={clearSearch}
-        >
-          ✕
-        </button> */}
+        <div className="mb-8">
+          <SearchFeed
+            filterFeed={filterFeed}
+            clearSearch={clearSearch}
+            className="w-full px-6 py-3 text-lg bg-white border-2 border-stylesnap-beige rounded-full focus:outline-none focus:border-stylesnap-pink focus:ring-2 focus:ring-stylesnap-pink/20 transition-all duration-200 shadow-sm hover:shadow-md placeholder-gray-400"
+          />
+        </div>
 
         <div className="flex justify-center items-center relative">
           {/* Left Arrow */}

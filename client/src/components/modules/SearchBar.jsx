@@ -27,28 +27,32 @@ const NewPostInput = (props) => {
   };
 
   return (
-    <div className="text-right">
-      <input
-        type="text"
-        placeholder={props.defaultText}
-        value={value}
-        onChange={handleChange}
-        className="NewPostInput-input py-1.5"
-      />
-      <button
-        className="bg-purple-new hover:bg-blue-500 text-white font-bold py-1 px-2 rounded mt-4 mb-4"
-        onClick={props.clearSearch}
-      >
-        X
-      </button>
-      <button
-        type="submit"
-        className="bg-purple-new hover:bg-purple-700 text-white font-bold py-1.5 px-3 rounded mb-2 u-pointer"
-        value="Submit"
-        onClick={handleSubmit}
-      >
-        Search
-      </button>
+    <div className="flex justify-end">
+      <div className="w-2/5 flex">
+        <div className="relative flex-1">
+          <input
+            type="text"
+            placeholder={props.defaultText}
+            value={value}
+            onChange={handleChange}
+            className="NewPostInput-input w-full"
+          />
+          <button
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+            onClick={props.clearSearch}
+          >
+            ✕
+          </button>
+        </div>
+        <button
+          type="submit"
+          className="bg-purple-new hover:bg-purple-700 text-white font-bold px-6 transition-colors h-[36px]"
+          value="Submit"
+          onClick={handleSubmit}
+        >
+          Search
+        </button>
+      </div>
     </div>
   );
 };
