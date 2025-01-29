@@ -48,7 +48,7 @@ const Profile = () => {
     get(`/api/user`, { userid: props.userId }).then((userObj) =>
       setUser(userObj)
     );
-  }, [props.userId, outletProps.userId, user, userUpdate]); //this is really scuffed but putting user here and constantly rendering it
+  }, [props.userId, outletProps.userId, userUpdate]); //this is really scuffed but putting user here and constantly rendering it
   //temporary fix for why userUpdate doesn't really trigger rerenders
 
   const handleUserUpdate = () => {
