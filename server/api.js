@@ -353,6 +353,7 @@ router.post("/imageprocess", (req, res) => {
       PATH: `${venvPath}:${process.env.PATH}`,
     },
   });*/
+
   const venvBinPath = path.join(__dirname, "../.venv/bin");
   const pythonPath = path.join(venvBinPath, "python");
   console.log("pythonPath is ", pythonPath);
@@ -366,6 +367,7 @@ router.post("/imageprocess", (req, res) => {
       PATH: `${venvBinPath}${path.delimiter}${process.env.PATH}`,
     },
   });
+
   /*const venvPath = path.join(__dirname, "../.venv/bin/activate"); // Adjust this path if necessary
   const child = spawn("bash", [
     "-c",
