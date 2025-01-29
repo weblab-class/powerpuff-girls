@@ -40,7 +40,7 @@ const Postpage = () => {
               tags={postcard.tags}
             />
           ) : (
-            <div>Sorry, this post no longer exists!</div>
+            <div></div>
           )}
         </div>
       </div>
