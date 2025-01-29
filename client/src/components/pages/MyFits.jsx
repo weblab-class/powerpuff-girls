@@ -28,7 +28,6 @@ const MyFits = () => {
   useEffect(() => {
     document.title = "My Fits";
     get("/api/getMyFits").then((filteredStoryObjs) => {
-      console.log("hiii: " + filteredStoryObjs);
       let reversedStoryObjs = filteredStoryObjs.reverse();
       setStories(reversedStoryObjs);
       setFilterStories(reversedStoryObjs);
@@ -67,11 +66,8 @@ const MyFits = () => {
           (storyObj) =>
             `https://res.cloudinary.com/stylesnap/image/upload/w_300,h_600,c_fill/${storyObj.publicId}`
         ) || [];
-      console.log("client side image urls is ", image_urls);
 
       post("/api/imageprocess", { image_urls }).then((paletteString) => {
-        console.log("post request worked yay");
-        console.log(paletteString.paletteBase64);
         setBase64Image(paletteString.paletteBase64);
       });
     }
@@ -105,7 +101,6 @@ const MyFits = () => {
             setFilterStories((oldStories) => {
               return oldStories.filter((story) => story._id !== storyObj._id);
             });
-            console.log("deleting story");
           }}
         />
       </button>

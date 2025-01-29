@@ -19,7 +19,6 @@ const Postpage = () => {
     get("/api/postpage", { _id: _id })
       .then((storyObj) => setPostcard(storyObj))
       .catch(console.log("this postcard no longer exists"));
-    console.log("navigated to post page and retrieved story");
     // Clean up the audio instance when the component unmounts
   }, []);
 

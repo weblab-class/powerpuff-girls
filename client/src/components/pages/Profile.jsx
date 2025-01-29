@@ -92,7 +92,6 @@ const Profile = () => {
   };
 
   const uploadImage = async (file, caption, tags) => {
-    console.log("got in here at all yay");
     const uploadPreset = "card-resize"; // Replace with the unsigned upload preset name
 
     const formData = new FormData();
@@ -110,14 +109,12 @@ const Profile = () => {
 
       if (response.ok) {
         const data = await response.json(); // The uploaded image info
-        console.log("Upload successful:", data);
         const body = { content: caption, publicId: data.public_id, tags };
         post("/api/story", body);
         return data; // The image's URL and other information
       } else {
         console.error("Upload failed:", response.status, response.statusText);
         const responseBody = await response.text();
-        console.log("Response body:", responseBody);
       }
     } catch (error) {
       console.error("Error during upload:", error);
@@ -135,8 +132,6 @@ const Profile = () => {
     }
 
     // Here you would typically upload to a backend service
-    console.log(previewUrl);
-    console.log(values);
     uploadImage(previewUrl, values.caption, values.tags);
 
     notifications.show({
@@ -150,7 +145,6 @@ const Profile = () => {
   };
 
   const requestfunct = (email) => {
-    console.log("client post endpoint in profile.jsx");
     const body = { email: email, you: user }; //only when you're logged in though
     post("/api/requestout", body);
   };

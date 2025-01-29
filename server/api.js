@@ -60,7 +60,6 @@ router.post("/story", auth.ensureLoggedIn, (req, res) => {
 
 router.post("/deleteCard", auth.ensureLoggedIn, (req, res) => {
   Story.deleteOne({ _id: req.body._id }).then(() => {
-    console.log(req.body._id);
     res.send({});
   });
 });
@@ -76,7 +75,6 @@ router.post("/save", auth.ensureLoggedIn, (req, res) => {
 router.post("/deleteSave", auth.ensureLoggedIn, (req, res) => {
   Save.deleteOne({ parent: req.body.parent, creator_id: req.user._id }).then(
     () => {
-      console.log(req.body.parent);
       res.send({});
     }
   );
@@ -89,7 +87,6 @@ router.get("/getAllSaved", auth.ensureLoggedIn, (req, res) => {
 });
 
 router.get("/getMyFits", auth.ensureLoggedIn, (req, res) => {
-  console.log("hi");
   Story.find({ creator_id: req.user._id }).then((stories) => {
     res.send(stories);
   });
@@ -173,8 +170,6 @@ router.post("/requestout", auth.ensureLoggedIn, (req, res) => {
   const you = req.body.you;
   User.findOne({ email: req.body.email })
     .then((founduser) => {
-      console.log("found them: ", founduser);
-
       User.updateOne(
         {
           email: you.email,
@@ -385,7 +380,6 @@ router.post("/imageprocess", (req, res) => {
   child.on("close", (code) => {
     if (code === 0) {
       // Send the base64-encoded image back to the client
-      console.log("output is this: ", output);
       res.status(200).json({
         message: "Python script finished successfully",
         paletteBase64: output,
@@ -397,7 +391,6 @@ router.post("/imageprocess", (req, res) => {
 });
 
 router.get("/realId", (req, res) => {
-  console.log("google id passed in is ", req.query.googleid);
   User.findOne({ googleid: req.query.googleid })
     .then((founduser) => {
       if (!founduser) {

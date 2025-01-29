@@ -1,6 +1,6 @@
 # SUGAR SPICE AND EVERYTHING NICE (powerpuff girls clone)
 
-# catbook-react
+# stylesnap
 
 ## start up
 

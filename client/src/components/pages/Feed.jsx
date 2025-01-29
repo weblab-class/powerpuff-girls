@@ -108,7 +108,6 @@ const Feed = () => {
             setFilterStories((oldStories) => {
               return oldStories.filter((story) => story._id !== storyObj._id);
             });
-            console.log("deleting story");
           }}
         />
       </div>

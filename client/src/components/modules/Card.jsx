@@ -43,12 +43,10 @@ const Card = (props) => {
     if (isBookmarked) {
       post("/api/deleteSave", { parent: props._id }).then(() => {
         setIsBookmarked(false);
-        console.log("unbookmarked!");
       });
     } else {
       post("/api/save", { parent: props._id }).then((save) => {
         setIsBookmarked(true);
-        console.log("bookmarked!");
       });
     }
   };
@@ -58,7 +56,6 @@ const Card = (props) => {
   const handleDelete = (event) => {
     event.stopPropagation();
     post("/api/deleteCard", { _id: props._id }).then(() => {
-      console.log("deleting now xd");
       props.handleDelete();
       notifications.show({
         title: "Post Deleted",
