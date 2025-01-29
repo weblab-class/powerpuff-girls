@@ -74,12 +74,12 @@ const Card2 = (props) => {
                   variant="ghost"
                   size="icon"
                   onClick={handleBookmark}
-                  className={`absolute top-6 right-6 w-8 h-8 rounded-full text-black hover:text-stylesnap-pink bg-white/60 hover:bg-white/90 transition-colors ${
+                  className={`absolute top-6 right-10 w-8 h-8 rounded-full text-black hover:text-stylesnap-pink bg-white/60 hover:bg-white/90 transition-colors ${
                     isBookmarked ? "text-stylesnap-pink" : ""
                   }`}
                 >
                   <Bookmark
-                    className="h-4 w-4"
+                    className="h-4 w-4 mr-[1.5px]"
                     fill={isBookmarked ? "currentColor" : "none"}
                   />
                 </Button>
@@ -90,6 +90,11 @@ const Card2 = (props) => {
 
         {/* Right Section: Comments */}
         <div className="flex-1 lg:w-1/3 bg-white/90">
+          <Link to="/">
+            <button className="absolute top-2 right-2 bg-stylesnap-pink hover:bg-purple-700 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center">
+              ✕
+            </button>
+          </Link>
           <CardFooter className="flex flex-col items-start p-6">
             <Link
               to={`/profile/${props.creator_id}`}
