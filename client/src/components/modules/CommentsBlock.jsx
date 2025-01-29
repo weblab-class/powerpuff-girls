@@ -24,7 +24,7 @@ const CommentsBlock = (props) => {
         ))}
       </div>
       {props.userId && (
-        <div className="mt-4 pt-4 border-t border-gray-100">
+        <div className="mt-4 pt-4 border-t border-gray-100 w-full">
           <NewComment
             storyId={props.storyId}
             addNewComment={props.addNewComment}

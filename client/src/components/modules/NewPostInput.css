@@ -4,7 +4,7 @@
 
 .NewPostInput-input,
 .NewPostInput-button {
-  font-family: "Open Sans";
+  font-family: "Inter";
   font-size: 14px;
   padding: var(--s) var(--m);
 }

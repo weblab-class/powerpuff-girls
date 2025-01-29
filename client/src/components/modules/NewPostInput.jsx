@@ -27,13 +27,13 @@ const NewPostInput = (props) => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex w-full">
       <input
         type="text"
         placeholder={props.defaultText}
         value={value}
         onChange={handleChange}
-        className="rounded-l-md border border-r-0 border-gray-300 px-4 py-2 focus:outline-none focus:border-gray-300 flex-grow"
+        className="rounded-l-md border border-r-0 border-gray-300 px-4 py-2 focus:outline-none focus:border-gray-300 flex-grow w-full"
       />
       <button
         type="submit"
