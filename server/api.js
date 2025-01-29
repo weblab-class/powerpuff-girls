@@ -340,27 +340,13 @@ router.post("/cancelreq", auth.ensureLoggedIn, (req, res) => {
 });
 
 router.post("/imageprocess", (req, res) => {
-  console.log("inside api endpoint");
   const path = require("path");
   const scriptPath = path.join(__dirname, "clothessegment.py");
 
   const args = req.body.image_urls;
-  console.log("IMAGE URLS PASSED IN", args);
-  /*const venvPath = "../.venv/bin/activate";
-  const child = spawn("../.venv/bin/python", [scriptPath, ...(args || [])], {
-    env: {
-      ...process.env,
-      PATH: `${venvPath}:${process.env.PATH}`,
-    },
-  });*/
 
   const venvBinPath = path.join(__dirname, "../.venv/bin");
   const pythonPath = path.join(venvBinPath, "python");
-  console.log("pythonPath is ", pythonPath);
-  console.log(
-    "PATH name becomes this ",
-    `${venvBinPath}${path.delimiter}${process.env.PATH}`
-  );
   const child = spawn(pythonPath, [scriptPath, ...(args || [])], {
     env: {
       ...process.env,
@@ -401,6 +387,21 @@ router.post("/imageprocess", (req, res) => {
       res.status(500).send(`Python script exited with code ${code}`);
     }
   });
+});
+
+router.get("/realId", (req, res) => {
+  console.log("google id passed in is ", req.query.googleid);
+  User.findOne({ googleid: req.query.googleid })
+    .then((founduser) => {
+      if (!founduser) {
+        return res.status(404).send("User not found");
+      }
+      res.send(founduser);
+    })
+    .catch((err) => {
+      console.error("Database error: ", err);
+      res.status(500).send("Internal Server Error");
+    });
 });
 
 // anything else falls to this "not found" case

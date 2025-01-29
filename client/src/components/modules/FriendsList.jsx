@@ -8,7 +8,14 @@ import "../../tailwind.css";
 //requestedout will have a button to cancel request
 //requestedin will have button to accept/reject
 const FriendsList = (props) => {
+  const navigate = useNavigate();
   let rawFriendsList = props.user?.friends || [];
+
+  const handleClick = (googleid) => {
+    get(`/api/realId`, { googleid: googleid }).then((userObj) => {
+      navigate(`/profile/${userObj._id}`);
+    });
+  };
 
   if (rawFriendsList.length === 0) {
     console.log("mei you peng you");
@@ -17,7 +24,12 @@ const FriendsList = (props) => {
     console.log("NONZERO FRIENDS");
     let friendsList = rawFriendsList.map((pairObj) => (
       <div key={pairObj.googleid} className="m-1 p-1">
-        {pairObj.name}
+        <button
+          onClick={() => handleClick(pairObj.googleid)}
+          className="text-left hover:text-stylesnap-pink transition-colors"
+        >
+          {pairObj.name}
+        </button>
       </div>
     ));
     return <div>{friendsList}</div>;
@@ -25,11 +37,19 @@ const FriendsList = (props) => {
 };
 
 const RequestedOutList = (props) => {
+  const navigate = useNavigate();
   let rawRequestedList = props.user?.requestedOut || [];
 
-  const cancelRequest = (user1, user2) => {
+  const cancelRequest = async (user1, user2) => {
     const body = { user1: user1, user2: user2 };
-    post("/api/cancelreq", body); //user1 previously requested user2 but wants to cancel that
+    await post("/api/cancelreq", body); //user1 previously requested user2 but wants to cancel that
+    props.handleUserUpdate();
+  };
+
+  const handleClick = (googleid) => {
+    get(`/api/realId`, { googleid: googleid }).then((userObj) => {
+      navigate(`/profile/${userObj._id}`);
+    });
   };
 
   if (rawRequestedList.length === 0) {
@@ -37,7 +57,14 @@ const RequestedOutList = (props) => {
   } else {
     let requestedList = rawRequestedList.map((pairObj) => (
       <div key={pairObj.googleid} className="m-1 p-1">
-        <span>{pairObj.name}</span>
+        <span>
+          <button
+            onClick={() => handleClick(pairObj.googleid)}
+            className="text-left hover:text-stylesnap-pink transition-colors"
+          >
+            {pairObj.name}
+          </button>
+        </span>
         <span>
           <button
             onClick={() => cancelRequest(props.user, pairObj)}
@@ -53,16 +80,25 @@ const RequestedOutList = (props) => {
 };
 
 const RequestedInList = (props) => {
+  const navigate = useNavigate();
   let rawPendingList = props.user?.requestedIn || [];
 
-  const acceptRequest = (user1, user2) => {
+  const acceptRequest = async (user1, user2) => {
     const body = { user1: user1, user2: user2 };
-    post("/api/acceptreq", body);
+    await post("/api/acceptreq", body);
+    props.handleUserUpdate();
   };
 
-  const rejectRequest = (user1, user2) => {
+  const rejectRequest = async (user1, user2) => {
     const body = { user1: user1, user2: user2 };
-    post("/api/rejectreq", body);
+    await post("/api/rejectreq", body);
+    props.handleUserUpdate();
+  };
+
+  const handleClick = (googleid) => {
+    get(`/api/realId`, { googleid: googleid }).then((userObj) => {
+      navigate(`/profile/${userObj._id}`);
+    });
   };
 
   if (rawPendingList.length === 0) {
@@ -71,7 +107,14 @@ const RequestedInList = (props) => {
     let pendingList = rawPendingList.map((pairObj) => (
       <div key={pairObj.googleid} className="m-1 p-1">
         <span className="flex space-x-4 items-center">
-          <span className="flex-none">{pairObj.name}</span>
+          <span className="flex-none">
+            <button
+              onClick={() => handleClick(pairObj.googleid)}
+              className="text-left hover:text-stylesnap-pink transition-colors"
+            >
+              {pairObj.name}
+            </button>
+          </span>
           <button
             onClick={() => acceptRequest(props.user, pairObj)}
             className="bg-stylesnap-pink rounded-sm text-sm m-1 p-2 hover:bg-stylesnap-gray text-white"

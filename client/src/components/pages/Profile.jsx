@@ -35,6 +35,7 @@ const Profile = () => {
   let props = useParams(); //userId tells you whose profile page based on specific url
   let outletProps = useOutletContext(); //userId tells you who's logged in rn
   const [user, setUser] = useState();
+  const [userUpdate, setUserUpdate] = useState(0);
   const { toast } = useToast();
   const fileInputRef = useRef(null);
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -42,13 +43,17 @@ const Profile = () => {
   const [isPlaying, setIsPlaying] = useState(false); // Whether music is playing or not
   const [audio] = useState(new Audio("/peppy_fash.mp3")); // Path to your MP3 file
 
-
   useEffect(() => {
     document.title = "Profile Page";
     get(`/api/user`, { userid: props.userId }).then((userObj) =>
       setUser(userObj)
     );
-  }, [user, props.userId, outletProps.userId]);
+  }, [props.userId, outletProps.userId, user, userUpdate]); //this is really scuffed but putting user here and constantly rendering it
+  //temporary fix for why userUpdate doesn't really trigger rerenders
+
+  const handleUserUpdate = () => {
+    setUserUpdate((prev) => prev + 1);
+  };
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -287,26 +292,39 @@ const Profile = () => {
             )}
 
             <TabPanel>
-              <div className="flex space-x-4 text-stylesnap-gray">
-                <div className="flex-grow flex-1 m-2 p-4 h-full rounded-lg shadow-md bg-white">
+              <div className="grid grid-cols-3 gap-4 text-stylesnap-gray">
+                <div className="w-full p-4 h-full rounded-lg shadow-md bg-white">
                   <div className="font-bold text-stylesnap-pink">Friends:</div>{" "}
-                  <FriendsList user={user} />
+                  <FriendsList
+                    user={user}
+                    handleUserUpdate={handleUserUpdate}
+                  />
                 </div>
                 {outletProps.userId === props.userId && (
-                  <div className="flex-grow flex-1 m-2 p-4 h-full rounded-lg shadow-md bg-white">
+                  <div className="w-full p-4 h-full rounded-lg shadow-md bg-white">
                     <div className="font-bold text-stylesnap-pink">
                       Outgoing requests:
                     </div>
-                    <RequestedOutList user={user} />
-                    <SendFriendReq requestfunct={requestfunct} />
+                    <RequestedOutList
+                      user={user}
+                      handleUserUpdate={handleUserUpdate}
+                    />
+                    <SendFriendReq
+                      requestfunct={requestfunct}
+                      handleUserUpdate={handleUserUpdate}
+                    />
                   </div>
                 )}
                 {outletProps.userId === props.userId && (
-                  <div className="flex-grow flex-1 m-2 p-4 h-full rounded-lg shadow-md bg-white">
+                  <div className="w-full p-4 h-full rounded-lg shadow-md bg-white">
                     <div className="font-bold text-stylesnap-pink">
                       Pending requests:
                     </div>
-                    <RequestedInList user={user} className="m-2" />
+                    <RequestedInList
+                      user={user}
+                      className="m-2"
+                      handleUserUpdate={handleUserUpdate}
+                    />
                   </div>
                 )}
               </div>

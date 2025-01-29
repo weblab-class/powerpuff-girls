@@ -48,6 +48,7 @@ const NewPostInput = (props) => {
 
 const SendFriendReq = (props) => {
   const search = (email) => {
+    props.handleUserUpdate();
     props.requestfunct(email);
   };
   return (
