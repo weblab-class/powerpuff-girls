@@ -18,6 +18,7 @@ const Feed = () => {
   const [filterStories, setFilterStories] = useState([]);
   const [showing, setShowing] = useState(0);
   const [popUp, setPopUp] = useState(-1); //-1 means nothing, otherwise give index of card
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     document.title = "Fashion Feed";
@@ -28,8 +29,12 @@ const Feed = () => {
     });
     setShowing(0);
 
+    get("/api/whoami").then((userObj) => {
+      setUser(userObj); //if not logged in then this is an empty thing
+    });
+
     // Clean up the audio instance when the component unmounts
-  }, []);
+  }, [props.userId]);
 
   const addNewStory = (storyObj) => {
     setStories([storyObj].concat(stories));
@@ -121,7 +126,7 @@ const Feed = () => {
           <div className="absolute left-5 -top-10">
             <div className="text-5xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-purple-new">
               {props.userId ? (
-                `Hi, ${props.name?.split(" ")[0]}`
+                `Hi, ${user?.name?.split(" ")[0]}`
               ) : (
                 <>
                   <span className="style-text">Style</span>
