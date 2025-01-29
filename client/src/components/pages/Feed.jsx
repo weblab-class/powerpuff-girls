@@ -136,7 +136,7 @@ const Feed = () => {
             <div className="text-5xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-purple-new relative">
               {props.userId ? (
                 <>
-                  <span className="slide-in delay-1 inline-block greeting-text">Hi,</span>{" "}
+                  <span className="slide-in delay-1 inline-block greeting-text">Hello,</span>{" "}
                   <span className="slide-in delay-2 inline-block greeting-text">{user?.name?.split(" ")[0]}</span>
                   <div className="large-sparkle slide-in delay-3" style={{ position: 'absolute', right: '-100px', top: '15%', transform: 'translateY(-50%)' }} />
                 </>
