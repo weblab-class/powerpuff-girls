@@ -119,7 +119,7 @@ const Saved = () => {
           Nothing Saved Yet!
         </h2>
         <p className="text-gray-500 text-lg">
-          Start exploring and save some amazing fits!
+          Start exploring and bookmark some amazing fits!
         </p>
         <Link
           to="/"

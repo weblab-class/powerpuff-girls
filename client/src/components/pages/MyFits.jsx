@@ -113,7 +113,8 @@ const MyFits = () => {
           Nothing Posted Yet!
         </h2>
         <p className="text-gray-500 text-lg">
-          Start exploring and upload some of your amazing fits!
+          Start exploring other people's amazing fits or upload new from your
+          profile!
         </p>
         <Link
           to="/"
