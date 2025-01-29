@@ -15,7 +15,7 @@ const SingleComment = (props) => {
     <div className="flex flex-col space-y-1 p-2 rounded-md hover:bg-gray-50 transition-colors">
       <Link 
         to={`/profile/${props.creator_id}`} 
-        className="text-sm font-medium text-stylesnap-pink hover:text-stylesnap-gray transition-colors"
+        className="text-sm font-bold text-stylesnap-pink hover:text-stylesnap-gray transition-colors"
       >
         {props.creator_name}
       </Link>
