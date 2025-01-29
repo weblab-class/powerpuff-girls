@@ -29,7 +29,6 @@ const Card2 = (props) => {
   }, []);
 
   const addNewComment = (commentObj) => {
-    console.log("added new comment client side card2 component");
     setComments(comments.concat([commentObj]));
   };
 

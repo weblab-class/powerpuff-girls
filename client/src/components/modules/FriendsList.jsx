@@ -18,10 +18,8 @@ const FriendsList = (props) => {
   };
 
   if (rawFriendsList.length === 0) {
-    console.log("mei you peng you");
     return <div>No friends yet</div>;
   } else {
-    console.log("NONZERO FRIENDS");
     let friendsList = rawFriendsList.map((pairObj) => (
       <div key={pairObj.googleid} className="m-1 p-1">
         <button
