@@ -36,6 +36,12 @@ const NewPostInput = (props) => {
         className="NewPostInput-input py-1.5"
       />
       <button
+        className="bg-purple-new hover:bg-blue-500 text-white font-bold py-1 px-2 rounded mt-4 mb-4"
+        onClick={props.clearSearch}
+      >
+        X
+      </button>
+      <button
         type="submit"
         className="bg-purple-new hover:bg-purple-700 text-white font-bold py-1.5 px-3 rounded mb-2 u-pointer"
         value="Submit"
@@ -51,11 +57,13 @@ const SearchFeed = (props) => {
   const search = (value) => {
     props.filterFeed(value);
   };
+
   return (
     <NewPostInput
       className="NewPostInput-input flex justify-end"
       defaultText="Search for your dream look..."
       onSubmit={search}
+      clearSearch={props.clearSearch}
     />
   );
 };

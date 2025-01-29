@@ -51,7 +51,6 @@ const Feed = () => {
     }
   };
 
-
   const clearSearch = () => {
     setFilterStories(stories);
     setShowing(0);
@@ -68,7 +67,6 @@ const Feed = () => {
       setShowing(showing - 1);
     }
   };
-
 
   let storiesList = null;
   if (filterStories.length !== 0) {
@@ -124,12 +122,6 @@ const Feed = () => {
           clearSearch={clearSearch}
           className="w-full pl-12 pr-4 py-3 text-lg bg-white border-stylesnap-beige focus:border-stylesnap-pink transition-colors"
         />
-        <button
-          className="bg-purple-new hover:bg-blue-500 text-white font-bold py-1 px-2 rounded mt-4 mb-4"
-          onClick={clearSearch}
-        >
-          X
-        </button>
         {/* <button 
           className="bg-purple-new hover:bg-purple-700 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center"
           onClick={clearSearch}
