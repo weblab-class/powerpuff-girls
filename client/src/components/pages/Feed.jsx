@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { get } from "../../utilities";
 import "../../tailwind.css";
 import "./Feed.css";
+import { GrNext, GrPrevious } from "react-icons/gr";
 
 const Feed = () => {
   let navigate = useNavigate();
@@ -136,18 +137,28 @@ const Feed = () => {
           Clear Search
         </button>
 
-        <div className="flex">
-          <button onClick={goLeft} className="arrow-button arrow-left"></button>
+        <div className="flex justify-center items-center relative">
+          {/* Left Arrow */}
+          <button
+            onClick={goLeft}
+            className="arrow-button arrow-left absolute left-[-40px] top-1/2"
+          >
+            <GrPrevious color="white" size={15} />
+          </button>
+
+          {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {storiesList}
           </div>
+
+          {/* Right Arrow */}
           <button
             onClick={goRight}
-            className="arrow-button arrow-right"
-          ></button>
+            className="arrow-button arrow-left absolute right-[-40px] top-1/2"
+          >
+            <GrNext color="white" size={15} />
+          </button>
         </div>
-
-        {/* Music Toggle Button */}
       </div>
     </>
   );

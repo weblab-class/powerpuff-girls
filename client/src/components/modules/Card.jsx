@@ -93,7 +93,7 @@ const Card = (props) => {
                 variant="ghost"
                 size="icon"
                 onClick={handleBookmark}
-                className={`w-8 h-8 rounded-full text-white hover:text-stylesnap-pink bg-black/20 hover:bg-white/90 transition-colors ${
+                className={`w-8 h-8 rounded-full text-black hover:text-stylesnap-pink bg-white/60 hover:bg-white/90 transition-colors ${
                   isBookmarked ? "text-stylesnap-pink" : ""
                 }`}
               >
@@ -108,7 +108,7 @@ const Card = (props) => {
                 variant="ghost"
                 size="icon"
                 onClick={handleDelete}
-                className="w-8 h-8 rounded-full text-white hover:text-red-500 bg-black/20 hover:bg-white/90 transition-colors"
+                className="w-8 h-8 rounded-full text-black hover:text-red-500 bg-white/60 hover:bg-white/90 transition-colors"
               >
                 <Trash2 className="h-4 w-4" />
               </Button>
