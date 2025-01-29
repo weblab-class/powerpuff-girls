@@ -33,11 +33,11 @@ const NewPostInput = (props) => {
         placeholder={props.defaultText}
         value={value}
         onChange={handleChange}
-        className="NewPostInput-input"
+        className="NewPostInput-input py-1.5"
       />
       <button
         type="submit"
-        className="NewPostInput-button u-pointer"
+        className="bg-purple-new hover:bg-purple-700 text-white font-bold py-1.5 px-3 rounded mb-2 u-pointer"
         value="Submit"
         onClick={handleSubmit}
       >
