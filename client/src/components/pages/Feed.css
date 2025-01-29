@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=MonteCarlo&family=Playfair+Display:ital@0;1&display=swap');
 
 @font-face {
   font-family: 'Brittany';
@@ -32,8 +33,28 @@
 }
 
 .greeting-text {
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 700;
+  display: inline-block;
+}
+
+.greeting-first-letter {
+  font-family: 'MonteCarlo', cursive;
+  font-size: 1.3em;
+}
+
+.greeting-rest {
+  font-family: 'Playfair Display', serif;
+}
+
+.greeting-rest-italic {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+}
+
+.greeting-username {
+  font-family: 'Playfair Display', serif;
+  color: #B47AFF;
+  -webkit-text-stroke: 1.5px black;
+  text-stroke: 1.5px black;
 }
 
 .horizontal-spread {

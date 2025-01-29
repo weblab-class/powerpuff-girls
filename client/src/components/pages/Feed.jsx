@@ -116,14 +116,20 @@ const Feed = () => {
   } else if (filterStories.length === 0 && stories.length !== 0) {
     storiesList = (
       <div className="col-span-full flex flex-col items-center justify-center py-12">
-        <div className="text-2xl text-gray-700 font-medium mb-2">Nothing matches your search...</div>
-        <div className="text-gray-600">Try adjusting your search terms or filters</div>
+        <div className="text-2xl text-gray-700 font-medium mb-2">
+          Nothing matches your search...
+        </div>
+        <div className="text-gray-600">
+          Try adjusting your search terms or filters
+        </div>
       </div>
     );
   } else {
     storiesList = (
       <div className="col-span-full flex flex-col items-center justify-center py-12">
-        <div className="text-2xl text-gray-700 font-medium">Nothing in your feed!</div>
+        <div className="text-2xl text-gray-700 font-medium">
+          Nothing in your feed!
+        </div>
       </div>
     );
   }
@@ -133,28 +139,56 @@ const Feed = () => {
       <div className="container mx-auto px-4 pt-24 pb-12">
         <div className="relative">
           <div className="absolute left-5 -top-10">
-            <div className="text-5xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-purple-new relative">
+            <div className="text-5xl sm:text-4xl md:text-5xl lg:text-6xl text-purple-new relative">
               {props.userId ? (
                 <>
-                  <span className="slide-in delay-1 inline-block greeting-text">Hi,</span>{" "}
-                  <span className="slide-in delay-2 inline-block greeting-text">{user?.name?.split(" ")[0]}</span>
-                  <div className="large-sparkle slide-in delay-3" style={{ position: 'absolute', right: '-100px', top: '15%', transform: 'translateY(-50%)' }} />
+                  <span className="slide-in delay-1 inline-block greeting-text">
+                    <span className="greeting-first-letter">H</span>
+                    <span className="greeting-rest-italic">ello</span>,
+                  </span>{" "}
+                  <span className="slide-in delay-2 inline-block greeting-username">
+                    {user?.name?.split(" ")[0]}
+                  </span>
+                  <div
+                    className="large-sparkle slide-in delay-3"
+                    style={{
+                      position: "absolute",
+                      right: "-100px",
+                      top: "15%",
+                      transform: "translateY(-50%)",
+                    }}
+                  />
                 </>
               ) : (
                 <>
-                  <span className="style-text slide-in delay-1 inline-block">Style</span>
+                  <span className="greeting-username slide-in delay-1 inline-block">
+                    Style
+                  </span>
                   <span className="mx-2 slide-in delay-2 inline-block">.</span>
-                  <span className="snap-text slide-in delay-2 inline-block">Snap</span>
+                  <span className="slide-in delay-2 inline-block">
+                    <span className="greeting-first-letter">S</span>
+                    <span className="greeting-rest-italic">nap</span>
+                  </span>
                   <span className="mx-2 slide-in delay-3 inline-block">.</span>
-                  <span className="repeat-text slide-in delay-3 inline-block">Repeat</span>
+                  <span className="greeting-username slide-in delay-3 inline-block">
+                    Repeat
+                  </span>
                   <span className="slide-in delay-4 inline-block">.</span>
-                  <div className="large-sparkle slide-in delay-5" style={{ position: 'absolute', right: '-100px', top: '15%', transform: 'translateY(-50%)' }} />
+                  <div
+                    className="large-sparkle slide-in delay-5"
+                    style={{
+                      position: "absolute",
+                      right: "-100px",
+                      top: "15%",
+                      transform: "translateY(-50%)",
+                    }}
+                  />
                 </>
               )}
             </div>
           </div>
-          <div className="flex justify-end mb-8">
-            <div className="w-[1600px]">
+          <div className="flex justify-start mb-8 pl-2 pr-6 max-w-[1600px] mx-auto">
+            <div className="w-full">
               <SearchFeed
                 filterFeed={filterFeed}
                 clearSearch={clearSearch}
@@ -164,7 +198,7 @@ const Feed = () => {
           </div>
         </div>
 
-        <div className="flex justify-center items-center relative">
+        <div className="flex justify-center items-center relative max-w-[1600px] mx-auto">
           {/* Left Arrow */}
           <button
             onClick={goLeft}
