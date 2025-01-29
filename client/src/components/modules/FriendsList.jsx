@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { get, post } from "../../utilities";
+import { Link, useNavigate } from "react-router-dom";
 import "../../tailwind.css";
 
 //prop is userId, which person's list you want to display

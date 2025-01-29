@@ -153,7 +153,7 @@ const Profile = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-stylesnap-softGray">
       <main className="container mx-auto px-4 pt-24 pb-12">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="flex items-center justify-between mb-8">
             <div>
               <h1 className="text-3xl font-bold text-stylesnap-pink mb-2">

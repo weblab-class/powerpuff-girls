@@ -122,20 +122,14 @@ const Saved = () => {
     <>
       <div className="container mx-auto px-4 pt-24 pb-12">
         <div>
-          {/*base64Image && (
-            <div>
-              <img
-                src={`data:image/png;base64,${base64Image}`}
-                alt="Dominant color analysis"
-              />
-            </div>
-          )*/}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {storiesList}
           </div>
-          <div>
-            <ImageWithLoading base64Image={base64Image} />
-          </div>
+          {filterStories.length > 0 && (
+            <div>
+              <ImageWithLoading base64Image={base64Image} />
+            </div>
+          )}
           <div
             className="fixed bottom-2 right-2 p-2 bg-blue-500 rounded-full shadow-lg cursor-pointer flex items-center justify-center"
             onClick={toggleMusic}

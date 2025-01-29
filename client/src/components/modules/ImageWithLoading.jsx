@@ -38,7 +38,7 @@ const ImageWithLoading = ({ base64Image }) => {
         </div>
       ) : (
         <div className="flex items-center space-x-4 bg-white w-full">
-          <span className="text-lg font-semibold m-4 text-5xl">
+          <span className="text-lg font-semibold m-4 text-5xl animate-fadeIn">
             Your AI color palette:
           </span>
           <img
